@@ -3,6 +3,7 @@
 
 ![App Screenshot](https://drive.google.com/uc?export=download&id=154AxU5vx34C5c8rFfbgB_4Hk-Rhj0Xwh)
 
+
 Food waste is something that affects us all. This project is used to manage wastage foods
 in a useful way. Every day the people are wasting lots of foods. So we have to reduce
 that food wastage problem through online. If anyone have wastage foods they entering their
