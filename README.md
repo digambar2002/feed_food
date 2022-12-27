@@ -35,13 +35,13 @@ the different donors.
 
 ## ✍️ Authors
 
-👑 [@Renuka Nathjogi](https://www.github.com/RenukaNathjogi) Project Leader & Frontend Developer 
+  👑 [@Renuka Nathjogi](https://www.github.com/RenukaNathjogi) Project Leader & Frontend Developer 
 
-🧑‍💻 [@Digambar Chaudhari](https://www.github.com/digambar2002) Frontend & Backend Developer
+  🧑‍💻 [@Digambar Chaudhari](https://www.github.com/digambar2002) Frontend & Backend Developer
 
-🧑‍💻 [@Bhavesh Patil](https://www.github.com/bhaveshp2601) Frontend Developer
+  🧑‍💻 [@Bhavesh Patil](https://www.github.com/bhaveshp2601) Frontend Developer
 
-🧑‍💻 [@Deepak Dusane](https://www.github.com/6785-dip) Backend Developer
+  🧑‍💻 [@Deepak Dusane](https://www.github.com/6785-dip) Backend Developer
 
-🧑‍💻‍ [@Jayesh Patil](https://www.github.com/jeh2002) Software Tester & Support
+  🧑‍💻‍ [@Jayesh Patil](https://www.github.com/jeh2002) Software Tester & Support
 
