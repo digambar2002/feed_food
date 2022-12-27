@@ -36,7 +36,7 @@ the different donors.
 
 ## ✍️ Authors
 
-👑 [@Renuka Nathjogi](https://www.github.com/RenukaNathjogi) Projetc Leader & Frontend Developer 
+👑 [@Renuka Nathjogi](https://www.github.com/RenukaNathjogi) Project Leader & Frontend Developer 
 
 🧑‍💻 [@Digambar Chaudhari](https://www.github.com/digambar2002) Frontend & Backend Developer
 
