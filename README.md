@@ -27,9 +27,9 @@ the different donors.
 
 ## ⚙️ Tech Stack
 
-**Client:** Flutter, Dart
+- **Client:** Flutter, Dart
 
-**Server:** Python, Django, REST API, MySql
+- **Server:** Python, Django, REST API, MySql
 
 
 
