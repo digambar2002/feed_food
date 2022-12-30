@@ -1,3 +1,6 @@
+import 'package:feed_food/pages/login_page.dart';
+import 'package:feed_food/pages/register_page.dart';
+import 'package:feed_food/utils/routes.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -5,11 +8,6 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text("Home")),
-      body: Center(
-        child: Text("Welcome to Home"),
-      ),
-    );
+    return MaterialApp();
   }
 }
