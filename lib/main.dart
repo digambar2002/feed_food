@@ -1,6 +1,7 @@
 import 'package:feed_food/pages/home_page.dart';
 import 'package:feed_food/pages/login_page.dart';
 import 'package:feed_food/pages/register_page.dart';
+import 'package:feed_food/pages/register_page_ngo.dart';
 import 'package:feed_food/utils/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -26,7 +27,8 @@ class MyApp extends StatelessWidget {
         "/": (context) => LoginPage(),
         FeedFoodRoutes().homeRoute: (context) => HomePage(),
         FeedFoodRoutes().loginRoute: (context) => LoginPage(),
-        FeedFoodRoutes().registerRoute: (context) => RegisterPage()
+        FeedFoodRoutes().registerRoute: (context) => RegisterPage(),
+        FeedFoodRoutes().registerNgo:(context) =>  RegisterNgo(),
       },
     );
   }
