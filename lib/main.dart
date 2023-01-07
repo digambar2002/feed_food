@@ -24,11 +24,11 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: "/",
       routes: {
-        "/": (context) => LoginPage(),
+        "/": (context) => RegisterNgo(),
         FeedFoodRoutes().homeRoute: (context) => HomePage(),
         FeedFoodRoutes().loginRoute: (context) => LoginPage(),
         FeedFoodRoutes().registerRoute: (context) => RegisterPage(),
-        FeedFoodRoutes().registerNgo:(context) =>  RegisterNgo(),
+        FeedFoodRoutes().registerNgo: (context) => RegisterNgo(),
       },
     );
   }

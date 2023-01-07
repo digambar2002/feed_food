@@ -6,8 +6,9 @@ class RegisterNgo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-     appBar: AppBar(title: Text("NGO"),),
-     );
-
+      appBar: AppBar(
+        title: Text("New NGO Register"),
+      ),
+    );
   }
 }
