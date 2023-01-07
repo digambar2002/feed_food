@@ -1,6 +1,8 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:feed_food/utils/routes.dart';
+import 'package:feed_food/widgets/btn.dart';
+import 'package:feed_food/widgets/text_fields.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -9,159 +11,6 @@ class LoginPage extends StatefulWidget {
 
   @override
   State<LoginPage> createState() => _LoginPageState();
-}
-
-Widget buildEmail() {
-  return Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      SizedBox(
-        height: 5,
-      ),
-      Stack(
-        children: [
-          Container(
-            alignment: Alignment.centerLeft,
-            decoration: BoxDecoration(
-                color: Colors.black12,
-                borderRadius: BorderRadius.circular(10),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.white,
-                    blurRadius: 0,
-                    offset: Offset(0, 2),
-                  )
-                ]),
-            height: 60,
-          ),
-          TextFormField(
-            keyboardType: TextInputType.emailAddress,
-            style: TextStyle(color: Colors.black),
-            decoration: InputDecoration(
-                border: InputBorder.none,
-                contentPadding: EdgeInsets.only(top: 18),
-                prefixIcon: Padding(
-                  padding: const EdgeInsets.only(top: 16),
-                  child: Icon(
-                    Icons.email_outlined,
-                    color: Colors.black54,
-                  ),
-                ),
-                hintText: 'Email',
-                hintStyle: TextStyle(color: Colors.black54),
-                errorStyle: TextStyle(
-                  height: 2,
-                )),
-            validator: (value) {
-              if (value!.isEmpty) {
-                return "email not empty";
-              }
-              return null;
-            },
-          ),
-        ],
-      ),
-    ],
-  );
-}
-
-Widget buildPassword() {
-  return Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      SizedBox(
-        height: 5,
-      ),
-      Stack(
-        children: [
-          Container(
-            alignment: Alignment.centerLeft,
-            decoration: BoxDecoration(
-                color: Colors.black12,
-                borderRadius: BorderRadius.circular(10),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.white,
-                    blurRadius: 0,
-                    offset: Offset(0, 2),
-                  )
-                ]),
-            height: 60,
-          ),
-          TextFormField(
-            keyboardType: TextInputType.visiblePassword,
-            style: TextStyle(color: Colors.black),
-            obscureText: true,
-            enableSuggestions: false,
-            autocorrect: false,
-            decoration: InputDecoration(
-              border: InputBorder.none,
-              contentPadding: EdgeInsets.only(top: 18),
-              prefixIcon: Padding(
-                padding: const EdgeInsets.only(top: 16),
-                child: Icon(
-                  Icons.lock_outline,
-                  color: Colors.black54,
-                ),
-              ),
-              hintText: 'password',
-              hintStyle: TextStyle(color: Colors.black54),
-              errorStyle: TextStyle(
-                height: 2,
-              ),
-            ),
-            validator: (value) {
-              if (value!.isEmpty) {
-                return "password not empty";
-              } else if (value.length < 6) {
-                return "enter minimum 5 charaters";
-              }
-              return null;
-            },
-          ),
-        ],
-      ),
-    ],
-  );
-}
-
-Widget buildForgotBtn() {
-  return Container(
-    alignment: Alignment.centerRight,
-    child: TextButton(
-      onPressed: (() => print("forgot password")),
-      child: Text(
-        "forgot password ?",
-        style: TextStyle(
-          color: Colors.black54,
-        ),
-      ),
-    ),
-  );
-}
-
-Widget buildRegisterBtn() {
-  return Container(
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text(
-          "Don’t have an account?",
-          style: TextStyle(color: Colors.black54),
-        ),
-        TextButton(
-          onPressed: (() => print("register button")),
-          child: Text(
-            "register here",
-            style: TextStyle(
-              color: Colors.black54,
-              decoration: TextDecoration.underline,
-            ),
-          ),
-        ),
-      ],
-    ),
-  );
 }
 
 class _LoginPageState extends State<LoginPage> {
@@ -206,15 +55,17 @@ class _LoginPageState extends State<LoginPage> {
                       const EdgeInsets.symmetric(horizontal: 25, vertical: 10),
                   child: Column(
                     children: [
-                      buildEmail(),
+                      FoodTextField().buildEmail(),
                       SizedBox(
                         height: 20,
                       ),
-                      buildPassword(),
+                      FoodTextField().buildPassword(),
                       SizedBox(
                         height: 10,
                       ),
-                      buildForgotBtn(),
+                      Btn().buildForgotBtn(
+                          // Function as paramenter
+                          onClick: () => print("forgot password")),
                       SizedBox(
                         height: 20,
                       ),
@@ -237,7 +88,8 @@ class _LoginPageState extends State<LoginPage> {
                       SizedBox(
                         height: 40,
                       ),
-                      buildRegisterBtn(),
+                      Btn().buildRegisterBtn(
+                          onClick: () => print("register button")),
                     ],
                   ),
                 )
