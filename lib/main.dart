@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: "/",
       routes: {
-        "/": (context) => LoginPage(),
+        "/": (context) => forgot_password(),
         FeedFoodRoutes().homeRoute: (context) => HomePage(),
         FeedFoodRoutes().loginRoute: (context) => LoginPage(),
         FeedFoodRoutes().registerRoute: (context) => RegisterPage(),
