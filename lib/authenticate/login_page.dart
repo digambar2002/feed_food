@@ -88,7 +88,7 @@ class _LoginPageState extends State<LoginPage> {
                       SizedBox(
                         height: 40,
                       ),
-                      Btn().buildRegisterBtn(
+                      Btn().buildRegisterbtBtn(
                           onClick: () => print("register button")),
                     ],
                   ),
