@@ -1,3 +1,7 @@
+// Author: Digambar Chaudhari
+// Author: Prachi Nathjogi
+// Author: Bhavesh Patil
+
 import 'package:feed_food/pages/home_page.dart';
 import 'package:feed_food/pages/login_page.dart';
 import 'package:feed_food/pages/register_page.dart';
@@ -22,7 +26,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.deepPurple,
         fontFamily: GoogleFonts.poppins().fontFamily,
       ),
-      initialRoute: "/",
+      initialRoute: FeedFoodRoutes().registerNgo,
       routes: {
         "/": (context) => LoginPage(),
         FeedFoodRoutes().homeRoute: (context) => HomePage(),
