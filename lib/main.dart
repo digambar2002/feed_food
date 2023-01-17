@@ -2,6 +2,7 @@
 // Author: Prachi Nathjogi
 // Author: Bhavesh Patil
 
+import 'package:feed_food/authenticate/forgot_password.dart';
 import 'package:feed_food/pages/home_page.dart';
 import 'package:feed_food/authenticate/login_page.dart';
 import 'package:feed_food/authenticate/register_page.dart';
@@ -26,13 +27,14 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.deepPurple,
         fontFamily: GoogleFonts.poppins().fontFamily,
       ),
-      initialRoute: FeedFoodRoutes().registerNgo,
+      initialRoute: FeedFoodRoutes().ForgotPassword,
       routes: {
         "/": (context) => LoginPage(),
         FeedFoodRoutes().homeRoute: (context) => HomePage(),
         FeedFoodRoutes().loginRoute: (context) => LoginPage(),
         FeedFoodRoutes().registerRoute: (context) => RegisterPage(),
         FeedFoodRoutes().registerNgo: (context) => RegisterNgo(),
+        FeedFoodRoutes().ForgotPassword: (context) => ForgotPassword(),
       },
     );
   }
