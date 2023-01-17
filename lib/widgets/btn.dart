@@ -1,3 +1,5 @@
+// Author: Digambar Chaudhari
+
 import 'package:flutter/material.dart';
 
 class Btn {
@@ -21,7 +23,7 @@ class Btn {
 
   // Login page:
 
-  Widget buildRegisterBtn({required Function onClick}) {
+  Widget buildRegisterbtBtn({required Function onClick}) {
     return Container(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,

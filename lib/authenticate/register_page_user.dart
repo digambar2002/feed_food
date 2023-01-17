@@ -1,13 +1,15 @@
+// Author: Digambar Chaudhari
+
 import 'package:flutter/material.dart';
 
-class RegisterNgo extends StatelessWidget {
-  const RegisterNgo({super.key});
+class RegisterUser extends StatelessWidget {
+  const RegisterUser({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("New NGO Register"),
+        title: Text("Register User"),
       ),
     );
   }

@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors
+// Author: Digambar Chaudhari
 
 import 'package:feed_food/utils/routes.dart';
 import 'package:feed_food/widgets/btn.dart';
@@ -88,7 +88,7 @@ class _LoginPageState extends State<LoginPage> {
                       SizedBox(
                         height: 40,
                       ),
-                      Btn().buildRegisterBtn(
+                      Btn().buildRegisterbtBtn(
                           onClick: () => print("register button")),
                     ],
                   ),
