@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.deepPurple,
         fontFamily: GoogleFonts.poppins().fontFamily,
       ),
-      initialRoute: FeedFoodRoutes().ForgotPassword,
+      initialRoute: FeedFoodRoutes().loginRoute,
       routes: {
         "/": (context) => LoginPage(),
         FeedFoodRoutes().homeRoute: (context) => HomePage(),

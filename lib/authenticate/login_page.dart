@@ -65,7 +65,8 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       Btn().buildForgotBtn(
                           // Function as paramenter
-                          onClick: () => print("forgot password")),
+                          onClick: () => Navigator.pushNamed(
+                              context, FeedFoodRoutes().ForgotPassword)),
                       SizedBox(
                         height: 20,
                       ),
