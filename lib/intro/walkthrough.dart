@@ -8,17 +8,33 @@ class Walkthrough extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    PageController _controller = PageController();
     return Scaffold(
       body: PageView(
         children: [
           Container(
-            color: Colors.blue,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                  image: AssetImage("assets/images/walk1.png"),
+                  fit: BoxFit.fill),
+            ),
+            child: Column(),
           ),
           Container(
-            color: Colors.amberAccent,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                  image: AssetImage("assets/images/walk2.png"),
+                  fit: BoxFit.fill),
+            ),
+            child: Column(),
           ),
           Container(
-            color: Colors.brown,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                  image: AssetImage("assets/images/walk3.png"),
+                  fit: BoxFit.fill),
+            ),
+            child: Column(),
           ),
         ],
       ),
