@@ -3,6 +3,7 @@
 // Author: Bhavesh Patil
 
 import 'package:feed_food/authenticate/forgot_password.dart';
+import 'package:feed_food/intro/walkthrough.dart';
 import 'package:feed_food/pages/home_page.dart';
 import 'package:feed_food/authenticate/login_page.dart';
 import 'package:feed_food/authenticate/register_page.dart';
@@ -27,7 +28,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.deepPurple,
         fontFamily: GoogleFonts.poppins().fontFamily,
       ),
-      initialRoute: FeedFoodRoutes().loginRoute,
+      initialRoute: FeedFoodRoutes().Walkthrough,
       routes: {
         "/": (context) => LoginPage(),
         FeedFoodRoutes().homeRoute: (context) => HomePage(),
@@ -35,6 +36,7 @@ class MyApp extends StatelessWidget {
         FeedFoodRoutes().registerRoute: (context) => RegisterPage(),
         FeedFoodRoutes().registerNgo: (context) => RegisterNgo(),
         FeedFoodRoutes().ForgotPassword: (context) => ForgotPassword(),
+        FeedFoodRoutes().Walkthrough: (context) => Walkthrough(),
       },
     );
   }
