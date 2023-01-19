@@ -2,6 +2,7 @@
 
 import 'package:feed_food/utils/routes.dart';
 import 'package:feed_food/widgets/btn.dart';
+import 'package:feed_food/widgets/sheet.dart';
 import 'package:feed_food/widgets/text_fields.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -90,7 +91,14 @@ class _LoginPageState extends State<LoginPage> {
                         height: 40,
                       ),
                       Btn().buildRegisterbtBtn(
-                          onClick: () => print("register button")),
+                        onClick: () => showModalBottomSheet(
+                            context: context,
+                            builder: ((context) =>
+                                FeedFoodSheet().buildSheet()),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.vertical(
+                                    top: Radius.circular(20)))),
+                      ),
                     ],
                   ),
                 )
