@@ -7,4 +7,5 @@ class FeedFoodRoutes {
   final String registerNgo = "/register_ngo";
   final String registerUser = "/register_user";
   final String ForgotPassword = "/forgot_password";
+  final String OtpPage = "/otp_verify";
 }

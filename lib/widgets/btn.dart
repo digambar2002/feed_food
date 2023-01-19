@@ -46,4 +46,24 @@ class Btn {
       ),
     );
   }
+
+  Widget buildResendBtn({required Function onClick}) {
+    return Container(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          TextButton(
+            onPressed: (() => onClick()),
+            child: Text(
+              "Resend code",
+              style: TextStyle(
+                color: Colors.black54,
+                decoration: TextDecoration.underline,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
 }
