@@ -1,5 +1,5 @@
 // Author: Digambar Chaudhari
-
+//Author:  Bhavesh Patil
 import 'package:flutter/material.dart';
 
 class Btn {
@@ -36,6 +36,26 @@ class Btn {
             onPressed: (() => onClick()),
             child: Text(
               "register here",
+              style: TextStyle(
+                color: Colors.black54,
+                decoration: TextDecoration.underline,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget buildResendBtn({required Function onClick}) {
+    return Container(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          TextButton(
+            onPressed: (() => onClick()),
+            child: Text(
+              "Resend code",
               style: TextStyle(
                 color: Colors.black54,
                 decoration: TextDecoration.underline,
