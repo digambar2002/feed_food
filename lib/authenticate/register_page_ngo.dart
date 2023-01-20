@@ -34,10 +34,11 @@ class _RegisterNgoState extends State<RegisterNgo> {
                 height: 10,
               ),
               DropdownButton<String>(
-                  value: value,
-                  isExpanded: true,
-                  items: items.map(buildMenuItem).toList(),
-                  onChanged: ((value) => setState(() => this.value = value)))
+                value: value,
+                isExpanded: true,
+                items: items.map(buildMenuItem).toList(),
+                onChanged: ((value) => setState(() => this.value = value)),
+              ),
             ],
           ),
         ),
