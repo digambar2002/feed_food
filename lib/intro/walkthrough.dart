@@ -18,7 +18,28 @@ class Walkthrough extends StatelessWidget {
                   image: AssetImage("assets/images/walk1.png"),
                   fit: BoxFit.fill),
             ),
-            child: Column(),
+            child: Column(
+              children: [
+                SizedBox(
+                  height: 650,
+                ),
+                Align(
+                  alignment: Alignment.topLeft,
+                  child: Text(
+                    "No Food Waste!!",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 24,
+                    ),
+                  ),
+                ),
+                Text(
+                  "One third of all food produced is lost or wasted around 1.3 billion tonnes of food",
+                  style: TextStyle(color: Colors.white, fontSize: 16),
+                )
+              ],
+            ),
           ),
           Container(
             decoration: BoxDecoration(

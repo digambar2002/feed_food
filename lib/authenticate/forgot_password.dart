@@ -1,6 +1,7 @@
 //author : Bhavesh Patil
 //date 17/01/2023
 
+import 'package:feed_food/utils/routes.dart';
 import 'package:feed_food/widgets/btn.dart';
 import 'package:feed_food/widgets/text_fields.dart';
 import 'package:flutter/material.dart';
@@ -60,7 +61,8 @@ class ForgotPassword extends StatelessWidget {
             height: 60,
             width: 360,
             child: ElevatedButton(
-              onPressed: (() => print("OTP")),
+              onPressed: (() =>
+                  Navigator.pushNamed(context, FeedFoodRoutes().OtpPage)),
               child: Text(
                 "Continue",
                 style: TextStyle(fontSize: 24),
