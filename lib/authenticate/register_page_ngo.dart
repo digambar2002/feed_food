@@ -35,6 +35,7 @@ class _RegisterNgoState extends State<RegisterNgo> {
               ),
               DropdownButton<String>(
                   value: value,
+                  isExpanded: true,
                   items: items.map(buildMenuItem).toList(),
                   onChanged: ((value) => setState(() => this.value = value)))
             ],
