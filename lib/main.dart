@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.deepPurple,
         fontFamily: GoogleFonts.poppins().fontFamily,
       ),
-      initialRoute: FeedFoodRoutes().registerNgo,
+      initialRoute: FeedFoodRoutes().Walkthrough,
       routes: {
         "/": (context) => LoginPage(),
         FeedFoodRoutes().homeRoute: (context) => HomePage(),

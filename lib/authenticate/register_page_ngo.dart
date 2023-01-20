@@ -12,7 +12,9 @@ class RegisterNgo extends StatefulWidget {
 
 class _RegisterNgoState extends State<RegisterNgo> {
   int _active_state = 0;
+  final items = ['items1', 'items2', 'items3', 'items4', 'items5'];
 
+  String? value;
   // Containet Inside Steps
   List<Step> stepsList() => [
         Step(
@@ -31,6 +33,10 @@ class _RegisterNgoState extends State<RegisterNgo> {
               SizedBox(
                 height: 10,
               ),
+              DropdownButton<String>(
+                  value: value,
+                  items: items.map(buildMenuItem).toList(),
+                  onChanged: ((value) => setState(() => this.value = value)))
             ],
           ),
         ),
@@ -124,4 +130,9 @@ class _RegisterNgoState extends State<RegisterNgo> {
       ),
     );
   }
+
+  DropdownMenuItem<String> buildMenuItem(String item) => DropdownMenuItem(
+        value: item,
+        child: Text(item),
+      );
 }
