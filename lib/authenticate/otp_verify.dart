@@ -51,9 +51,20 @@ class OtpPage extends StatelessWidget {
             horizontal: 20,
             vertical: 10,
           ),
-          child: FoodTextField().buildEmail(),
+          child: FoodTextField().buildOtp(context),
         ),
-        Btn().buildResendBtn(onClick: () => print("Resend Code")),
+        Row(
+          children: [
+            Btn().buildResendBtn(onClick: () => print("Resend Code")),
+            TweenAnimationBuilder(
+                tween: Tween(begin: 30.0, end: 0),
+                duration: Duration(seconds: 30),
+                builder: ((context, value, child) => Text(
+                      "00:${value.toInt()}",
+                      style: TextStyle(color: Colors.purple[400]),
+                    )))
+          ],
+        ),
         SizedBox(height: 25),
         SizedBox(
           height: 60,
