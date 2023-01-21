@@ -15,6 +15,11 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  // controller for login filed
+
+  var _email = TextEditingController();
+  var _password = TextEditingController();
+
   final _loginFormKey = GlobalKey<FormState>();
 
   authenticate(BuildContext context) {
@@ -56,11 +61,11 @@ class _LoginPageState extends State<LoginPage> {
                       const EdgeInsets.symmetric(horizontal: 25, vertical: 10),
                   child: Column(
                     children: [
-                      FoodTextField().buildEmail(),
+                      FoodTextField().buildEmail(_email),
                       SizedBox(
                         height: 20,
                       ),
-                      FoodTextField().buildPassword(),
+                      FoodTextField().buildPassword(_password),
                       SizedBox(
                         height: 10,
                       ),
@@ -94,7 +99,7 @@ class _LoginPageState extends State<LoginPage> {
                         onClick: () => showModalBottomSheet(
                             context: context,
                             builder: ((context) =>
-                                FeedFoodSheet().buildSheet()),
+                                FeedFoodSheet().buildSheet(context)),
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.vertical(
                                     top: Radius.circular(20)))),

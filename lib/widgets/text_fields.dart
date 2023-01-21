@@ -1,16 +1,83 @@
 // Author: Digambar Chaudhari
-
+// Author: Bhavesh Patil
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class FoodTextField {
   //  Email Text Field
-  Widget buildEmail() {
+  Widget buildEmail(var controller_name) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const SizedBox(
+          height: 5,
+        ),
+        Stack(
+          children: [
+            Container(
+              alignment: Alignment.centerLeft,
+              decoration: BoxDecoration(
+                  color: Colors.black12,
+                  borderRadius: BorderRadius.circular(10),
+                  // ignore: prefer_const_literals_to_create_immutables
+                  boxShadow: [
+                    const BoxShadow(
+                      color: Colors.white,
+                      blurRadius: 0,
+                      offset: Offset(0, 2),
+                    )
+                  ]),
+              height: 60,
+            ),
+            TextFormField(
+              controller: controller_name,
+              keyboardType: TextInputType.emailAddress,
+              style: const TextStyle(color: Colors.black),
+              decoration: const InputDecoration(
+                  border: InputBorder.none,
+                  contentPadding: EdgeInsets.only(top: 18),
+                  prefixIcon: Padding(
+                    padding: EdgeInsets.only(top: 16),
+                    child: Icon(
+                      Icons.email_outlined,
+                      color: Colors.black54,
+                    ),
+                  ),
+                  hintText: 'Email',
+                  hintStyle: TextStyle(color: Colors.black54),
+                  errorStyle: TextStyle(
+                    height: 2,
+                  )),
+              validator: (value) {
+                final bool emailValid = RegExp(
+                        r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                    .hasMatch(controller_name.text);
+
+                if (value!.isEmpty) {
+                  return "email not empty";
+                } else if (!emailValid) {
+                  return "invalid email enter";
+                }
+
+                return null;
+              },
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
+  Widget buildEmailNoIcon(var controller_name, var label, var hint_text) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SizedBox(
           height: 5,
+        ),
+        Text(
+          label,
+          style: TextStyle(fontWeight: FontWeight.w500),
         ),
         Stack(
           children: [
@@ -29,27 +96,29 @@ class FoodTextField {
               height: 60,
             ),
             TextFormField(
-              keyboardType: TextInputType.emailAddress,
+              controller: controller_name,
+              keyboardType: TextInputType.text,
               style: TextStyle(color: Colors.black),
               decoration: InputDecoration(
                   border: InputBorder.none,
-                  contentPadding: EdgeInsets.only(top: 18),
-                  prefixIcon: Padding(
-                    padding: const EdgeInsets.only(top: 16),
-                    child: Icon(
-                      Icons.email_outlined,
-                      color: Colors.black54,
-                    ),
-                  ),
-                  hintText: 'Email',
+                  contentPadding:
+                      EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                  hintText: hint_text,
                   hintStyle: TextStyle(color: Colors.black54),
                   errorStyle: TextStyle(
                     height: 2,
                   )),
               validator: (value) {
+                final bool emailValid = RegExp(
+                        r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                    .hasMatch(controller_name.text);
+
                 if (value!.isEmpty) {
                   return "email not empty";
+                } else if (!emailValid) {
+                  return "invalid email enter";
                 }
+
                 return null;
               },
             ),
@@ -60,7 +129,7 @@ class FoodTextField {
   }
 
   // Password Text Field
-  Widget buildPassword() {
+  Widget buildPassword(controller_name) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -122,7 +191,8 @@ class FoodTextField {
 
 // Text fields
 
-  Widget buildText(var label, var hint_text, var error_flag) {
+  Widget buildText(
+      var label, var hint_text, var error_flag, var controller_name) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -150,6 +220,7 @@ class FoodTextField {
               height: 60,
             ),
             TextFormField(
+              controller: controller_name,
               keyboardType: TextInputType.text,
               style: TextStyle(color: Colors.black),
               decoration: InputDecoration(
@@ -173,8 +244,63 @@ class FoodTextField {
       ],
     );
   }
-//otp box widget
 
+  // Number field Widget
+  Widget buildNumber(
+      var label, var hint_text, var error_flag, var controller_name) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        SizedBox(
+          height: 5,
+        ),
+        Text(
+          label,
+          style: TextStyle(fontWeight: FontWeight.w500),
+        ),
+        Stack(
+          children: [
+            Container(
+              alignment: Alignment.centerLeft,
+              decoration: BoxDecoration(
+                  color: Colors.black12,
+                  borderRadius: BorderRadius.circular(10),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.white,
+                      blurRadius: 0,
+                      offset: Offset(0, 2),
+                    )
+                  ]),
+              height: 60,
+            ),
+            TextFormField(
+              controller: controller_name,
+              keyboardType: TextInputType.number,
+              style: TextStyle(color: Colors.black),
+              decoration: InputDecoration(
+                  border: InputBorder.none,
+                  contentPadding:
+                      EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                  hintText: hint_text,
+                  hintStyle: TextStyle(color: Colors.black54),
+                  errorStyle: TextStyle(
+                    height: 2,
+                  )),
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return error_flag;
+                }
+                return null;
+              },
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
+//otp box widget
   Widget buildOtp(BuildContext context) {
     return Form(
         child: Row(
