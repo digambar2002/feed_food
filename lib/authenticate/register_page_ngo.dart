@@ -29,6 +29,10 @@ class _RegisterNgoState extends State<RegisterNgo> {
   final _NGO_email = TextEditingController();
   final _NGO_phone_no = TextEditingController();
   final _NGO_address = TextEditingController();
+  final _NGO_pincode = TextEditingController();
+  final _NGO_username = TextEditingController();
+  final _NGO_password = TextEditingController();
+  final _NGO_confirm_password = TextEditingController();
 
   // drop down items
   final Ngo_items = [
@@ -78,14 +82,23 @@ class _RegisterNgoState extends State<RegisterNgo> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Expanded(
-                            child: TextButton(
-                              onPressed: details.onStepContinue,
-                              child: const Text('Next'),
-                              style: TextButton.styleFrom(
-                                primary: Colors.white,
-                                backgroundColor: Colors.deepPurple[400],
-                              ),
-                            ),
+                            child: (_active_state <= 1)
+                                ? TextButton(
+                                    onPressed: details.onStepContinue,
+                                    child: const Text('Next'),
+                                    style: TextButton.styleFrom(
+                                      primary: Colors.white,
+                                      backgroundColor: Colors.deepPurple[400],
+                                    ),
+                                  )
+                                : TextButton(
+                                    onPressed: (() => finish(context)),
+                                    child: const Text('Finish'),
+                                    style: TextButton.styleFrom(
+                                      primary: Colors.white,
+                                      backgroundColor: Colors.deepPurple[400],
+                                    ),
+                                  ),
                           ),
                           SizedBox(
                             width: 10,
@@ -171,6 +184,7 @@ class _RegisterNgoState extends State<RegisterNgo> {
     );
   }
 
+  // this method checks the values are valid or not
   bool isDetailComplete() {
     if (_active_state == 0) {
       if (_NGO_name.text.isEmpty || _NGO_id.text.isEmpty) {
@@ -179,14 +193,28 @@ class _RegisterNgoState extends State<RegisterNgo> {
         return true;
       }
     } else if (_active_state == 1) {
-      if (_NGO_email.text.isEmpty || _NGO_phone_no.text.isEmpty) {
+      if (_NGO_email.text.isEmpty ||
+          _NGO_phone_no.text.isEmpty ||
+          _NGO_phone_no.text.length != 10 ||
+          _NGO_address.text.isEmpty ||
+          _NGO_pincode.text.length != 6) {
+        print("i run");
         return false;
       } else {
         return true;
       }
+    } else if (_active_state == 2) {
+      return true;
     }
 
     return false;
+  }
+
+  // Finish method
+
+  finish(BuildContext context) {
+    ngo_form_key.currentState?.validate();
+    print("hello");
   }
 
 // Stepper List
@@ -265,6 +293,8 @@ class _RegisterNgoState extends State<RegisterNgo> {
             ],
           ),
         ),
+
+        // Contact Details Step
         Step(
           state: _active_state <= 1 ? StepState.editing : StepState.complete,
           isActive: _active_state >= 1,
@@ -276,8 +306,18 @@ class _RegisterNgoState extends State<RegisterNgo> {
               SizedBox(
                 height: 20,
               ),
-              FoodTextField().buildNumber("Phone No", "enter phone number",
+              FoodTextField().buildPhone("Phone No", "enter phone number",
                   "invalid phone number", _NGO_phone_no),
+              SizedBox(
+                height: 20,
+              ),
+              FoodTextField().buildPincode("Pincode", "enter your area pincode",
+                  "invalid pincode", _NGO_pincode),
+              SizedBox(
+                height: 20,
+              ),
+              FoodTextField().buildTextArea("Address", "enter your address",
+                  "address cannot empty", _NGO_address),
               SizedBox(
                 height: 40,
               ),
@@ -288,9 +328,18 @@ class _RegisterNgoState extends State<RegisterNgo> {
           state: _active_state <= 2 ? StepState.editing : StepState.complete,
           isActive: _active_state >= 2,
           title: const Text("Account"),
-          content: const Center(
-            child: Text("Username"),
-          ),
+          content: Column(children: [
+            FoodTextField().buildText("Username", "enter username",
+                "invalid username", _NGO_username),
+            SizedBox(
+              height: 20,
+            ),
+            FoodTextField().buildLablePassword("Password", "enter password",
+                "invalid password", _NGO_password),
+            SizedBox(
+              height: 20,
+            )
+          ]),
         ),
       ];
 

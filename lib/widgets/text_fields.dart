@@ -245,6 +245,120 @@ class FoodTextField {
     );
   }
 
+  Widget buildLablePassword(
+      var label, var hint_text, var error_flag, var controller_name) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        SizedBox(
+          height: 5,
+        ),
+        Text(
+          label,
+          style: TextStyle(fontWeight: FontWeight.w500),
+        ),
+        Stack(
+          children: [
+            Container(
+              alignment: Alignment.centerLeft,
+              decoration: BoxDecoration(
+                  color: Colors.black12,
+                  borderRadius: BorderRadius.circular(10),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.white,
+                      blurRadius: 0,
+                      offset: Offset(0, 2),
+                    )
+                  ]),
+              height: 60,
+            ),
+            TextFormField(
+              keyboardType: TextInputType.visiblePassword,
+              style: TextStyle(color: Colors.black),
+              obscureText: true,
+              enableSuggestions: false,
+              autocorrect: false,
+              decoration: InputDecoration(
+                  border: InputBorder.none,
+                  contentPadding:
+                      EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                  hintText: hint_text,
+                  hintStyle: TextStyle(color: Colors.black54),
+                  errorStyle: TextStyle(
+                    height: 2,
+                  )),
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return error_flag;
+                } else if (value.length < 6) {
+                  return "password cannot be less than 6";
+                }
+                return null;
+              },
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
+// Text Area for address
+  Widget buildTextArea(
+      var label, var hint_text, var error_flag, var controller_name) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        SizedBox(
+          height: 5,
+        ),
+        Text(
+          label,
+          style: TextStyle(fontWeight: FontWeight.w500),
+        ),
+        Stack(
+          children: [
+            Container(
+              alignment: Alignment.centerLeft,
+              decoration: BoxDecoration(
+                  color: Colors.black12,
+                  borderRadius: BorderRadius.circular(10),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.white,
+                      blurRadius: 0,
+                      offset: Offset(0, 2),
+                    )
+                  ]),
+              height: 100,
+            ),
+            TextFormField(
+              controller: controller_name,
+              maxLines: 4,
+              keyboardType: TextInputType.multiline,
+              style: TextStyle(color: Colors.black),
+              decoration: InputDecoration(
+                  border: InputBorder.none,
+                  contentPadding:
+                      EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                  hintText: hint_text,
+                  hintStyle: TextStyle(color: Colors.black54),
+                  errorStyle: TextStyle(
+                    height: 2,
+                  )),
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return error_flag;
+                }
+                return null;
+              },
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
   // Number field Widget
   Widget buildNumber(
       var label, var hint_text, var error_flag, var controller_name) {
@@ -289,6 +403,118 @@ class FoodTextField {
                   )),
               validator: (value) {
                 if (value!.isEmpty) {
+                  return error_flag;
+                }
+                return null;
+              },
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
+  Widget buildPhone(
+      var label, var hint_text, var error_flag, var controller_name) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        SizedBox(
+          height: 5,
+        ),
+        Text(
+          label,
+          style: TextStyle(fontWeight: FontWeight.w500),
+        ),
+        Stack(
+          children: [
+            Container(
+              alignment: Alignment.centerLeft,
+              decoration: BoxDecoration(
+                  color: Colors.black12,
+                  borderRadius: BorderRadius.circular(10),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.white,
+                      blurRadius: 0,
+                      offset: Offset(0, 2),
+                    )
+                  ]),
+              height: 60,
+            ),
+            TextFormField(
+              controller: controller_name,
+              keyboardType: TextInputType.number,
+              style: TextStyle(color: Colors.black),
+              decoration: InputDecoration(
+                  border: InputBorder.none,
+                  contentPadding:
+                      EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                  hintText: hint_text,
+                  hintStyle: TextStyle(color: Colors.black54),
+                  errorStyle: TextStyle(
+                    height: 2,
+                  )),
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return "phone number can not empty";
+                } else if (value.length != 10) {
+                  return error_flag;
+                }
+                return null;
+              },
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
+  Widget buildPincode(
+      var label, var hint_text, var error_flag, var controller_name) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        SizedBox(
+          height: 5,
+        ),
+        Text(
+          label,
+          style: TextStyle(fontWeight: FontWeight.w500),
+        ),
+        Stack(
+          children: [
+            Container(
+              alignment: Alignment.centerLeft,
+              decoration: BoxDecoration(
+                  color: Colors.black12,
+                  borderRadius: BorderRadius.circular(10),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.white,
+                      blurRadius: 0,
+                      offset: Offset(0, 2),
+                    )
+                  ]),
+              height: 60,
+            ),
+            TextFormField(
+              controller: controller_name,
+              keyboardType: TextInputType.number,
+              style: TextStyle(color: Colors.black),
+              decoration: InputDecoration(
+                  border: InputBorder.none,
+                  contentPadding:
+                      EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                  hintText: hint_text,
+                  hintStyle: TextStyle(color: Colors.black54),
+                  errorStyle: TextStyle(
+                    height: 2,
+                  )),
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return "phone number can not empty";
+                } else if (value.length != 6) {
                   return error_flag;
                 }
                 return null;
