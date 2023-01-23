@@ -9,4 +9,5 @@ class FeedFoodRoutes {
   final String ForgotPassword = "/forgot_password";
   final String OtpPage = "/otp_verify";
   final String Walkthrough = "/walkthrough";
+  final String SetPass = "/set_password";
 }
