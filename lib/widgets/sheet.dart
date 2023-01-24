@@ -1,10 +1,11 @@
 // Author: Digambar Chaudhari
 // Date: 18-01-2023
 
+import 'package:feed_food/utils/routes.dart';
 import 'package:flutter/material.dart';
 
 class FeedFoodSheet {
-  Widget buildSheet() => Column(
+  Widget buildSheet(context) => Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           Padding(
@@ -13,14 +14,28 @@ class FeedFoodSheet {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Column(
-                    children: [
-                      CircleAvatar(
-                        radius: 70,
-                        child: Image.asset("assets/images/ngo.png"),
+                  Padding(
+                    padding: const EdgeInsets.all(25.0),
+                    child: InkWell(
+                      onTap: () => Navigator.pushNamed(
+                          context, FeedFoodRoutes().registerNgo),
+                      child: Column(
+                        children: [
+                          Image.asset(
+                            "assets/images/ngo.png",
+                            height: 80,
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            "NGO",
+                            style: TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.bold),
+                          )
+                        ],
                       ),
-                      Text("NGO")
-                    ],
+                    ),
                   ),
                   Container(
                     height: 100,
@@ -30,14 +45,28 @@ class FeedFoodSheet {
                       width: 20,
                     ),
                   ),
-                  Column(
-                    children: [
-                      CircleAvatar(
-                        radius: 70,
-                        child: Image.asset("assets/images/ngo.png"),
+                  Padding(
+                    padding: const EdgeInsets.all(25.0),
+                    child: InkWell(
+                      onTap: () => Navigator.pushNamed(
+                          context, FeedFoodRoutes().registerUser),
+                      child: Column(
+                        children: [
+                          Image.asset(
+                            "assets/images/volunteer.png",
+                            height: 80,
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            "Volunteer",
+                            style: TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.bold),
+                          )
+                        ],
                       ),
-                      Text("Volenteer")
-                    ],
+                    ),
                   ),
                 ],
               ),

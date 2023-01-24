@@ -7,7 +7,8 @@ import 'package:feed_food/widgets/text_fields.dart';
 import 'package:flutter/material.dart';
 
 class ForgotPassword extends StatelessWidget {
-  const ForgotPassword({super.key});
+  // Conroller
+  var _email = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +55,7 @@ class ForgotPassword extends StatelessWidget {
               horizontal: 20,
               vertical: 10,
             ),
-            child: FoodTextField().buildEmail(),
+            child: FoodTextField().buildEmail(_email),
           ),
           SizedBox(height: 25),
           SizedBox(

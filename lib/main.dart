@@ -4,7 +4,11 @@
 
 import 'package:feed_food/authenticate/otp_verify.dart';
 import 'package:feed_food/authenticate/forgot_password.dart';
+<<<<<<< HEAD
 import 'package:feed_food/authenticate/set_password.dart';
+=======
+import 'package:feed_food/authenticate/register_page_user.dart';
+>>>>>>> f5b2b3f1f4574076b1c90cd80bf605eff8cd45a6
 import 'package:feed_food/intro/walkthrough.dart';
 import 'package:feed_food/pages/home_page.dart';
 import 'package:feed_food/authenticate/login_page.dart';
@@ -37,6 +41,7 @@ class MyApp extends StatelessWidget {
         FeedFoodRoutes().loginRoute: (context) => LoginPage(),
         FeedFoodRoutes().registerRoute: (context) => RegisterPage(),
         FeedFoodRoutes().registerNgo: (context) => RegisterNgo(),
+        FeedFoodRoutes().registerUser: (context) => RegisterUser(),
         FeedFoodRoutes().ForgotPassword: (context) => ForgotPassword(),
         FeedFoodRoutes().OtpPage: (context) => OtpPage(),
         FeedFoodRoutes().Walkthrough: (context) => Walkthrough(),
