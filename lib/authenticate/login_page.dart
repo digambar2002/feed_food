@@ -51,7 +51,10 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 Text(
                   "Login to account",
-                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
+                  style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.w800,
+                      color: Colors.deepPurple[400]),
                 ),
                 SizedBox(
                   height: 10,

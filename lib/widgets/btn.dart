@@ -14,7 +14,7 @@ class Btn {
         child: Text(
           "forgot password ?",
           style: TextStyle(
-            color: Colors.black54,
+            color: Colors.deepPurple[400],
           ),
         ),
       ),
@@ -22,7 +22,6 @@ class Btn {
   }
 
   // Login page:
-
   Widget buildRegisterbtBtn({required Function onClick}) {
     return Container(
       child: Row(
@@ -37,7 +36,7 @@ class Btn {
             child: Text(
               "register here",
               style: TextStyle(
-                color: Colors.black54,
+                color: Colors.deepPurple[400],
                 decoration: TextDecoration.underline,
               ),
             ),
@@ -47,6 +46,31 @@ class Btn {
     );
   }
 
+  Widget buildLoginBtn({required Function onClick}) {
+    return Container(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            "Already have an account?",
+            style: TextStyle(color: Colors.black54),
+          ),
+          TextButton(
+            onPressed: (() => onClick()),
+            child: Text(
+              "login here",
+              style: TextStyle(
+                color: Colors.deepPurple[400],
+                decoration: TextDecoration.underline,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  // Forgot Password Section
   Widget buildResendBtn({required Function onClick}) {
     return Container(
       child: Row(
