@@ -51,7 +51,10 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 Text(
                   "Login to account",
-                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
+                  style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.w800,
+                      color: Colors.deepPurple[400]),
                 ),
                 SizedBox(
                   height: 10,
@@ -77,7 +80,7 @@ class _LoginPageState extends State<LoginPage> {
                         height: 20,
                       ),
                       SizedBox(
-                        height: 60,
+                        height: 50,
                         width: 360,
                         child: ElevatedButton(
                           onPressed: (() => authenticate(context)),
@@ -88,7 +91,7 @@ class _LoginPageState extends State<LoginPage> {
                           style: ElevatedButton.styleFrom(
                               primary: Colors.deepPurple[400],
                               shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10),
+                                borderRadius: BorderRadius.circular(5),
                               )),
                         ),
                       ),

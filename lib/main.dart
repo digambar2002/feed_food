@@ -4,6 +4,7 @@
 
 import 'package:feed_food/authenticate/otp_verify.dart';
 import 'package:feed_food/authenticate/forgot_password.dart';
+import 'package:feed_food/authenticate/set_password.dart';
 import 'package:feed_food/authenticate/register_page_user.dart';
 import 'package:feed_food/intro/walkthrough.dart';
 import 'package:feed_food/pages/home_page.dart';
@@ -30,8 +31,8 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.deepPurple,
         fontFamily: GoogleFonts.poppins().fontFamily,
       ),
-
-      initialRoute: FeedFoodRoutes().Walkthrough,
+ 
+      initialRoute: FeedFoodRoutes().registerUser,
       routes: {
         "/": (context) => LoginPage(),
         FeedFoodRoutes().homeRoute: (context) => HomePage(),
@@ -42,7 +43,12 @@ class MyApp extends StatelessWidget {
         FeedFoodRoutes().ForgotPassword: (context) => ForgotPassword(),
         FeedFoodRoutes().OtpPage: (context) => OtpPage(),
         FeedFoodRoutes().Walkthrough: (context) => Walkthrough(),
+        FeedFoodRoutes().SetPass: (context) => SetPass(),
       },
     );
   }
 }
+
+
+
+// http://10.0.2.2/feedfood/authentication/login.php
