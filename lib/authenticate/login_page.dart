@@ -80,7 +80,7 @@ class _LoginPageState extends State<LoginPage> {
                         height: 20,
                       ),
                       SizedBox(
-                        height: 60,
+                        height: 50,
                         width: 360,
                         child: ElevatedButton(
                           onPressed: (() => authenticate(context)),
@@ -91,7 +91,7 @@ class _LoginPageState extends State<LoginPage> {
                           style: ElevatedButton.styleFrom(
                               primary: Colors.deepPurple[400],
                               shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10),
+                                borderRadius: BorderRadius.circular(5),
                               )),
                         ),
                       ),

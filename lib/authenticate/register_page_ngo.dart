@@ -82,6 +82,20 @@ class _RegisterNgoState extends State<RegisterNgo> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Expanded(
+                            child: OutlinedButton(
+                              onPressed: details.onStepCancel,
+                              child: const Text('Back'),
+                              style: OutlinedButton.styleFrom(
+                                side: BorderSide(
+                                  color: Colors.deepPurple,
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Expanded(
                             child: (_active_state <= 1)
                                 ? TextButton(
                                     onPressed: details.onStepContinue,
@@ -99,20 +113,6 @@ class _RegisterNgoState extends State<RegisterNgo> {
                                       backgroundColor: Colors.deepPurple[400],
                                     ),
                                   ),
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Expanded(
-                            child: OutlinedButton(
-                              onPressed: details.onStepCancel,
-                              child: const Text('Back'),
-                              style: OutlinedButton.styleFrom(
-                                side: BorderSide(
-                                  color: Colors.deepPurple,
-                                ),
-                              ),
-                            ),
                           ),
                         ],
                       );
