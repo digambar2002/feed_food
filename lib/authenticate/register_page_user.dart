@@ -126,10 +126,9 @@ class _RegisterUserState extends State<RegisterUser> {
         });
 
         var response = jsonDecode(res.body);
-        print(response['success']);
-        // if (res.body.isNotEmpty) {
-        //   json.decode(res.body);
-        // }
+        if (res.body.isNotEmpty) {
+          response = json.decode(res.body);
+        }
         if (response['success'] == true) {
           print("record added");
         } else {
