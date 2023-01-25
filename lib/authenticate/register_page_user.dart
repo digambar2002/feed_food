@@ -35,7 +35,7 @@ class _RegisterUserState extends State<RegisterUser> {
             height: 2,
           ),
           Image.asset(
-            "assets/images/register.png",
+            "assets/images/new.jpg",
             height: 250,
           ),
           SizedBox(
@@ -44,7 +44,7 @@ class _RegisterUserState extends State<RegisterUser> {
           Text(
             "Create Account",
             style: TextStyle(
-                fontSize: 26,
+                fontSize: 28,
                 fontWeight: FontWeight.w800,
                 color: Colors.deepPurple[400]),
           ),
@@ -126,9 +126,10 @@ class _RegisterUserState extends State<RegisterUser> {
         });
 
         var response = jsonDecode(res.body);
-        if (res.body.isNotEmpty) {
-          response = json.decode(res.body);
-        }
+        // var response;
+        // if (res.body.isNotEmpty) {
+        //   response = json.decode(res.body);
+        // }
         if (response['success'] == true) {
           print("record added");
         } else {
