@@ -14,7 +14,7 @@ class Btn {
         child: Text(
           "forgot password ?",
           style: TextStyle(
-            color: Colors.deepPurple[400],
+            color: Color.fromARGB(255, 0, 0, 255),
           ),
         ),
       ),

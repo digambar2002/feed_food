@@ -11,78 +11,78 @@ class OtpPage extends StatelessWidget {
     return Scaffold(
         body: SingleChildScrollView(
       physics: BouncingScrollPhysics(),
-      child: Column(children: [
-        SizedBox(
-          height: 5,
-        ),
-        Image.asset(
-          "assets/images/OTP.png",
-        ),
-        SizedBox(
-          height: 20,
-        ),
-        Container(
-          // forgotpasswordUYR (2:682)
-          margin: EdgeInsets.fromLTRB(0, 0, 230, 14),
-          constraints: BoxConstraints(
-            maxWidth: 150,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(children: [
+          SizedBox(
+            height: 5,
           ),
-          child: Text(
-            'Verification',
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 26),
+          Image.asset(
+            "assets/images/OTP.png",
           ),
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(
-            vertical: 5,
-            horizontal: 25,
+          SizedBox(
+            height: 20,
           ),
-          child: Text(
-            "Please provide us OTP sent on your Email",
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 15,
-              color: Colors.black54,
-            ),
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 20,
-            vertical: 10,
-          ),
-          child: FoodTextField().buildOtp(context),
-        ),
-        Row(
-          children: [
-            Btn().buildResendBtn(onClick: () => print("Resend Code")),
-            TweenAnimationBuilder(
-                tween: Tween(begin: 30.0, end: 0),
-                duration: Duration(seconds: 30),
-                builder: ((context, value, child) => Text(
-                      "00:${value.toInt()}",
-                      style: TextStyle(color: Colors.purple[400]),
-                    )))
-          ],
-        ),
-        SizedBox(height: 25),
-        SizedBox(
-          height: 60,
-          width: 360,
-          child: ElevatedButton(
-            onPressed: (() => print("OTP")),
+          Container(
+            // forgotpasswordUYR (2:682)
+
             child: Text(
-              "Verify",
-              style: TextStyle(fontSize: 24),
+              'Verification',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 26),
             ),
-            style: ElevatedButton.styleFrom(
-                primary: Colors.deepPurple[300],
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                )),
           ),
-        ),
-      ]),
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              vertical: 5,
+              horizontal: 25,
+            ),
+            child: Text(
+              "Please provide us OTP sent on your Email",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 15,
+                color: Colors.black54,
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 20,
+              vertical: 10,
+            ),
+            child: FoodTextField().buildOtp(context),
+          ),
+          Row(
+            children: [
+              Btn().buildResendBtn(onClick: () => print("Resend Code")),
+              TweenAnimationBuilder(
+                  tween: Tween(begin: 30.0, end: 0),
+                  duration: Duration(seconds: 30),
+                  builder: ((context, value, child) => Text(
+                        "00:${value.toInt()}",
+                        style: TextStyle(color: Colors.purple[400]),
+                      )))
+            ],
+          ),
+          SizedBox(height: 25),
+          SizedBox(
+            height: 60,
+            width: 360,
+            child: ElevatedButton(
+              onPressed: (() => print("OTP")),
+              child: Text(
+                "Verify",
+                style: TextStyle(fontSize: 24),
+              ),
+              style: ElevatedButton.styleFrom(
+                  primary: Colors.deepPurple[300],
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  )),
+            ),
+          ),
+        ]),
+      ),
     ));
   }
 }
