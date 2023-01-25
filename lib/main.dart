@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.deepPurple,
         fontFamily: GoogleFonts.poppins().fontFamily,
       ),
-      initialRoute: FeedFoodRoutes().Walkthrough,
+      initialRoute: FeedFoodRoutes().registerUser,
       routes: {
         "/": (context) => LoginPage(),
         FeedFoodRoutes().homeRoute: (context) => HomePage(),
@@ -47,3 +47,7 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+
+
+// http://10.0.2.2/feedfood/authentication/login.php

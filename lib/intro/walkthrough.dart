@@ -7,20 +7,30 @@ import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class Walkthrough extends StatefulWidget {
-  const Walkthrough({super.key});
+   Walkthrough({super.key});
+
+   // keep track if we are on the last page or not
+  bool onLastPage = false;
 
   @override
   State<Walkthrough> createState() => _WalkthroughState();
 }
 
 class _WalkthroughState extends State<Walkthrough> {
+
   @override
   Widget build(BuildContext context) {
     PageController _controller = PageController();
     return Scaffold(
-      body: Stack(children: [
+      body: Stack(children: 
+      [
         PageView(
           controller: _controller,
+          onPageChanged: (index) {
+            setState(() {
+              onLastPage = (index == 2)
+            });
+          },
           children: [
             // container are the walkthrough pages.
 
@@ -35,7 +45,7 @@ class _WalkthroughState extends State<Walkthrough> {
                 child: Column(
                   children: [
                     SizedBox(
-                      height: 650,
+                      height: 620,
                     ),
                     Align(
                       alignment: Alignment.topLeft,
@@ -44,13 +54,13 @@ class _WalkthroughState extends State<Walkthrough> {
                         style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
-                          fontSize: 24,
+                          fontSize: 20,
                         ),
                       ),
                     ),
                     Text(
                       FeedFoodStrings.subtittle1,
-                      style: TextStyle(color: Colors.white, fontSize: 16),
+                      style: TextStyle(color: Colors.white, fontSize: 14),
                     )
                   ],
                 ),
@@ -68,7 +78,7 @@ class _WalkthroughState extends State<Walkthrough> {
                 child: Column(
                   children: [
                     SizedBox(
-                      height: 650,
+                      height: 620,
                     ),
                     Align(
                       alignment: Alignment.topLeft,
@@ -77,13 +87,13 @@ class _WalkthroughState extends State<Walkthrough> {
                         style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
-                          fontSize: 24,
+                          fontSize: 20,
                         ),
                       ),
                     ),
                     Text(
                       FeedFoodStrings.subtittle2,
-                      style: TextStyle(color: Colors.white, fontSize: 16),
+                      style: TextStyle(color: Colors.white, fontSize: 14),
                     )
                   ],
                 ),
@@ -101,7 +111,7 @@ class _WalkthroughState extends State<Walkthrough> {
                 child: Column(
                   children: [
                     SizedBox(
-                      height: 650,
+                      height: 620,
                     ),
                     Align(
                       alignment: Alignment.topLeft,
@@ -110,24 +120,75 @@ class _WalkthroughState extends State<Walkthrough> {
                         style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
-                          fontSize: 24,
+                          fontSize: 20,
                         ),
                       ),
                     ),
                     Text(
                       FeedFoodStrings.subtittle3,
-                      style: TextStyle(color: Colors.white, fontSize: 16),
-                    )
+                      style: TextStyle(color: Colors.white, fontSize: 14),
+                    ),
                   ],
                 ),
               ),
             ),
           ],
         ),
-        Container(
-            alignment: Alignment(0, 0.95),
-            child: SmoothPageIndicator(controller: _controller, count: 3)),
-      ]),
+
+        // /dot indicators
+       Container(
+        alignment: Alignment(0,0.95),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+
+            // skip
+            GestureDetector(
+              onTap: () {
+                _controller.previousPage(
+                  duration: Duration(milliseconds: 500),
+                   curve: Curves.easeIn);
+              },
+              child: Text(
+                "previous",
+                style: TextStyle(color: Colors.white, fontSize: 12),
+              ),
+            ),
+            
+            // dot indicator
+            SmoothPageIndicator(controller: _controller, count: 3),
+            
+
+            // next or done
+            onLastPage: 
+              ? GestureDetector(
+              onTap: () {
+                _controller.nextPage(
+                  duration: Duration(milliseconds: 500),
+                   curve: Curves.easeIn);
+              },
+
+
+              child: Text(
+                "next ",
+              style: TextStyle(color: Colors.white, fontSize: 12),),
+            ) 
+            : GestureDetector(
+              onTap: () {
+                _controller.nextPage(
+                  duration: Duration(milliseconds: 500),
+                   curve: Curves.easeIn);
+              },
+
+              child: Text(
+                "done",
+              style: TextStyle(color: Colors.white, fontSize: 12),),
+            ),
+          ],
+        ),
+       )     
+      ],
+      ),
     );
   }
 }

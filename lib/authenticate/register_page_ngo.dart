@@ -58,7 +58,7 @@ class _RegisterNgoState extends State<RegisterNgo> {
           ),
         ),
         centerTitle: true,
-        backgroundColor: Colors.white,
+        backgroundColor: Color(0xfafafa),
         elevation: 0,
       ),
       body: Theme(
@@ -226,7 +226,7 @@ class _RegisterNgoState extends State<RegisterNgo> {
           content: Column(
             children: [
               // NGO Name Text Field
-              FoodTextField().buildText("NGO Name", "enter ngo name",
+              FoodTextField().buildTextLabel("NGO Name", "enter ngo name",
                   "ngo name cannot empty", _NGO_name),
               const SizedBox(
                 height: 30,
@@ -306,7 +306,7 @@ class _RegisterNgoState extends State<RegisterNgo> {
               SizedBox(
                 height: 20,
               ),
-              FoodTextField().buildPhone("Phone No", "enter phone number",
+              FoodTextField().buildPhoneLabel("Phone No", "enter phone number",
                   "invalid phone number", _NGO_phone_no),
               SizedBox(
                 height: 20,
@@ -329,7 +329,7 @@ class _RegisterNgoState extends State<RegisterNgo> {
           isActive: _active_state >= 2,
           title: const Text("Account"),
           content: Column(children: [
-            FoodTextField().buildText("Username", "enter username",
+            FoodTextField().buildTextLabel("Username", "enter username",
                 "invalid username", _NGO_username),
             SizedBox(
               height: 20,
