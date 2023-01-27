@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 
 class FoodTextField {
   //  Email Text Field
-  Widget buildEmail(var controller_name) {
+  Widget buildEmail(var controller_name, var error_text) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -31,9 +31,10 @@ class FoodTextField {
             ),
             TextFormField(
               controller: controller_name,
+              autovalidateMode: AutovalidateMode.onUserInteraction,
               keyboardType: TextInputType.emailAddress,
               style: const TextStyle(color: Colors.black),
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                   border: InputBorder.none,
                   contentPadding: EdgeInsets.only(top: 18),
                   prefixIcon: Padding(
@@ -44,6 +45,7 @@ class FoodTextField {
                     ),
                   ),
                   hintText: 'Email',
+                  errorText: error_text,
                   hintStyle: TextStyle(color: Colors.black54),
                   errorStyle: TextStyle(
                     height: 2,
@@ -248,10 +250,8 @@ class FoodTextField {
     );
   }
 
-// Text fields
-
-  //  Email Text Field
-  Widget buildTextUsername(var controller_name) {
+  //  Username Filed
+  Widget buildTextUsername(var controller_name, var text_error, var hint_text) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -277,9 +277,10 @@ class FoodTextField {
             ),
             TextFormField(
               controller: controller_name,
+              autovalidateMode: AutovalidateMode.onUserInteraction,
               keyboardType: TextInputType.emailAddress,
               style: const TextStyle(color: Colors.black),
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                   border: InputBorder.none,
                   contentPadding: EdgeInsets.only(top: 18),
                   prefixIcon: Padding(
@@ -289,13 +290,14 @@ class FoodTextField {
                       color: Colors.black54,
                     ),
                   ),
-                  hintText: 'username',
+                  hintText: hint_text,
+                  errorText: text_error,
                   hintStyle: TextStyle(color: Colors.black54),
                   errorStyle: TextStyle(
                     height: 2,
                   )),
               validator: (value) {
-                final bool usernameValid = RegExp(r"^[a-zA-Z0-9_]{3,15}$")
+                final bool usernameValid = RegExp(r"^[a-zA-Z0-9_]{5,15}$")
                     .hasMatch(controller_name.text);
                 if (value!.isEmpty) {
                   return "username cannot empty";
@@ -311,6 +313,7 @@ class FoodTextField {
     );
   }
 
+// Simple Lable Text Filed
   Widget buildTextLabel(
       var label, var hint_text, var error_flag, var controller_name) {
     return Column(
@@ -421,7 +424,7 @@ class FoodTextField {
     );
   }
 
-  // Number field Widget
+  // Simple Number field Widget
   Widget buildNumber(
       var label, var hint_text, var error_flag, var controller_name) {
     return Column(
@@ -475,6 +478,8 @@ class FoodTextField {
       ],
     );
   }
+
+  // Phone Number Filed
 
   Widget buildPhoneLabel(
       var label, var hint_text, var error_flag, var controller_name) {
@@ -532,7 +537,7 @@ class FoodTextField {
     );
   }
 
-  Widget buildPhone(var controller_name) {
+  Widget buildPhone(var controller_name, text_error) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -559,8 +564,8 @@ class FoodTextField {
             TextFormField(
               controller: controller_name,
               keyboardType: TextInputType.phone,
-              style: const TextStyle(color: Colors.black),
-              decoration: const InputDecoration(
+              style: TextStyle(color: Colors.black),
+              decoration: InputDecoration(
                   border: InputBorder.none,
                   contentPadding: EdgeInsets.only(top: 18),
                   prefixIcon: Padding(
@@ -571,6 +576,7 @@ class FoodTextField {
                     ),
                   ),
                   hintText: 'phone number',
+                  errorText: text_error,
                   hintStyle: TextStyle(color: Colors.black54),
                   errorStyle: TextStyle(
                     height: 2,
@@ -590,6 +596,7 @@ class FoodTextField {
     );
   }
 
+// Pincode filed
   Widget buildPincode(
       var label, var hint_text, var error_flag, var controller_name) {
     return Column(

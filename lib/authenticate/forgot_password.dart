@@ -72,7 +72,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                   horizontal: 20,
                   vertical: 10,
                 ),
-                child: FoodTextField().buildEmail(_email),
+                child: FoodTextField().buildEmail(_email, null),
               ),
               SizedBox(height: 25),
               SizedBox(

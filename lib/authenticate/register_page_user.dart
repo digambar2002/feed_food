@@ -1,7 +1,10 @@
 // Author: Digambar Chaudhari
 
 import 'dart:convert';
+import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:feed_food/models/register_user.dart';
 import 'package:feed_food/utils/routes.dart';
+import 'package:feed_food/utils/strings.dart';
 import 'package:feed_food/widgets/btn.dart';
 import 'package:feed_food/widgets/text_fields.dart';
 import 'package:flutter/material.dart';
@@ -24,6 +27,10 @@ class _RegisterUserState extends State<RegisterUser> {
   var _password = TextEditingController();
 
   final _RegisterFormKey = GlobalKey<FormState>();
+
+  var username_error = null;
+  var email_error = null;
+  var phone_error = null;
 
   @override
   Widget build(BuildContext context) {
@@ -60,15 +67,16 @@ class _RegisterUserState extends State<RegisterUser> {
               key: _RegisterFormKey,
               child: Column(
                 children: [
-                  FoodTextField().buildTextUsername(_username),
+                  FoodTextField()
+                      .buildTextUsername(_username, username_error, "username"),
                   SizedBox(
                     height: 10,
                   ),
-                  FoodTextField().buildEmail(_email),
+                  FoodTextField().buildEmail(_email, email_error),
                   SizedBox(
                     height: 10,
                   ),
-                  FoodTextField().buildPhone(_phone_no),
+                  FoodTextField().buildPhone(_phone_no, phone_error),
                   SizedBox(
                     height: 10,
                   ),
@@ -82,7 +90,12 @@ class _RegisterUserState extends State<RegisterUser> {
             height: 60,
             width: 360,
             child: ElevatedButton(
-              onPressed: (() => signup(context)),
+              onPressed: (() async {
+                dynamic flag = await signup(context);
+                if (flag == true) {
+                  // Navigator.pushNamed(context, FeedFoodRoutes().loginRoute);
+                }
+              }),
               child: Text(
                 "Sign Up",
                 style: TextStyle(fontSize: 24),
@@ -106,40 +119,67 @@ class _RegisterUserState extends State<RegisterUser> {
     );
   }
 
-  Future<void> signup(BuildContext context) async {
+  Future<bool> signup(BuildContext context) async {
     if (_RegisterFormKey.currentState!.validate()) {
-      // String uri =
-      //     "https://skyibnk.000webhostapp.com/feedfood/authentication/register.php";
-      String uri = "http://10.0.2.2/feedfood/authentication/register.php";
+      // Check username already in database
+      var username_check =
+          await RegisterUserModel().usernameValidation(_username.text);
+      var email_check = await RegisterUserModel().emailValidation(_email.text);
+      var phone_check =
+          await RegisterUserModel().phoneValidation(_phone_no.text);
 
-      // print(_username.text);
-      // print(_email.text);
-      // print(_password.text);
-      // print(_phone_no.text);
-
-      try {
-        http.Response res = await http.post(Uri.parse(uri), body: {
-          'username': _username.text,
-          'email': _email.text,
-          'phone': _phone_no.text,
-          'password': _password.text
-        });
-
-        var response = jsonDecode(res.body);
-        // var response;
-        // if (res.body.isNotEmpty) {
-        //   response = json.decode(res.body);
-        // }
-        if (response['success'] == true) {
-          print("record added");
+      if (username_check != true) {
+        username_error = username_check;
+        setState(() {});
+      } else {
+        if (email_check != true) {
+          email_error = email_check;
+          setState(() {});
         } else {
-          print("wrong something");
+          email_error = null;
+          setState(() {});
         }
-      } catch (e) {
-        print(e);
-      }
+        if (phone_check != true) {
+          phone_error = phone_check;
+          setState(() {});
+        } else {
+          phone_error = null;
+          setState(() {});
+        }
+        username_error = null;
+        setState(() {});
 
-      // Navigator.pushNamed(context, FeedFoodRoutes().loginRoute);
+        // inserting record in the database
+
+        showDialog(
+            context: context,
+            builder: ((context) {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            }));
+
+        dynamic flag = await RegisterUserModel().InsertVolunteerData(
+            _username.text, _email.text, _phone_no.text, _password.text);
+        if (flag == true) {
+          Navigator.of(context).pop();
+          AwesomeDialog(
+            context: context,
+            dialogType: DialogType.success,
+            animType: AnimType.scale,
+            title: 'Account Created Successfully',
+            desc: 'Please Check Your Email To activate account',
+            btnOkOnPress: () {
+              Navigator.pushNamed(context, FeedFoodRoutes().loginRoute);
+            },
+          )..show();
+          return true;
+        } else {
+          Navigator.of(context).pop();
+          return false;
+        }
+      }
     }
+    return false;
   }
 }

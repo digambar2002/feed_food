@@ -64,7 +64,8 @@ class _LoginPageState extends State<LoginPage> {
                       const EdgeInsets.symmetric(horizontal: 25, vertical: 10),
                   child: Column(
                     children: [
-                      FoodTextField().buildEmail(_email),
+                      FoodTextField()
+                          .buildTextUsername(_email, null, "username or email"),
                       SizedBox(
                         height: 20,
                       ),
