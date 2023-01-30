@@ -2,7 +2,7 @@
 
 import 'dart:convert';
 import 'package:awesome_dialog/awesome_dialog.dart';
-import 'package:feed_food/models/register_user.dart';
+import 'package:feed_food/models/register_model.dart';
 import 'package:feed_food/utils/routes.dart';
 import 'package:feed_food/utils/strings.dart';
 import 'package:feed_food/widgets/btn.dart';

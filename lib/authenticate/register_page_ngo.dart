@@ -3,6 +3,8 @@
 import 'package:feed_food/widgets/text_fields.dart';
 import 'package:flutter/material.dart';
 
+import '../models/register_model.dart';
+
 class RegisterNgo extends StatefulWidget {
   const RegisterNgo({super.key});
 
@@ -18,7 +20,12 @@ class _RegisterNgoState extends State<RegisterNgo> {
   int _active_state = 0; // to store the active state of stepper
   bool is_completed = false; // to check all field is completed
 
-  final ngo_form_key = GlobalKey<FormState>(); // key assign to form
+  List<GlobalKey<FormState>> ngo_form_key = [
+    GlobalKey<FormState>(),
+    GlobalKey<FormState>(),
+    GlobalKey<FormState>()
+  ];
+  // final ngo_form_key = GlobalKey<FormState>(); // key assign to form
 
   // dropdown value
   String? NGO_type;
@@ -33,6 +40,13 @@ class _RegisterNgoState extends State<RegisterNgo> {
   final _NGO_username = TextEditingController();
   final _NGO_password = TextEditingController();
   final _NGO_confirm_password = TextEditingController();
+
+  // NGO Error
+
+  var NGO_id_error = null;
+  var ngo_email_error = null;
+  var ngo_phone_error = null;
+  var ngo_username_error = null;
 
   // drop down items
   final Ngo_items = [
@@ -67,129 +81,107 @@ class _RegisterNgoState extends State<RegisterNgo> {
                   primary: Colors.deepPurple[400],
                 ),
           ),
-          child: Form(
-            key: ngo_form_key,
-            child: Stack(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 5),
-                  child: Stepper(
-                    elevation: 0,
-                    type: StepperType.horizontal,
-                    controlsBuilder:
-                        (BuildContext context, ControlsDetails details) {
-                      return Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Expanded(
-                            child: OutlinedButton(
-                              onPressed: details.onStepCancel,
-                              child: const Text('Back'),
-                              style: OutlinedButton.styleFrom(
-                                side: BorderSide(
-                                  color: Colors.deepPurple,
-                                ),
+          child: Stack(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(top: 5),
+                child: Stepper(
+                  elevation: 0,
+                  type: StepperType.horizontal,
+                  controlsBuilder:
+                      (BuildContext context, ControlsDetails details) {
+                    return Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Expanded(
+                          child: OutlinedButton(
+                            onPressed: details.onStepCancel,
+                            child: const Text('Back'),
+                            style: OutlinedButton.styleFrom(
+                              side: BorderSide(
+                                color: Colors.deepPurple,
                               ),
                             ),
                           ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Expanded(
-                            child: (_active_state <= 1)
-                                ? TextButton(
-                                    onPressed: details.onStepContinue,
-                                    child: const Text('Next'),
-                                    style: TextButton.styleFrom(
-                                      primary: Colors.white,
-                                      backgroundColor: Colors.deepPurple[400],
-                                    ),
-                                  )
-                                : TextButton(
-                                    onPressed: (() => finish(context)),
-                                    child: const Text('Finish'),
-                                    style: TextButton.styleFrom(
-                                      primary: Colors.white,
-                                      backgroundColor: Colors.deepPurple[400],
-                                    ),
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Expanded(
+                          child: (_active_state <= 1)
+                              ? TextButton(
+                                  onPressed: details.onStepContinue,
+                                  child: const Text('Next'),
+                                  style: TextButton.styleFrom(
+                                    primary: Colors.white,
+                                    backgroundColor: Colors.deepPurple[400],
                                   ),
-                          ),
-                        ],
-                      );
-                    },
-                    steps: stepsList(),
-                    currentStep: _active_state,
-                    onStepContinue: () {
-                      final isLastStep =
-                          _active_state == stepsList().length - 1;
+                                )
+                              : TextButton(
+                                  onPressed: ((() async {
+                                    await finish(context);
+                                  })),
+                                  child: const Text('Finish'),
+                                  style: TextButton.styleFrom(
+                                    primary: Colors.white,
+                                    backgroundColor: Colors.deepPurple[400],
+                                  ),
+                                ),
+                        ),
+                      ],
+                    );
+                  },
+                  steps: stepsList(),
+                  currentStep: _active_state,
+                  onStepContinue: () async {
+                    final isLastStep = _active_state == stepsList().length - 1;
 
-                      ngo_form_key.currentState?.validate();
+                    ngo_form_key[_active_state].currentState?.validate();
 
-                      bool isDetailsValid = isDetailComplete();
+                    bool isDetailsValid = await isDetailComplete();
 
-                      if (isDetailsValid) {
-                        if (isLastStep) {
-                          setState(() {
-                            is_completed = true;
-                          });
-                        } else {
-                          if (_active_state < (stepsList().length - 1)) {
-                            _active_state += 1;
-                          }
-                          setState(() {});
+                    if (isDetailsValid) {
+                      if (isLastStep) {
+                        setState(() {
+                          is_completed = true;
+                        });
+                      } else {
+                        if (_active_state < (stepsList().length - 1)) {
+                          _active_state += 1;
                         }
-                      } else {}
-                    },
-                    onStepCancel: () {
-                      if (_active_state == 0) {
-                        return;
+                        setState(() {});
                       }
-                      _active_state -= 1;
-                      setState(() {});
-                    },
-                  ),
+                    } else {}
+                  },
+                  onStepCancel: () {
+                    if (_active_state == 0) {
+                      return;
+                    }
+                    _active_state -= 1;
+                    setState(() {});
+                  },
                 ),
-                // Align(
-                //   alignment: Alignment.bottomCenter,
-                //   child: Row(
-                //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                //     children: [
-                //       Expanded(
-                //         child: TextButton(
-                //           onPressed: () => print("hello"),
-                //           child: const Text('Next'),
-                //           style: TextButton.styleFrom(
-                //             primary: Colors.white,
-                //             backgroundColor: Colors.deepPurple[400],
-                //           ),
-                //         ),
-                //       ),
-                //       Expanded(
-                //         child: OutlinedButton(
-                //           onPressed: (() => print("hello")),
-                //           child: const Text('Back'),
-                //           style: OutlinedButton.styleFrom(
-                //             side: BorderSide(
-                //               color: Colors.deepPurple,
-                //             ),
-                //           ),
-                //         ),
-                //       ),
-                //     ],
-                //   ),
-                // ),
-              ],
-            ),
+              ),
+            ],
           )),
     );
   }
 
   // this method checks the values are valid or not
-  bool isDetailComplete() {
+  Future<bool> isDetailComplete() async {
     if (_active_state == 0) {
       if (_NGO_name.text.isEmpty || _NGO_id.text.isEmpty) {
         return false;
       } else {
+        var id_check = await RegisterUserModel().ngoIdValidation(_NGO_id.text);
+
+        if (id_check != true) {
+          NGO_id_error = id_check;
+          setState(() {});
+          return false;
+        }
+        NGO_id_error = null;
+        setState(() {});
         return true;
       }
     } else if (_active_state == 1) {
@@ -198,9 +190,27 @@ class _RegisterNgoState extends State<RegisterNgo> {
           _NGO_phone_no.text.length != 10 ||
           _NGO_address.text.isEmpty ||
           _NGO_pincode.text.length != 6) {
-        print("i run");
         return false;
       } else {
+        var email_check =
+            await RegisterUserModel().emailValidation(_NGO_email.text);
+        var phone_check =
+            await RegisterUserModel().phoneValidation(_NGO_phone_no.text);
+
+        if (email_check != true) {
+          ngo_email_error = email_check;
+          setState(() {});
+          return false;
+        }
+        if (phone_check != true) {
+          ngo_phone_error = phone_check;
+          setState(() {});
+          return false;
+        }
+        ngo_email_error = null;
+        ngo_phone_error = null;
+        setState(() {});
+
         return true;
       }
     } else if (_active_state == 2) {
@@ -212,9 +222,28 @@ class _RegisterNgoState extends State<RegisterNgo> {
 
   // Finish method
 
-  finish(BuildContext context) {
-    ngo_form_key.currentState?.validate();
-    print("hello");
+  Future finish(BuildContext context) async {
+    if (ngo_form_key[0].currentState!.validate() &&
+        ngo_form_key[1].currentState!.validate() &&
+        ngo_form_key[2].currentState!.validate()) {
+      if (_NGO_username.text.isEmpty || _NGO_password.text.isEmpty) {
+        print(_NGO_username.text);
+        print(_NGO_password.text);
+        return false;
+      } else {
+        var username_check =
+            await RegisterUserModel().usernameValidation(_NGO_username.text);
+
+        if (username_check != true) {
+          ngo_username_error = username_check;
+          setState(() {});
+          return false;
+        }
+        ngo_username_error = null;
+        setState(() {});
+        return true;
+      }
+    }
   }
 
 // Stepper List
@@ -223,74 +252,81 @@ class _RegisterNgoState extends State<RegisterNgo> {
           state: _active_state <= 0 ? StepState.editing : StepState.complete,
           isActive: _active_state >= 0,
           title: const Text("Details"),
-          content: Column(
-            children: [
-              // NGO Name Text Field
-              FoodTextField().buildTextLabel("NGO Name", "enter ngo name",
-                  "ngo name cannot empty", _NGO_name),
-              const SizedBox(
-                height: 30,
-              ),
+          content: Form(
+            key: ngo_form_key[0],
+            child: Column(
+              children: [
+                // NGO Name Text Field
+                FoodTextField().buildTextLabel("NGO Name", "enter ngo name",
+                    "ngo name cannot empty", _NGO_name, null),
+                const SizedBox(
+                  height: 30,
+                ),
 
-              // NGO ID text filed
-              FoodTextField().buildNumber("Unique ID",
-                  "enter your ngo unique id", "ngo id cannot empty", _NGO_id),
-              const SizedBox(
-                height: 30,
-              ),
+                // NGO ID text filed
+                FoodTextField().buildNumber(
+                    "Unique ID",
+                    "enter your ngo unique id",
+                    "ngo id cannot empty",
+                    _NGO_id,
+                    NGO_id_error),
+                const SizedBox(
+                  height: 30,
+                ),
 
-              // NGO Drop down menue
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    "Select NGO Type",
-                    textAlign: TextAlign.left,
-                    style: TextStyle(
-                      fontWeight: FontWeight.w500,
+                // NGO Drop down menue
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      height: 10,
                     ),
-                  ),
-                  Stack(
-                    children: [
-                      Container(
-                        decoration: BoxDecoration(
-                            color: Colors.black12,
-                            borderRadius: BorderRadius.circular(10),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.white,
-                                blurRadius: 0,
-                                offset: Offset(0, 2),
-                              )
-                            ]),
-                        height: 60,
+                    Text(
+                      "Select NGO Type",
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                        fontWeight: FontWeight.w500,
                       ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 5, horizontal: 20),
-                        child: DropdownButtonHideUnderline(
-                          child: DropdownButton<String>(
-                            value: NGO_type,
-                            isExpanded: true,
-                            hint: Text("select your NGO type"),
-                            items: Ngo_items.map(buildMenuItem).toList(),
-                            onChanged: ((value) {
-                              setState(() {
-                                NGO_type = value as String;
-                              });
-                            }),
+                    ),
+                    Stack(
+                      children: [
+                        Container(
+                          decoration: BoxDecoration(
+                              color: Colors.black12,
+                              borderRadius: BorderRadius.circular(10),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.white,
+                                  blurRadius: 0,
+                                  offset: Offset(0, 2),
+                                )
+                              ]),
+                          height: 60,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 5, horizontal: 20),
+                          child: DropdownButtonHideUnderline(
+                            child: DropdownButton<String>(
+                              value: NGO_type,
+                              isExpanded: true,
+                              hint: Text("select your NGO type"),
+                              items: Ngo_items.map(buildMenuItem).toList(),
+                              onChanged: ((value) {
+                                setState(() {
+                                  NGO_type = value as String;
+                                });
+                              }),
+                            ),
                           ),
                         ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-              SizedBox(height: 50),
-            ],
+                      ],
+                    ),
+                  ],
+                ),
+                SizedBox(height: 50),
+              ],
+            ),
           ),
         ),
 
@@ -299,47 +335,57 @@ class _RegisterNgoState extends State<RegisterNgo> {
           state: _active_state <= 1 ? StepState.editing : StepState.complete,
           isActive: _active_state >= 1,
           title: const Text("Contact"),
-          content: Column(
-            children: [
-              FoodTextField()
-                  .buildEmailNoIcon(_NGO_email, "Email", "enter your email"),
-              SizedBox(
-                height: 20,
-              ),
-              FoodTextField().buildPhoneLabel("Phone No", "enter phone number",
-                  "invalid phone number", _NGO_phone_no),
-              SizedBox(
-                height: 20,
-              ),
-              FoodTextField().buildPincode("Pincode", "enter your area pincode",
-                  "invalid pincode", _NGO_pincode),
-              SizedBox(
-                height: 20,
-              ),
-              FoodTextField().buildTextArea("Address", "enter your address",
-                  "address cannot empty", _NGO_address),
-              SizedBox(
-                height: 40,
-              ),
-            ],
+          content: Form(
+            key: ngo_form_key[1],
+            child: Column(
+              children: [
+                FoodTextField().buildEmailNoIcon(
+                    _NGO_email, "Email", "enter your email", ngo_email_error),
+                SizedBox(
+                  height: 20,
+                ),
+                FoodTextField().buildPhoneLabel(
+                    "Phone No",
+                    "enter phone number",
+                    "invalid phone number",
+                    _NGO_phone_no,
+                    ngo_phone_error),
+                SizedBox(
+                  height: 20,
+                ),
+                FoodTextField().buildPincode("Pincode",
+                    "enter your area pincode", "invalid pincode", _NGO_pincode),
+                SizedBox(
+                  height: 20,
+                ),
+                FoodTextField().buildTextArea("Address", "enter your address",
+                    "address cannot empty", _NGO_address),
+                SizedBox(
+                  height: 40,
+                ),
+              ],
+            ),
           ),
         ),
         Step(
           state: _active_state <= 2 ? StepState.editing : StepState.complete,
           isActive: _active_state >= 2,
           title: const Text("Account"),
-          content: Column(children: [
-            FoodTextField().buildTextLabel("Username", "enter username",
-                "invalid username", _NGO_username),
-            SizedBox(
-              height: 20,
-            ),
-            FoodTextField().buildLablePassword("Password", "enter password",
-                "invalid password", _NGO_password),
-            SizedBox(
-              height: 20,
-            )
-          ]),
+          content: Form(
+            key: ngo_form_key[2],
+            child: Column(children: [
+              FoodTextField().buildTextLabel("Username", "enter username",
+                  "invalid username", _NGO_username, ngo_username_error),
+              SizedBox(
+                height: 20,
+              ),
+              FoodTextField().buildLablePassword("Password", "enter password",
+                  "invalid password", _NGO_password),
+              SizedBox(
+                height: 20,
+              )
+            ]),
+          ),
         ),
       ];
 

@@ -1,11 +1,14 @@
 // Author: Digambar Chaudhari
 
+import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:feed_food/models/login_model.dart';
 import 'package:feed_food/utils/routes.dart';
 import 'package:feed_food/widgets/btn.dart';
 import 'package:feed_food/widgets/sheet.dart';
 import 'package:feed_food/widgets/text_fields.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -17,18 +20,10 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   // controller for login filed
 
-  var _email = TextEditingController();
+  var _username = TextEditingController();
   var _password = TextEditingController();
 
   final _loginFormKey = GlobalKey<FormState>();
-
-  authenticate(BuildContext context) {
-    if (_loginFormKey.currentState!.validate()) {
-      Navigator.pushNamed(context, FeedFoodRoutes().homeRoute);
-    } else {
-      print(_loginFormKey.currentState?.validate());
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -64,8 +59,7 @@ class _LoginPageState extends State<LoginPage> {
                       const EdgeInsets.symmetric(horizontal: 25, vertical: 10),
                   child: Column(
                     children: [
-                      FoodTextField()
-                          .buildTextUsername(_email, null, "username or email"),
+                      FoodTextField().buildText("username or email", _username),
                       SizedBox(
                         height: 20,
                       ),
@@ -84,7 +78,9 @@ class _LoginPageState extends State<LoginPage> {
                         height: 50,
                         width: 360,
                         child: ElevatedButton(
-                          onPressed: (() => authenticate(context)),
+                          onPressed: (() async {
+                            await authenticate(context);
+                          }),
                           child: Text(
                             "Login",
                             style: TextStyle(fontSize: 24),
@@ -123,5 +119,36 @@ class _LoginPageState extends State<LoginPage> {
     // TODO: implement initState
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
     super.initState();
+  }
+
+  // login authenticate method
+  Future authenticate(BuildContext context) async {
+    if (_loginFormKey.currentState!.validate()) {
+      dynamic reponse =
+          await LoginModel().LoginUser(_username.text, _password.text);
+
+      print(reponse);
+      // check user type
+      if (reponse['success'] == true && reponse['type'] == 'volunteer') {
+        final SharedPreferences sharedPreferences =
+            await SharedPreferences.getInstance();
+
+        sharedPreferences.setString("accountNo", reponse['accountNo']);
+        sharedPreferences.setString("type", reponse['type']);
+
+        Navigator.pushNamed(context, FeedFoodRoutes().vHomeRoute);
+      } else {
+        AwesomeDialog(
+          context: context,
+          dialogType: DialogType.error,
+          animType: AnimType.scale,
+          title: 'Error !',
+          desc: reponse['success'].toString(),
+          btnOkOnPress: (() => null),
+        ).show();
+      }
+    } else {
+      print(_loginFormKey.currentState?.validate());
+    }
   }
 }

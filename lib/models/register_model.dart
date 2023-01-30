@@ -67,11 +67,29 @@ class RegisterUserModel {
     return true;
   }
 
+  Future ngoIdValidation(var value) async {
+    String uri = FeedFoodStrings.register_vaildate_url;
+    try {
+      http.Response res = await http.post(Uri.parse(uri), body: {
+        'ngoId': value,
+      });
+
+      var response = jsonDecode(res.body);
+      if (response['success'] != true) {
+        return response['success'];
+      }
+    } catch (e) {
+      print(e);
+    }
+    return true;
+  }
+
   Future InsertVolunteerData(
       String username, String email, String phone, String password) async {
     String uri = FeedFoodStrings.register_url;
     try {
       http.Response res = await http.post(Uri.parse(uri), body: {
+        'volunteer': 'volunteer',
         'username': username,
         'email': email,
         'phone': phone,

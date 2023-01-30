@@ -1,6 +1,7 @@
 import 'package:feed_food/authenticate/forgot_password.dart';
 
 class FeedFoodRoutes {
+  final String splashRoute = "/splash_screen";
   final String homeRoute = "/home";
   final String loginRoute = "/login";
   final String registerRoute = "/register";
@@ -10,4 +11,6 @@ class FeedFoodRoutes {
   final String OtpPage = "/otp_verify";
   final String Walkthrough = "/walkthrough";
   final String SetPass = "/set_password";
+  final String vHomeRoute = "/v_home_page";
+  final String nHomeRoute = "/n_home_page";
 }

@@ -70,7 +70,8 @@ class FoodTextField {
     );
   }
 
-  Widget buildEmailNoIcon(var controller_name, var label, var hint_text) {
+  Widget buildEmailNoIcon(
+      var controller_name, var label, var hint_text, var email_error) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -107,6 +108,7 @@ class FoodTextField {
                       EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                   hintText: hint_text,
                   hintStyle: TextStyle(color: Colors.black54),
+                  errorText: email_error,
                   errorStyle: TextStyle(
                     height: 2,
                   )),
@@ -222,6 +224,7 @@ class FoodTextField {
             ),
             TextFormField(
               keyboardType: TextInputType.visiblePassword,
+              controller: controller_name,
               style: TextStyle(color: Colors.black),
               obscureText: true,
               enableSuggestions: false,
@@ -313,9 +316,66 @@ class FoodTextField {
     );
   }
 
+  Widget buildText(var hint_text, controller_name) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        SizedBox(
+          height: 5,
+        ),
+        Stack(
+          children: [
+            Container(
+              alignment: Alignment.centerLeft,
+              decoration: BoxDecoration(
+                  color: Colors.black12,
+                  borderRadius: BorderRadius.circular(10),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.white,
+                      blurRadius: 0,
+                      offset: Offset(0, 2),
+                    )
+                  ]),
+              height: 60,
+            ),
+            TextFormField(
+              controller: controller_name,
+              keyboardType: TextInputType.text,
+              style: TextStyle(color: Colors.black),
+              autocorrect: false,
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                contentPadding: EdgeInsets.only(top: 18),
+                prefixIcon: Padding(
+                  padding: const EdgeInsets.only(top: 16),
+                  child: Icon(
+                    Icons.person_outline_rounded,
+                    color: Colors.black54,
+                  ),
+                ),
+                hintText: hint_text,
+                hintStyle: TextStyle(color: Colors.black54),
+                errorStyle: TextStyle(
+                  height: 2,
+                ),
+              ),
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return "username cannot empty";
+                }
+                return null;
+              },
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
 // Simple Lable Text Filed
-  Widget buildTextLabel(
-      var label, var hint_text, var error_flag, var controller_name) {
+  Widget buildTextLabel(var label, var hint_text, var error_flag,
+      var controller_name, var error_text) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -351,6 +411,7 @@ class FoodTextField {
                   contentPadding:
                       EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                   hintText: hint_text,
+                  errorText: error_text,
                   hintStyle: TextStyle(color: Colors.black54),
                   errorStyle: TextStyle(
                     height: 2,
@@ -425,8 +486,8 @@ class FoodTextField {
   }
 
   // Simple Number field Widget
-  Widget buildNumber(
-      var label, var hint_text, var error_flag, var controller_name) {
+  Widget buildNumber(var label, var hint_text, var error_flag,
+      var controller_name, var error_text) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -462,6 +523,7 @@ class FoodTextField {
                   contentPadding:
                       EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                   hintText: hint_text,
+                  errorText: error_text,
                   hintStyle: TextStyle(color: Colors.black54),
                   errorStyle: TextStyle(
                     height: 2,
@@ -481,8 +543,8 @@ class FoodTextField {
 
   // Phone Number Filed
 
-  Widget buildPhoneLabel(
-      var label, var hint_text, var error_flag, var controller_name) {
+  Widget buildPhoneLabel(var label, var hint_text, var error_flag,
+      var controller_name, var error_text) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -518,6 +580,7 @@ class FoodTextField {
                   contentPadding:
                       EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                   hintText: hint_text,
+                  errorText: error_text,
                   hintStyle: TextStyle(color: Colors.black54),
                   errorStyle: TextStyle(
                     height: 2,

@@ -6,12 +6,15 @@ import 'package:feed_food/authenticate/otp_verify.dart';
 import 'package:feed_food/authenticate/forgot_password.dart';
 import 'package:feed_food/authenticate/set_password.dart';
 import 'package:feed_food/authenticate/register_page_user.dart';
+import 'package:feed_food/intro/splash_screen.dart';
 import 'package:feed_food/intro/walkthrough.dart';
+import 'package:feed_food/ngo/n_home_page.dart';
 import 'package:feed_food/pages/home_page.dart';
 import 'package:feed_food/authenticate/login_page.dart';
 import 'package:feed_food/authenticate/register_page.dart';
 import 'package:feed_food/authenticate/register_page_ngo.dart';
 import 'package:feed_food/utils/routes.dart';
+import 'package:feed_food/volunteer/v_home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -31,9 +34,10 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.deepPurple,
         fontFamily: GoogleFonts.poppins().fontFamily,
       ),
-      initialRoute: FeedFoodRoutes().registerUser,
+      initialRoute: FeedFoodRoutes().splashRoute,
       routes: {
         "/": (context) => LoginPage(),
+        FeedFoodRoutes().splashRoute: (context) => SplashScreen(),
         FeedFoodRoutes().homeRoute: (context) => HomePage(),
         FeedFoodRoutes().loginRoute: (context) => LoginPage(),
         FeedFoodRoutes().registerRoute: (context) => RegisterPage(),
@@ -43,6 +47,8 @@ class MyApp extends StatelessWidget {
         FeedFoodRoutes().OtpPage: (context) => OtpPage(),
         FeedFoodRoutes().Walkthrough: (context) => Walkthrough(),
         FeedFoodRoutes().SetPass: (context) => SetPass(),
+        FeedFoodRoutes().nHomeRoute: (context) => NHomePage(),
+        FeedFoodRoutes().vHomeRoute: (context) => VHomePage(),
       },
     );
   }
