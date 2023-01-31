@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
+import 'package:flutter_inner_drawer/inner_drawer.dart';
 
 class VHomePage extends StatefulWidget {
   const VHomePage({super.key});
@@ -26,9 +27,15 @@ class _VHomePageState extends State<VHomePage> {
           selectedColor: Colors.purple,
         ),
 
+        SalomonBottomBarItem(
+          icon: Icon(Icons.notification_add_outlined),
+          title: Text("Notification"),
+          selectedColor: Colors.orange,
+        ),
+
         /// Likes
         SalomonBottomBarItem(
-          icon: Icon(Icons.add_box_outlined),
+          icon: Icon(Icons.add_box_outlined, size: 30),
           title: Text("Add Request"),
           selectedColor: Colors.red,
         ),
