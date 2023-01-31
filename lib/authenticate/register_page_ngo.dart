@@ -236,6 +236,7 @@ class _RegisterNgoState extends State<RegisterNgo> {
 
         if (username_check != true) {
           ngo_username_error = username_check;
+          print("Hello world");
           setState(() {});
           return false;
         }

@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.deepPurple,
         fontFamily: GoogleFonts.poppins().fontFamily,
       ),
-      initialRoute: FeedFoodRoutes().welcomeRoute,
+      initialRoute: FeedFoodRoutes().registerNgo,
       routes: {
         "/": (context) => LoginPage(),
         FeedFoodRoutes().splashRoute: (context) => SplashScreen(),
