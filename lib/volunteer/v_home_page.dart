@@ -1,46 +1,52 @@
-import 'package:feed_food/utils/routes.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
-class VHomePage extends StatelessWidget {
+class VHomePage extends StatefulWidget {
   const VHomePage({super.key});
 
   @override
+  State<VHomePage> createState() => _VHomePageState();
+}
+
+class _VHomePageState extends State<VHomePage> {
+  var _currentIndex = 0;
+
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-          child: Column(
-        children: [
-          Text("Home Page Volunteer"),
-          SizedBox(
-            height: 50,
-            width: 360,
-            child: ElevatedButton(
-              onPressed: (() async {
-                await logout(context);
-              }),
-              child: Text(
-                "Logout",
-                style: TextStyle(fontSize: 24),
-              ),
-              style: ElevatedButton.styleFrom(
-                  primary: Colors.deepPurple[400],
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(5),
-                  )),
-            ),
-          ),
-        ],
-      )),
-    );
-  }
+    return Material(
+        child: Scaffold(
+            bottomNavigationBar: SalomonBottomBar(
+      currentIndex: _currentIndex,
+      onTap: (i) => setState(() => _currentIndex = i),
+      items: [
+        /// Home
+        SalomonBottomBarItem(
+          icon: Icon(Icons.home_outlined),
+          title: Text("Home"),
+          selectedColor: Colors.purple,
+        ),
 
-  Future logout(BuildContext context) async {
-    final SharedPreferences sharedPreferences =
-        await SharedPreferences.getInstance();
+        /// Likes
+        SalomonBottomBarItem(
+          icon: Icon(Icons.add_box_outlined),
+          title: Text("Add Request"),
+          selectedColor: Colors.red,
+        ),
 
-    sharedPreferences.remove("accountNo");
-    sharedPreferences.remove("type");
-    Navigator.pushNamed(context, FeedFoodRoutes().loginRoute);
+        /// Search
+        SalomonBottomBarItem(
+          icon: Icon(Icons.history),
+          title: Text("history"),
+          selectedColor: Colors.orange,
+        ),
+
+        /// Profile
+        SalomonBottomBarItem(
+          icon: Icon(Icons.person_2_outlined),
+          title: Text("Profile"),
+          selectedColor: Colors.teal,
+        ),
+      ],
+    )));
   }
 }
