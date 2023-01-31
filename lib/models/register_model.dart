@@ -84,6 +84,7 @@ class RegisterUserModel {
     return true;
   }
 
+  // Volunteer
   Future InsertVolunteerData(
       String username, String email, String phone, String password) async {
     String uri = FeedFoodStrings.register_url;
@@ -93,6 +94,47 @@ class RegisterUserModel {
         'username': username,
         'email': email,
         'phone': phone,
+        'password': password
+      });
+
+      var response = jsonDecode(res.body);
+      // var response;
+      // if (res.body.isNotEmpty) {
+      //   response = json.decode(res.body);
+      // }
+      if (response['success'] == true) {
+        return true;
+      } else {
+        return false;
+      }
+    } catch (e) {
+      print(e);
+      return false;
+    }
+  }
+
+  //
+  Future InsertNgoData(
+      String NgoName,
+      String NgoId,
+      String NgoType,
+      String email,
+      String phone,
+      String pincode,
+      String address,
+      String username,
+      String password) async {
+    String uri = FeedFoodStrings.register_url;
+    try {
+      http.Response res = await http.post(Uri.parse(uri), body: {
+        'volunteer': 'volunteer',
+        'ngoName': NgoName,
+        'ngoId': NgoId,
+        'ngoType': NgoType,
+        'email': email,
+        'phone': phone,
+        'pincode': pincode,
+        'username': username,
         'password': password
       });
 

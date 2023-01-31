@@ -8,6 +8,7 @@ import 'package:feed_food/authenticate/set_password.dart';
 import 'package:feed_food/authenticate/register_page_user.dart';
 import 'package:feed_food/intro/splash_screen.dart';
 import 'package:feed_food/intro/walkthrough.dart';
+import 'package:feed_food/intro/welcome_page.dart';
 import 'package:feed_food/ngo/n_home_page.dart';
 import 'package:feed_food/pages/home_page.dart';
 import 'package:feed_food/authenticate/login_page.dart';
@@ -34,10 +35,11 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.deepPurple,
         fontFamily: GoogleFonts.poppins().fontFamily,
       ),
-      initialRoute: FeedFoodRoutes().splashRoute,
+      initialRoute: FeedFoodRoutes().welcomeRoute,
       routes: {
         "/": (context) => LoginPage(),
         FeedFoodRoutes().splashRoute: (context) => SplashScreen(),
+        FeedFoodRoutes().welcomeRoute: (context) => WelcomePage(),
         FeedFoodRoutes().homeRoute: (context) => HomePage(),
         FeedFoodRoutes().loginRoute: (context) => LoginPage(),
         FeedFoodRoutes().registerRoute: (context) => RegisterPage(),
