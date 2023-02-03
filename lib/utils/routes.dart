@@ -14,4 +14,5 @@ class FeedFoodRoutes {
   final String SetPass = "/set_password";
   final String vHomeRoute = "/v_home_page";
   final String nHomeRoute = "/n_home_page";
+  final String vDonateRoute = "/v_donate";
 }

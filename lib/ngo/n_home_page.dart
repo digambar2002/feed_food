@@ -17,56 +17,56 @@ class _NHomePageState extends State<NHomePage> {
   @override
   Widget build(BuildContext context) {
     return Material(
-        child: Scaffold(
-      bottomNavigationBar: SalomonBottomBar(
-        currentIndex: _currentIndex,
-        onTap: (i) => setState(() => _currentIndex = i),
-        items: [
-          /// Home
-          SalomonBottomBarItem(
-            icon: Icon(Icons.home_outlined),
-            title: Text("Home"),
-            selectedColor: Colors.purple,
-          ),
-
-          SalomonBottomBarItem(
-            icon: Icon(Icons.notification_add_outlined),
-            title: Text("Notification"),
-            selectedColor: Colors.orange,
-          ),
-
-          /// Likes
-          SalomonBottomBarItem(
-            icon: Icon(Icons.add_box_outlined, size: 30),
-            title: Text("Add Request"),
-            selectedColor: Colors.red,
-          ),
-
-          /// Search
-          SalomonBottomBarItem(
-            icon: Icon(Icons.history),
-            title: Text("history"),
-            selectedColor: Colors.orange,
-          ),
-
-          /// Profile
-          SalomonBottomBarItem(
-            icon: Icon(Icons.person_outline),
-            title: Text("Profile"),
-            selectedColor: Colors.teal,
-          ),
-        ],
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            SizedBox(
-              height: 10,
+      child: Scaffold(
+        bottomNavigationBar: SalomonBottomBar(
+          currentIndex: _currentIndex,
+          onTap: (i) => setState(() => _currentIndex = i),
+          items: [
+            /// Home
+            SalomonBottomBarItem(
+              icon: Icon(Icons.home_outlined),
+              title: Text("Home"),
+              selectedColor: Colors.purple,
             ),
 
-            // Text for topleft corner
-            Padding(
-              padding: const EdgeInsets.all(8.0),
+            SalomonBottomBarItem(
+              icon: Icon(Icons.notification_add_outlined),
+              title: Text("Notification"),
+              selectedColor: Colors.orange,
+            ),
+
+            /// Likes
+            SalomonBottomBarItem(
+              icon: Icon(Icons.add_box_outlined, size: 30),
+              title: Text("Add Request"),
+              selectedColor: Colors.red,
+            ),
+
+            /// Search
+            SalomonBottomBarItem(
+              icon: Icon(Icons.history),
+              title: Text("history"),
+              selectedColor: Colors.orange,
+            ),
+
+            /// Profile
+            SalomonBottomBarItem(
+              icon: Icon(Icons.person_2_outlined),
+              title: Text("Profile"),
+              selectedColor: Colors.teal,
+            ),
+          ],
+        ),
+
+        // Text for topleft corner
+        body: SingleChildScrollView(
+          child: Container(
+            height: 300,
+            width: 600,
+            decoration:
+                BoxDecoration(color: Color.fromARGB(255, 163, 119, 239)),
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
               child: Container(
                 alignment: Alignment.topLeft,
                 child: Column(
@@ -76,50 +76,24 @@ class _NHomePageState extends State<NHomePage> {
                       "Welcome",
                       style: TextStyle(
                         color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 28,
+                        fontSize: 18,
                       ),
                     ),
                     Text(
                       "NGO Name",
-                      style: TextStyle(color: Colors.black, fontSize: 16),
+                      style: TextStyle(color: Colors.white, fontSize: 24),
+                    ),
+                    Text(
+                      "Login to account",
+                      style: TextStyle(fontSize: 24, color: Colors.white),
                     ),
                   ],
                 ),
               ),
             ),
-
-            Container(
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage("assets/images/nhome.png"),
-                    fit: BoxFit.cover),
-              ),
-              child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 200, horizontal: 20),
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: 60,
-                      width: 360,
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ],
+          ),
         ),
       ),
-    ));
-  }
-
-  Future logout(BuildContext context) async {
-    final SharedPreferences sharedPreferences =
-        await SharedPreferences.getInstance();
-
-    sharedPreferences.remove("accountNo");
-    sharedPreferences.remove("type");
-    Navigator.pushNamed(context, FeedFoodRoutes().loginRoute);
+    );
   }
 }

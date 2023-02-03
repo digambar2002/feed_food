@@ -52,7 +52,7 @@ bool onLastPage = false;
                 child: Column(
                   children: [
                     SizedBox(
-                      height: 620,
+                      height: 630,
                     ),
                     Align(
                       alignment: Alignment.topLeft,
@@ -61,13 +61,13 @@ bool onLastPage = false;
                         style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
-                          fontSize: 24,
+                          fontSize: 20,
                         ),
                       ),
                     ),
                     Text(
                       FeedFoodStrings.subtittle1,
-                      style: TextStyle(color: Colors.white, fontSize: 18),
+                      style: TextStyle(color: Colors.white, fontSize: 14),
                     )
                   ],
                 ),
@@ -85,7 +85,7 @@ bool onLastPage = false;
                 child: Column(
                   children: [
                     SizedBox(
-                      height: 620,
+                      height: 630,
                     ),
                     Align(
                       alignment: Alignment.topLeft,
@@ -94,13 +94,13 @@ bool onLastPage = false;
                         style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
-                          fontSize: 24,
+                          fontSize: 20,
                         ),
                       ),
                     ),
                     Text(
                       FeedFoodStrings.subtittle2,
-                      style: TextStyle(color: Colors.white, fontSize: 18),
+                      style: TextStyle(color: Colors.white, fontSize: 14),
                     )
                   ],
                 ),
@@ -118,7 +118,7 @@ bool onLastPage = false;
                 child: Column(
                   children: [
                     SizedBox(
-                      height: 620,
+                      height: 630,
                     ),
                     Align(
                       alignment: Alignment.topLeft,
@@ -127,13 +127,13 @@ bool onLastPage = false;
                         style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
-                          fontSize: 24,
+                          fontSize: 20,
                         ),
                       ),
                     ),
                     Text(
                       FeedFoodStrings.subtittle3,
-                      style: TextStyle(color: Colors.white, fontSize: 18),
+                      style: TextStyle(color: Colors.white, fontSize: 14),
                     )
                   ],
                 ),
@@ -146,7 +146,7 @@ bool onLastPage = false;
         Container(
             alignment: Alignment(0, 0.95),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 //skip
                 GestureDetector(
@@ -155,8 +155,11 @@ bool onLastPage = false;
                     curve: Curves.easeIn
                     );
                   },
-                  child: Text("previous",
-                  style: TextStyle(color: Colors.white, fontSize: 18)
+                  child: Padding(
+                    padding: const EdgeInsets.all(25.0),
+                    child: Text("Previous",
+                    style: TextStyle(color: Colors.white, fontSize: 14)
+                    ),
                   )
                   ),
 
@@ -181,8 +184,11 @@ bool onLastPage = false;
                     ),
                     );
                   },
-                  child: Text("done",
-                  style: TextStyle(color: Colors.white, fontSize: 18)
+                  child: Padding(
+                    padding: const EdgeInsets.all(25.0),
+                    child: Text("Done",
+                    style: TextStyle(color: Colors.white, fontSize: 14)
+                    ),
                   )
                   )
                   :GestureDetector(
@@ -191,13 +197,17 @@ bool onLastPage = false;
                     curve: Curves.easeIn
                     );
                   },
-                  child: Text("next",
-                  style: TextStyle(color: Colors.white, fontSize: 18)
+                  child: Padding(
+                    padding: const EdgeInsets.all(25.0),
+                    child: Text("Next",
+                    style: TextStyle(color: Colors.white, fontSize: 14)
+                    ),
                   )
                   ),
                
               ],
-            )),
+            ),
+            ),
       ],
       ),
     );
