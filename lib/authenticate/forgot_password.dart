@@ -3,6 +3,7 @@
 
 import 'dart:math';
 
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:feed_food/models/forgot_pass_model.dart';
 import 'package:feed_food/utils/routes.dart';
 import 'package:feed_food/widgets/btn.dart';
@@ -40,14 +41,29 @@ class _ForgotPasswordState extends State<ForgotPassword> {
         setState(() {});
 
         // generating otp
-        var code = Random().nextInt(900000) + 100000;
+        var otp = Random().nextInt(900000) + 100000;
 
-        // storing otp in shared preferences
-        final SharedPreferences sharedPreferences =
-            await SharedPreferences.getInstance();
-        sharedPreferences.setString("forgotPassOtp", code.toString());
+        var emailResponse =
+            await ForgotPasswordModel().sendMail(_email.text, otp.toString());
 
-        Navigator.pushNamed(context, FeedFoodRoutes().OtpPage);
+        if (emailResponse == true) {
+          print(emailResponse);
+          // storing otp in shared preferences
+          final SharedPreferences sharedPreferences =
+              await SharedPreferences.getInstance();
+          sharedPreferences.setString("forgotPassOtp", otp.toString());
+          Navigator.pushNamed(context, FeedFoodRoutes().OtpPage);
+        } else {
+          AwesomeDialog(
+            context: context,
+            dialogType: DialogType.error,
+            animType: AnimType.scale,
+            title: 'Error !',
+            desc: "please check internet connection or try after some time",
+            btnOkOnPress: (() => null),
+          ).show();
+        }
+
         return true;
       }
       Navigator.of(context).pop();

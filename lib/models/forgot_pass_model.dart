@@ -16,6 +16,26 @@ class ForgotPasswordModel {
       });
 
       var response = jsonDecode(res.body);
+
+      if (response['success'] != true) {
+        return response['success'];
+      }
+    } catch (e) {
+      print(e);
+    }
+    return true;
+  }
+
+  Future sendMail(var email, var otp) async {
+    String uri = FeedFoodStrings.forgot_pass_url;
+
+    try {
+      http.Response res = await http.post(Uri.parse(uri), body: {
+        'sendMail': email,
+        'otp': otp,
+      });
+
+      var response = jsonDecode(res.body);
       print(response);
       if (response['success'] != true) {
         return response['success'];
