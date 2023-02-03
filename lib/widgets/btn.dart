@@ -90,4 +90,31 @@ class Btn {
       ),
     );
   }
+
+  // card buttons v-home
+
+  Widget buildCardButton(
+    var url,
+    var imageurl,
+    var title,
+  ) {
+    return InkWell(
+      onTap: (() => print(url)),
+      child: Container(
+        color: Colors.deepPurple[100],
+        child: Card(
+          child: Column(children: [
+            Image.network(
+              imageurl,
+              height: 60,
+            ),
+            SizedBox(
+              height: 2,
+            ),
+            Text(title)
+          ]),
+        ),
+      ),
+    );
+  }
 }
