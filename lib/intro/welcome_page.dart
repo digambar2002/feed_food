@@ -30,12 +30,12 @@ class WelcomePage extends StatelessWidget {
                       style: TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.bold,
-                        fontSize: 28,
+                        fontSize: 26,
                       ),
                     ),
                     Text(
                       "Start your helping journey",
-                      style: TextStyle(color: Colors.black, fontSize: 16),
+                      style: TextStyle(color: Colors.black, fontSize: 14),
                     ),
                   ],
                 ),
@@ -63,12 +63,12 @@ class WelcomePage extends StatelessWidget {
               ),
               child: Padding(
                 padding:
-                    const EdgeInsets.symmetric(vertical: 200, horizontal: 20),
+                    const EdgeInsets.symmetric(vertical: 150, horizontal: 50),
                 child: Column(
                   children: [
                     SizedBox(
                       height: 60,
-                      width: 360,
+                      width: 300,
                       child: ElevatedButton(
                         onPressed: (() => Navigator.pushNamed(
                             context, FeedFoodRoutes().loginRoute)),
@@ -88,7 +88,7 @@ class WelcomePage extends StatelessWidget {
                     ),
                     SizedBox(
                       height: 60,
-                      width: 360,
+                      width: 300,
                       child: ElevatedButton(
                         onPressed: (() => showModalBottomSheet(
                             context: context,
