@@ -51,7 +51,7 @@ class _NHomePageState extends State<NHomePage> {
 
             /// Profile
             SalomonBottomBarItem(
-              icon: Icon(Icons.person_2_outlined),
+              icon: Icon(Icons.person_outline),
               title: Text("Profile"),
               selectedColor: Colors.teal,
             ),
