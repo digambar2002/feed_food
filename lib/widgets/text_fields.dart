@@ -3,6 +3,119 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+class BuildPassword extends StatefulWidget {
+  final TextEditingController controller_name;
+
+  const BuildPassword({super.key, required this.controller_name});
+
+  @override
+  State<BuildPassword> createState() => _BuildPasswordState();
+}
+
+class _BuildPasswordState extends State<BuildPassword> {
+  bool _isVisible = false;
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        SizedBox(
+          height: 5,
+        ),
+        Stack(
+          children: [
+            Container(
+              alignment: Alignment.centerLeft,
+              decoration: BoxDecoration(
+                  color: Colors.black12,
+                  borderRadius: BorderRadius.circular(10),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.white,
+                      blurRadius: 0,
+                      offset: Offset(0, 2),
+                    )
+                  ]),
+              height: 60,
+            ),
+            TextFormField(
+              controller: widget.controller_name,
+              keyboardType: TextInputType.visiblePassword,
+              style: TextStyle(color: Colors.black),
+              obscureText: !_isVisible,
+              enableSuggestions: false,
+              autocorrect: false,
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                contentPadding: EdgeInsets.only(top: 18),
+                prefixIcon: Padding(
+                  padding: const EdgeInsets.only(top: 8),
+                  child: Icon(
+                    Icons.lock_outline,
+                    color: Colors.black54,
+                  ),
+                ),
+                suffixIcon: Padding(
+                  padding: const EdgeInsets.only(top: 8),
+                  child: IconButton(
+                    iconSize: 22,
+                    onPressed: () {
+                      setState(() {
+                        _isVisible = !_isVisible;
+                      });
+                    },
+                    icon: _isVisible
+                        ? Icon(
+                            Icons.visibility_outlined,
+                            color: Colors.black,
+                          )
+                        : Icon(
+                            Icons.visibility_off_outlined,
+                            color: Colors.grey,
+                          ),
+                  ),
+                ),
+                hintText: 'password',
+                hintStyle: TextStyle(color: Colors.black54),
+                errorStyle: TextStyle(
+                  height: 2,
+                ),
+              ),
+              validator: (value) {
+                /*
+
+                      r'^
+                        (?=.*[A-Z])       // should contain at least one upper case
+                        (?=.*[a-z])       // should contain at least one lower case
+                        (?=.*?[0-9])      // should contain at least one digit
+                        (?=.*?[!@#\$&*~]) // should contain at least one Special character
+                        .{8,}             // Must be at least 8 characters in length  
+                      $
+
+
+                */
+
+                final bool passValid = RegExp(
+                        r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$')
+                    .hasMatch(widget.controller_name.text);
+
+                if (value!.isEmpty) {
+                  return "password not empty";
+                } else if (value.length < 8) {
+                  return "enter minimum 8 charaters";
+                } else if (!passValid) {
+                  return "password should contains one upper case, lower case, digit and \n symbol";
+                }
+                return null;
+              },
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+}
+
 class FoodTextField {
   //  Email Text Field
   Widget buildEmail(var controller_name, var error_text) {

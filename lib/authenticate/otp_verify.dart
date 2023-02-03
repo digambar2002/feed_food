@@ -1,7 +1,9 @@
+import 'package:feed_food/authenticate/forgot_password.dart';
 import 'package:feed_food/widgets/btn.dart';
 import 'package:feed_food/widgets/text_fields.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class OtpPage extends StatelessWidget {
   const OtpPage({super.key});
@@ -54,7 +56,7 @@ class OtpPage extends StatelessWidget {
           ),
           Row(
             children: [
-              Btn().buildResendBtn(onClick: () => print("Resend Code")),
+              Btn().buildResendBtn(onClick: () => print("OTP")),
               TweenAnimationBuilder(
                   tween: Tween(begin: 30.0, end: 0),
                   duration: Duration(seconds: 30),
@@ -69,7 +71,9 @@ class OtpPage extends StatelessWidget {
             height: 60,
             width: 360,
             child: ElevatedButton(
-              onPressed: (() => print("OTP")),
+              onPressed: ((() async {
+                await validate();
+              })),
               child: Text(
                 "Verify",
                 style: TextStyle(fontSize: 24),
@@ -84,5 +88,11 @@ class OtpPage extends StatelessWidget {
         ]),
       ),
     ));
+  }
+
+  Future validate() async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    var otp = sharedPreferences.getString("forgotPassOtp");
+    print(otp);
   }
 }

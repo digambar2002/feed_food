@@ -87,7 +87,7 @@ class RegisterUserModel {
   // Volunteer
   Future InsertVolunteerData(
       String username, String email, String phone, String password) async {
-    String uri = FeedFoodStrings.register_url;
+    String uri = FeedFoodStrings.register_url_volunteer;
     try {
       http.Response res = await http.post(Uri.parse(uri), body: {
         'volunteer': 'volunteer',
@@ -113,7 +113,7 @@ class RegisterUserModel {
     }
   }
 
-  //
+  //NGo Insert Data Request
   Future InsertNgoData(
       String NgoName,
       String NgoId,
@@ -124,15 +124,16 @@ class RegisterUserModel {
       String address,
       String username,
       String password) async {
-    String uri = FeedFoodStrings.register_url;
+    String uri = FeedFoodStrings.register_url_ngo;
     try {
       http.Response res = await http.post(Uri.parse(uri), body: {
-        'volunteer': 'volunteer',
+        'ngo': 'ngo',
         'ngoName': NgoName,
         'ngoId': NgoId,
         'ngoType': NgoType,
         'email': email,
         'phone': phone,
+        'address': address,
         'pincode': pincode,
         'username': username,
         'password': password
@@ -143,6 +144,7 @@ class RegisterUserModel {
       // if (res.body.isNotEmpty) {
       //   response = json.decode(res.body);
       // }
+      print(response);
       if (response['success'] == true) {
         return true;
       } else {

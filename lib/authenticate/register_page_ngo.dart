@@ -1,9 +1,11 @@
 // Author: Digambar Chaudhari
 
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:feed_food/widgets/text_fields.dart';
 import 'package:flutter/material.dart';
 
 import '../models/register_model.dart';
+import '../utils/routes.dart';
 
 class RegisterNgo extends StatefulWidget {
   const RegisterNgo({super.key});
@@ -236,13 +238,52 @@ class _RegisterNgoState extends State<RegisterNgo> {
 
         if (username_check != true) {
           ngo_username_error = username_check;
-          print("Hello world");
           setState(() {});
           return false;
         }
         ngo_username_error = null;
+        // print(NGO_type);
         setState(() {});
-        return true;
+
+        showDialog(
+            context: context,
+            barrierDismissible: false,
+            builder: ((context) {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            }));
+
+        var ngo_data_inserted = await RegisterUserModel().InsertNgoData(
+            _NGO_name.text,
+            _NGO_id.text,
+            NGO_type.toString(),
+            _NGO_email.text,
+            _NGO_phone_no.text,
+            _NGO_pincode.text,
+            _NGO_address.text,
+            _NGO_username.text,
+            _NGO_password.text);
+
+        if (ngo_data_inserted == true) {
+          Navigator.of(context).pop();
+          AwesomeDialog(
+            context: context,
+            dismissOnTouchOutside: false,
+            dialogType: DialogType.success,
+            animType: AnimType.scale,
+            title: 'Account Created Successfully',
+            desc: 'Please Check Your Email To activate account',
+            btnOkOnPress: () {
+              Navigator.pushNamed(context, FeedFoodRoutes().loginRoute);
+            },
+          )..show();
+
+          return true;
+        } else {
+          Navigator.of(context).pop();
+          return false;
+        }
       }
     }
   }
@@ -265,7 +306,7 @@ class _RegisterNgoState extends State<RegisterNgo> {
                 ),
 
                 // NGO ID text filed
-                FoodTextField().buildNumber(
+                FoodTextField().buildTextLabel(
                     "Unique ID",
                     "enter your ngo unique id",
                     "ngo id cannot empty",
@@ -374,14 +415,16 @@ class _RegisterNgoState extends State<RegisterNgo> {
           title: const Text("Account"),
           content: Form(
             key: ngo_form_key[2],
-            child: Column(children: [
-              FoodTextField().buildTextLabel("Username", "enter username",
-                  "invalid username", _NGO_username, ngo_username_error),
+            child:
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Text("Username"),
+              FoodTextField().buildTextUsername(
+                  _NGO_username, ngo_username_error, 'enter username'),
               SizedBox(
                 height: 20,
               ),
-              FoodTextField().buildLablePassword("Password", "enter password",
-                  "invalid password", _NGO_password),
+              Text("Password"),
+              BuildPassword(controller_name: _NGO_password),
               SizedBox(
                 height: 20,
               )

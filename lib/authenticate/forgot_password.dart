@@ -1,10 +1,14 @@
 //author : Bhavesh Patil
 //date 17/01/2023
 
+import 'dart:math';
+
+import 'package:feed_food/models/forgot_pass_model.dart';
 import 'package:feed_food/utils/routes.dart';
 import 'package:feed_food/widgets/btn.dart';
 import 'package:feed_food/widgets/text_fields.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ForgotPassword extends StatefulWidget {
   @override
@@ -14,14 +18,45 @@ class ForgotPassword extends StatefulWidget {
 class _ForgotPasswordState extends State<ForgotPassword> {
   // Conroller
   var _email = TextEditingController();
+  var _mail_error = null;
 
   final _ForgotFormKey = GlobalKey<FormState>();
 
-  authenticate(BuildContext context) {
+  Future authenticate(BuildContext context) async {
     if (_ForgotFormKey.currentState!.validate()) {
-      Navigator.pushNamed(context, FeedFoodRoutes().OtpPage);
+      showDialog(
+          barrierDismissible: false,
+          context: context,
+          builder: ((context) {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          }));
+      var response = await ForgotPasswordModel().emailValidation(_email.text);
+
+      if (response == true) {
+        Navigator.of(context).pop();
+        _mail_error = null;
+        setState(() {});
+
+        // generating otp
+        var code = Random().nextInt(900000) + 100000;
+
+        // storing otp in shared preferences
+        final SharedPreferences sharedPreferences =
+            await SharedPreferences.getInstance();
+        sharedPreferences.setString("forgotPassOtp", code.toString());
+
+        Navigator.pushNamed(context, FeedFoodRoutes().OtpPage);
+        return true;
+      }
+      Navigator.of(context).pop();
+      _mail_error = "email not found !";
+      setState(() {});
+      return false;
     } else {
       print(_ForgotFormKey.currentState?.validate());
+      return false;
     }
   }
 
@@ -72,14 +107,16 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                   horizontal: 20,
                   vertical: 10,
                 ),
-                child: FoodTextField().buildEmail(_email, null),
+                child: FoodTextField().buildEmail(_email, _mail_error),
               ),
               SizedBox(height: 25),
               SizedBox(
                 height: 50,
                 width: 320,
                 child: ElevatedButton(
-                  onPressed: (() => authenticate(context)),
+                  onPressed: ((() async {
+                    await authenticate(context);
+                  })),
                   child: Text(
                     "Continue",
                     style: TextStyle(fontSize: 24),

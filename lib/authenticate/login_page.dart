@@ -63,7 +63,7 @@ class _LoginPageState extends State<LoginPage> {
                       SizedBox(
                         height: 20,
                       ),
-                      FoodTextField().buildPassword(_password),
+                      BuildPassword(controller_name: _password),
                       SizedBox(
                         height: 10,
                       ),
@@ -123,11 +123,13 @@ class _LoginPageState extends State<LoginPage> {
 
   // login authenticate method
   Future authenticate(BuildContext context) async {
+    // checking form is correct
     if (_loginFormKey.currentState!.validate()) {
+      // sending data to login model and collecting response
       dynamic reponse =
           await LoginModel().LoginUser(_username.text, _password.text);
 
-      print(reponse);
+      print(reponse['type']);
       // check user type
       if (reponse['success'] == true && reponse['type'] == 'volunteer') {
         final SharedPreferences sharedPreferences =
@@ -137,6 +139,14 @@ class _LoginPageState extends State<LoginPage> {
         sharedPreferences.setString("type", reponse['type']);
 
         Navigator.pushNamed(context, FeedFoodRoutes().vHomeRoute);
+      } else if (reponse['success'] == true && reponse['type'] == 'ngo') {
+        final SharedPreferences sharedPreferences =
+            await SharedPreferences.getInstance();
+
+        sharedPreferences.setString("accountNo", reponse['accountNo']);
+        sharedPreferences.setString("type", reponse['type']);
+
+        Navigator.pushNamed(context, FeedFoodRoutes().nHomeRoute);
       } else {
         AwesomeDialog(
           context: context,

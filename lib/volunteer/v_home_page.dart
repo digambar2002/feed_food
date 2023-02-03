@@ -28,7 +28,7 @@ class _VHomePageState extends State<VHomePage> {
         ),
 
         SalomonBottomBarItem(
-          icon: Icon(Icons.notification_add_outlined),
+          icon: Icon(Icons.notifications_outlined),
           title: Text("Notification"),
           selectedColor: Colors.orange,
         ),
@@ -49,7 +49,7 @@ class _VHomePageState extends State<VHomePage> {
 
         /// Profile
         SalomonBottomBarItem(
-          icon: Icon(Icons.person_2_outlined),
+          icon: Icon(Icons.person_outline),
           title: Text("Profile"),
           selectedColor: Colors.teal,
         ),

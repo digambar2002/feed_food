@@ -92,9 +92,6 @@ class _RegisterUserState extends State<RegisterUser> {
             child: ElevatedButton(
               onPressed: (() async {
                 dynamic flag = await signup(context);
-                if (flag == true) {
-                  // Navigator.pushNamed(context, FeedFoodRoutes().loginRoute);
-                }
               }),
               child: Text(
                 "Sign Up",
