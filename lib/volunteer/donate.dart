@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-import 'package:background_app_bar/background_app_bar.dart';
+// import 'package:background_app_bar/background_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
@@ -21,37 +21,37 @@ class _VDonateState extends State<VDonate> {
   Widget build(BuildContext context) => Scaffold(
         body: NestedScrollView(
           headerSliverBuilder: (_, __) => <Widget>[
-            SliverAppBar(
-              expandedHeight: _kAppBarSize,
-              floating: false,
-              pinned: true,
-              snap: false,
-              elevation: 0.0,
-              backgroundColor: Colors.transparent,
-              flexibleSpace: BackgroundFlexibleSpaceBar(
-                title: widget.title != null ? Text(widget.title!) : null,
-                centerTitle: false,
-                titlePadding: const EdgeInsets.only(left: 20.0, bottom: 20.0),
-                background: ClipRect(
-                  child: Container(
-                    child: BackdropFilter(
-                      filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Colors.black.withOpacity(0.5),
-                        ),
-                      ),
-                    ),
-                    decoration: const BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage("images/bg.jpg"),
-                        fit: BoxFit.fill,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ),
+            // SliverAppBar(
+            //   expandedHeight: _kAppBarSize,
+            //   floating: false,
+            //   pinned: true,
+            //   snap: false,
+            //   elevation: 0.0,
+            //   backgroundColor: Colors.transparent,
+            //   flexibleSpace: BackgroundFlexibleSpaceBar(
+            //     title: widget.title != null ? Text(widget.title!) : null,
+            //     centerTitle: false,
+            //     titlePadding: const EdgeInsets.only(left: 20.0, bottom: 20.0),
+            //     background: ClipRect(
+            //       child: Container(
+            //         child: BackdropFilter(
+            //           filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
+            //           child: Container(
+            //             decoration: BoxDecoration(
+            //               color: Colors.black.withOpacity(0.5),
+            //             ),
+            //           ),
+            //         ),
+            //         decoration: const BoxDecoration(
+            //           image: DecorationImage(
+            //             image: AssetImage("images/bg.jpg"),
+            //             fit: BoxFit.fill,
+            //           ),
+            //         ),
+            //       ),
+            //     ),
+            //   ),
+            // ),
           ],
           body: Center(
             child: Column(
