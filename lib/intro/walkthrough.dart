@@ -2,10 +2,13 @@
 //Author : Digambar Chaudhari
 //Date : 19-01-23
 
+import 'package:feed_food/intro/welcome_page.dart';
 import 'package:feed_food/utils/routes.dart';
 import 'package:feed_food/utils/strings.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+
+
 
 class Walkthrough extends StatefulWidget {
   const Walkthrough({super.key});
@@ -15,16 +18,29 @@ class Walkthrough extends StatefulWidget {
 }
 
 class _WalkthroughState extends State<Walkthrough> {
+// controller to keep track of which page we're on
+  PageController _controller = PageController();
+
+// keep track of if we are on the last page or not
+bool onLastPage = false;
+
+
+
   @override
   Widget build(BuildContext context) {
-    PageController _controller = PageController();
     return Scaffold(
       body: Stack(children: [
         PageView(
           controller: _controller,
+          onPageChanged: (index) {
+            setState(() {
+              onLastPage = (index == 2);
+            },
+            );
+            
+          },
           children: [
             // container are the walkthrough pages.
-
             Container(
               decoration: BoxDecoration(
                 image: DecorationImage(
@@ -36,7 +52,7 @@ class _WalkthroughState extends State<Walkthrough> {
                 child: Column(
                   children: [
                     SizedBox(
-                      height: 650,
+                      height: 630,
                     ),
                     Align(
                       alignment: Alignment.topLeft,
@@ -45,13 +61,13 @@ class _WalkthroughState extends State<Walkthrough> {
                         style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
-                          fontSize: 24,
+                          fontSize: 20,
                         ),
                       ),
                     ),
                     Text(
                       FeedFoodStrings.subtittle1,
-                      style: TextStyle(color: Colors.white, fontSize: 16),
+                      style: TextStyle(color: Colors.white, fontSize: 14),
                     )
                   ],
                 ),
@@ -69,7 +85,7 @@ class _WalkthroughState extends State<Walkthrough> {
                 child: Column(
                   children: [
                     SizedBox(
-                      height: 650,
+                      height: 630,
                     ),
                     Align(
                       alignment: Alignment.topLeft,
@@ -78,13 +94,13 @@ class _WalkthroughState extends State<Walkthrough> {
                         style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
-                          fontSize: 24,
+                          fontSize: 20,
                         ),
                       ),
                     ),
                     Text(
                       FeedFoodStrings.subtittle2,
-                      style: TextStyle(color: Colors.white, fontSize: 16),
+                      style: TextStyle(color: Colors.white, fontSize: 14),
                     )
                   ],
                 ),
@@ -102,7 +118,7 @@ class _WalkthroughState extends State<Walkthrough> {
                 child: Column(
                   children: [
                     SizedBox(
-                      height: 650,
+                      height: 630,
                     ),
                     Align(
                       alignment: Alignment.topLeft,
@@ -111,13 +127,13 @@ class _WalkthroughState extends State<Walkthrough> {
                         style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
-                          fontSize: 24,
+                          fontSize: 20,
                         ),
                       ),
                     ),
                     Text(
                       FeedFoodStrings.subtittle3,
-                      style: TextStyle(color: Colors.white, fontSize: 16),
+                      style: TextStyle(color: Colors.white, fontSize: 14),
                     )
                   ],
                 ),
@@ -125,10 +141,75 @@ class _WalkthroughState extends State<Walkthrough> {
             ),
           ],
         ),
+
+        //dot indicators
         Container(
             alignment: Alignment(0, 0.95),
-            child: SmoothPageIndicator(controller: _controller, count: 3)),
-      ]),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                //skip
+                GestureDetector(
+                  onTap: (){
+                    _controller.previousPage(duration: Duration(microseconds: 500), 
+                    curve: Curves.easeIn
+                    );
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.all(25.0),
+                    child: Text("Previous",
+                    style: TextStyle(color: Colors.white, fontSize: 14)
+                    ),
+                  )
+                  ),
+
+                // dot indicator
+                SmoothPageIndicator(controller: _controller, count: 3,
+                                    axisDirection:Axis.horizontal,
+                                    effect: SlideEffect(
+                                      radius: 9.0,
+                                      dotWidth: 8.0,
+                                      dotHeight: 8.0,
+                                      activeDotColor: Colors.white
+                                      ),
+                                      ),
+
+                //net or done
+                onLastPage
+                ? GestureDetector(
+                  onTap: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context) {
+                      return WelcomePage();
+                    },
+                    ),
+                    );
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.all(25.0),
+                    child: Text("Done",
+                    style: TextStyle(color: Colors.white, fontSize: 14)
+                    ),
+                  )
+                  )
+                  :GestureDetector(
+                  onTap: (){
+                    _controller.nextPage(duration: Duration(microseconds: 500), 
+                    curve: Curves.easeIn
+                    );
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.all(25.0),
+                    child: Text("Next",
+                    style: TextStyle(color: Colors.white, fontSize: 14)
+                    ),
+                  )
+                  ),
+               
+              ],
+            ),
+            ),
+      ],
+      ),
     );
   }
 }
