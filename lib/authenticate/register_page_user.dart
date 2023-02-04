@@ -88,7 +88,7 @@ class _RegisterUserState extends State<RegisterUser> {
           SizedBox(height: 35),
           SizedBox(
             height: 60,
-            width: 360,
+            width: 320,
             child: ElevatedButton(
               onPressed: (() async {
                 dynamic flag = await signup(context);

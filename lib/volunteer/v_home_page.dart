@@ -74,11 +74,6 @@ class _VHomePageState extends State<VHomePage> {
                   ),
 
                   SalomonBottomBarItem(
-                    icon: Icon(Icons.notification_add_outlined),
-                    title: Text("Notification"),
-                    selectedColor: Colors.yellow,
-                  ),
-                  SalomonBottomBarItem(
                     icon: Icon(Icons.notifications_outlined),
                     title: Text("Notification"),
                     selectedColor: Colors.orange,

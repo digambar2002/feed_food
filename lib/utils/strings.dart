@@ -5,18 +5,19 @@ class FeedFoodStrings {
   // Network
 
   static final register_url_volunteer =
-      "http://10.0.2.2/feedfood/authentication/register.php";
+      "https://feed-n-joy.000webhostapp.com/authentication/register.php";
 
   static final register_url_ngo =
-      "http://10.0.2.2/feedfood/authentication/register_ngo.php";
+      "https://feed-n-joy.000webhostapp.com/authentication/register_ngo.php";
 
   static final register_vaildate_url =
-      "http://10.0.2.2/feedfood/authentication/user_email_check.php";
+      "https://feed-n-joy.000webhostapp.com/authentication/user_email_check.php";
 
-  static final login_url = "http://10.0.2.2/feedfood/authentication/login.php";
+  static final login_url =
+      "https://feed-n-joy.000webhostapp.com/authentication/login.php";
 
   static final forgot_pass_url =
-      "http://10.0.2.2/feedfood/authentication/forgotpass.php";
+      "https://feed-n-joy.000webhostapp.com/authentication/forgotpass.php";
 
   // walkthrough
   static final Whead1 = "No Food Waste!!";

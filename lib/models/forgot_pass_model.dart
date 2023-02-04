@@ -45,4 +45,24 @@ class ForgotPasswordModel {
     }
     return true;
   }
+
+  Future resetPassword(var password, var email) async {
+    String uri = FeedFoodStrings.forgot_pass_url;
+
+    try {
+      http.Response res = await http.post(Uri.parse(uri), body: {
+        'resetPassword': password,
+        'email': email,
+      });
+
+      var response = jsonDecode(res.body);
+
+      if (response['success'] != true) {
+        return response['success'];
+      }
+    } catch (e) {
+      print(e);
+    }
+    return true;
+  }
 }

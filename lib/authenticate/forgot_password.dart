@@ -36,12 +36,11 @@ class _ForgotPasswordState extends State<ForgotPassword> {
       var response = await ForgotPasswordModel().emailValidation(_email.text);
 
       if (response == true) {
-        Navigator.of(context).pop();
         _mail_error = null;
         setState(() {});
 
         // generating otp
-        var otp = Random().nextInt(900000) + 100000;
+        var otp = Random().nextInt(9000) + 1000;
 
         var emailResponse =
             await ForgotPasswordModel().sendMail(_email.text, otp.toString());
@@ -52,6 +51,8 @@ class _ForgotPasswordState extends State<ForgotPassword> {
           final SharedPreferences sharedPreferences =
               await SharedPreferences.getInstance();
           sharedPreferences.setString("forgotPassOtp", otp.toString());
+          sharedPreferences.setString("forgotEmail", _email.text);
+          Navigator.of(context).pop();
           Navigator.pushNamed(context, FeedFoodRoutes().OtpPage);
         } else {
           AwesomeDialog(
