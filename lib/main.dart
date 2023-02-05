@@ -17,10 +17,16 @@ import 'package:feed_food/authenticate/register_page_ngo.dart';
 import 'package:feed_food/utils/routes.dart';
 import 'package:feed_food/volunteer/v_home_page.dart';
 import 'package:feed_food/volunteer/donate.dart';
+import 'package:feed_food/volunteer/v_main_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter/services.dart';
 
 void main() {
+  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      statusBarColor: Color.fromARGB(255, 250, 250, 250),
+      statusBarIconBrightness: Brightness.dark));
+
   runApp(const MyApp());
 }
 
@@ -33,6 +39,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        appBarTheme: AppBarTheme(
+          color: Color.fromARGB(255, 250, 250, 250),
+          foregroundColor: Colors.black,
+        ),
         primarySwatch: Colors.deepPurple,
         fontFamily: GoogleFonts.poppins().fontFamily,
       ),
@@ -51,7 +61,7 @@ class MyApp extends StatelessWidget {
         FeedFoodRoutes().Walkthrough: (context) => Walkthrough(),
         FeedFoodRoutes().SetPass: (context) => SetPass(),
         FeedFoodRoutes().nHomeRoute: (context) => NHomePage(),
-        FeedFoodRoutes().vHomeRoute: (context) => VHomePage(),
+        FeedFoodRoutes().vMainRoute: (context) => VMainPage(),
         FeedFoodRoutes().vDonateRoute: (context) => VDonate(),
       },
     );

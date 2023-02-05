@@ -63,109 +63,112 @@ class _RegisterNgoState extends State<RegisterNgo> {
   // List Of steps
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        leading: BackButton(color: Colors.black),
-        title: Text(
-          "Register NGO",
-          style: TextStyle(
-            color: Colors.blueGrey[900],
-            fontWeight: FontWeight.bold,
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          leading: BackButton(color: Colors.black),
+          title: Text(
+            "Register NGO",
+            style: TextStyle(
+              color: Colors.blueGrey[900],
+              fontWeight: FontWeight.bold,
+            ),
           ),
+          centerTitle: true,
+          backgroundColor: Color(0xfafafa),
+          elevation: 0,
         ),
-        centerTitle: true,
-        backgroundColor: Color(0xfafafa),
-        elevation: 0,
-      ),
-      body: Theme(
-          data: ThemeData(
-            colorScheme: Theme.of(context).colorScheme.copyWith(
-                  primary: Colors.deepPurple[400],
-                ),
-          ),
-          child: Stack(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 5),
-                child: Stepper(
-                  elevation: 0,
-                  type: StepperType.horizontal,
-                  controlsBuilder:
-                      (BuildContext context, ControlsDetails details) {
-                    return Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Expanded(
-                          child: OutlinedButton(
-                            onPressed: details.onStepCancel,
-                            child: const Text('Back'),
-                            style: OutlinedButton.styleFrom(
-                              side: BorderSide(
-                                color: Colors.deepPurple,
+        body: Theme(
+            data: ThemeData(
+              colorScheme: Theme.of(context).colorScheme.copyWith(
+                    primary: Colors.deepPurple[400],
+                  ),
+            ),
+            child: Stack(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(top: 5),
+                  child: Stepper(
+                    elevation: 0,
+                    type: StepperType.horizontal,
+                    controlsBuilder:
+                        (BuildContext context, ControlsDetails details) {
+                      return Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            child: OutlinedButton(
+                              onPressed: details.onStepCancel,
+                              child: const Text('Back'),
+                              style: OutlinedButton.styleFrom(
+                                side: BorderSide(
+                                  color: Colors.deepPurple,
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Expanded(
-                          child: (_active_state <= 1)
-                              ? TextButton(
-                                  onPressed: details.onStepContinue,
-                                  child: const Text('Next'),
-                                  style: TextButton.styleFrom(
-                                    primary: Colors.white,
-                                    backgroundColor: Colors.deepPurple[400],
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Expanded(
+                            child: (_active_state <= 1)
+                                ? TextButton(
+                                    onPressed: details.onStepContinue,
+                                    child: const Text('Next'),
+                                    style: TextButton.styleFrom(
+                                      primary: Colors.white,
+                                      backgroundColor: Colors.deepPurple[400],
+                                    ),
+                                  )
+                                : TextButton(
+                                    onPressed: ((() async {
+                                      await finish(context);
+                                    })),
+                                    child: const Text('Finish'),
+                                    style: TextButton.styleFrom(
+                                      primary: Colors.white,
+                                      backgroundColor: Colors.deepPurple[400],
+                                    ),
                                   ),
-                                )
-                              : TextButton(
-                                  onPressed: ((() async {
-                                    await finish(context);
-                                  })),
-                                  child: const Text('Finish'),
-                                  style: TextButton.styleFrom(
-                                    primary: Colors.white,
-                                    backgroundColor: Colors.deepPurple[400],
-                                  ),
-                                ),
-                        ),
-                      ],
-                    );
-                  },
-                  steps: stepsList(),
-                  currentStep: _active_state,
-                  onStepContinue: () async {
-                    final isLastStep = _active_state == stepsList().length - 1;
+                          ),
+                        ],
+                      );
+                    },
+                    steps: stepsList(),
+                    currentStep: _active_state,
+                    onStepContinue: () async {
+                      final isLastStep =
+                          _active_state == stepsList().length - 1;
 
-                    ngo_form_key[_active_state].currentState?.validate();
+                      ngo_form_key[_active_state].currentState?.validate();
 
-                    bool isDetailsValid = await isDetailComplete();
+                      bool isDetailsValid = await isDetailComplete();
 
-                    if (isDetailsValid) {
-                      if (isLastStep) {
-                        setState(() {
-                          is_completed = true;
-                        });
-                      } else {
-                        if (_active_state < (stepsList().length - 1)) {
-                          _active_state += 1;
+                      if (isDetailsValid) {
+                        if (isLastStep) {
+                          setState(() {
+                            is_completed = true;
+                          });
+                        } else {
+                          if (_active_state < (stepsList().length - 1)) {
+                            _active_state += 1;
+                          }
+                          setState(() {});
                         }
-                        setState(() {});
+                      } else {}
+                    },
+                    onStepCancel: () {
+                      if (_active_state == 0) {
+                        return;
                       }
-                    } else {}
-                  },
-                  onStepCancel: () {
-                    if (_active_state == 0) {
-                      return;
-                    }
-                    _active_state -= 1;
-                    setState(() {});
-                  },
+                      _active_state -= 1;
+                      setState(() {});
+                    },
+                  ),
                 ),
-              ),
-            ],
-          )),
+              ],
+            )),
+      ),
     );
   }
 

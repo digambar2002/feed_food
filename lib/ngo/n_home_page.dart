@@ -16,7 +16,7 @@ class _NHomePageState extends State<NHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
+    return SafeArea(
       child: Scaffold(
         bottomNavigationBar: SalomonBottomBar(
           currentIndex: _currentIndex,
@@ -57,7 +57,6 @@ class _NHomePageState extends State<NHomePage> {
             ),
           ],
         ),
-
         // Text for topleft corner
         body: SingleChildScrollView(
           child: Container(

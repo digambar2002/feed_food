@@ -29,4 +29,7 @@ class FeedFoodStrings {
   static final subtittle2 = "We can be the generation that ends hunger.";
   static final subtittle3 =
       "Make a difference in people's lives with just one tap.";
+
+  // Pages
+  static final BrandName = "Feed-n-Joy";
 }

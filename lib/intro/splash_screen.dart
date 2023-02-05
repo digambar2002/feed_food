@@ -26,7 +26,7 @@ class _SplashScreenState extends State<SplashScreen> {
         if (accountNo == null) {
           Navigator.pushNamed(context, FeedFoodRoutes().loginRoute);
         } else if (accountNo != null && accountType == 'volunteer') {
-          Navigator.pushNamed(context, FeedFoodRoutes().vHomeRoute);
+          Navigator.pushNamed(context, FeedFoodRoutes().vMainRoute);
         } else {
           Navigator.pushNamed(context, FeedFoodRoutes().nHomeRoute);
         }
