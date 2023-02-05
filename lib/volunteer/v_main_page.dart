@@ -1,4 +1,6 @@
 import 'package:feed_food/utils/strings.dart';
+import 'package:feed_food/volunteer/donate.dart';
+import 'package:feed_food/volunteer/v_home_page.dart';
 import 'package:feed_food/widgets/btn.dart';
 import 'package:flutter/material.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
@@ -14,8 +16,8 @@ class VMainPage extends StatefulWidget {
 class _VHomePageState extends State<VMainPage> {
   var _currentIndex = 0;
   List pages = [
-    Text("Home"),
-    Text("post"),
+    VHomePage(),
+    VDonate(),
     Text("history"),
     Text("profile"),
   ];
@@ -24,15 +26,6 @@ class _VHomePageState extends State<VMainPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          title: Text(
-            FeedFoodStrings.BrandName,
-            style: GoogleFonts.dancingScript(
-                fontWeight: FontWeight.w900, fontSize: 26),
-          ),
-          automaticallyImplyLeading: false,
-          elevation: 0,
-        ),
         body: Center(
           child: pages[_currentIndex],
         ),

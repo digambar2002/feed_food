@@ -6,7 +6,8 @@ class VHistoryPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Text("Home"),
+      appBar: AppBar(title: const Text("Hello Wolrd")),
+      body: const Text("Home"),
     );
   }
 }

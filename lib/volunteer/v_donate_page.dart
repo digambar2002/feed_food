@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class VPostPage extends StatelessWidget {
-  const VPostPage({super.key});
+class VDonatePage extends StatelessWidget {
+  const VDonatePage({super.key});
 
   @override
   Widget build(BuildContext context) {
