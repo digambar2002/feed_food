@@ -6,6 +6,7 @@ import 'package:feed_food/models/register_model.dart';
 import 'package:feed_food/utils/routes.dart';
 import 'package:feed_food/utils/strings.dart';
 import 'package:feed_food/widgets/btn.dart';
+
 import 'package:feed_food/widgets/text_fields.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -81,7 +82,7 @@ class _RegisterUserState extends State<RegisterUser> {
                     SizedBox(
                       height: 10,
                     ),
-                    FoodTextField().buildPassword(_password),
+                    BuildPassword(controller_name: _password)
                   ],
                 ),
               ),
@@ -121,12 +122,25 @@ class _RegisterUserState extends State<RegisterUser> {
   Future<bool> signup(BuildContext context) async {
     if (_RegisterFormKey.currentState!.validate()) {
       // Check username already in database
+
+      showDialog(
+          context: context,
+          barrierDismissible: false,
+          builder: ((context) {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          }));
+
       var username_check =
           await RegisterUserModel().usernameValidation(_username.text);
+
+      // checking email is in database or not
       var email_check = await RegisterUserModel().emailValidation(_email.text);
+      // cheking phone no in database or not
       var phone_check =
           await RegisterUserModel().phoneValidation(_phone_no.text);
-
+      Navigator.of(context).pop();
       if (username_check != true) {
         username_error = username_check;
         setState(() {});
