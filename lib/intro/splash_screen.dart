@@ -26,7 +26,7 @@ class _SplashScreenState extends State<SplashScreen> {
         if (accountNo == null) {
           Navigator.pushNamed(context, FeedFoodRoutes().loginRoute);
         } else if (accountNo != null && accountType == 'volunteer') {
-          Navigator.pushNamed(context, FeedFoodRoutes().vHomeRoute);
+          Navigator.pushNamed(context, FeedFoodRoutes().vMainRoute);
         } else {
           Navigator.pushNamed(context, FeedFoodRoutes().nHomeRoute);
         }
@@ -42,8 +42,9 @@ class _SplashScreenState extends State<SplashScreen> {
         await SharedPreferences.getInstance();
 
     var obtainAccount = sharedPreferences.getString("accountNo");
-    var obtainType = sharedPreferences.getString("accountNo");
+    var obtainType = sharedPreferences.getString("type");
     print(obtainAccount);
+    print(obtainType);
 
     setState(() {
       accountNo = obtainAccount;

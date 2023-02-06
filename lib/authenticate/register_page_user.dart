@@ -34,87 +34,86 @@ class _RegisterUserState extends State<RegisterUser> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SingleChildScrollView(
-        physics: BouncingScrollPhysics(),
-        child: Column(children: [
-          SizedBox(
-            height: 2,
-          ),
-          Image.asset(
-            "assets/images/new.jpg",
-            height: 250,
-          ),
-          SizedBox(
-            height: 2,
-          ),
-          Text(
-            "Create Account",
-            style: TextStyle(
-                fontSize: 28,
-                fontWeight: FontWeight.w800,
-                color: Colors.deepPurple[400]),
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 20,
-              vertical: 10,
+    return SafeArea(
+      child: Scaffold(
+        body: SingleChildScrollView(
+          physics: BouncingScrollPhysics(),
+          child: Column(children: [
+            SizedBox(
+              height: 2,
             ),
-            child: Form(
-              key: _RegisterFormKey,
-              child: Column(
-                children: [
-                  FoodTextField()
-                      .buildTextUsername(_username, username_error, "username"),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  FoodTextField().buildEmail(_email, email_error),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  FoodTextField().buildPhone(_phone_no, phone_error),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  FoodTextField().buildPassword(_password),
-                ],
-              ),
+            Image.asset(
+              "assets/images/new.jpg",
+              height: 250,
             ),
-          ),
-          SizedBox(height: 35),
-          SizedBox(
-            height: 60,
-            width: 360,
-            child: ElevatedButton(
-              onPressed: (() async {
-                dynamic flag = await signup(context);
-                if (flag == true) {
-                  // Navigator.pushNamed(context, FeedFoodRoutes().loginRoute);
-                }
-              }),
-              child: Text(
-                "Sign Up",
-                style: TextStyle(fontSize: 24),
+            SizedBox(
+              height: 2,
+            ),
+            Text(
+              "Create Account",
+              style: TextStyle(
+                  fontSize: 28,
+                  fontWeight: FontWeight.w800,
+                  color: Colors.deepPurple[400]),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 20,
+                vertical: 10,
               ),
-              style: ElevatedButton.styleFrom(
-                primary: Colors.deepPurple[300],
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
+              child: Form(
+                key: _RegisterFormKey,
+                child: Column(
+                  children: [
+                    FoodTextField().buildTextUsername(
+                        _username, username_error, "username"),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    FoodTextField().buildEmail(_email, email_error),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    FoodTextField().buildPhone(_phone_no, phone_error),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    FoodTextField().buildPassword(_password),
+                  ],
                 ),
               ),
             ),
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          Btn().buildLoginBtn(
-              onClick: () =>
-                  Navigator.pushNamed(context, FeedFoodRoutes().loginRoute))
-        ]),
+            SizedBox(height: 35),
+            SizedBox(
+              height: 60,
+              width: 320,
+              child: ElevatedButton(
+                onPressed: (() async {
+                  dynamic flag = await signup(context);
+                }),
+                child: Text(
+                  "Sign Up",
+                  style: TextStyle(fontSize: 24),
+                ),
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.deepPurple[300],
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Btn().buildLoginBtn(
+                onClick: () =>
+                    Navigator.pushNamed(context, FeedFoodRoutes().loginRoute))
+          ]),
+        ),
       ),
     );
   }
@@ -153,6 +152,7 @@ class _RegisterUserState extends State<RegisterUser> {
 
         showDialog(
             context: context,
+            barrierDismissible: false,
             builder: ((context) {
               return Center(
                 child: CircularProgressIndicator(),

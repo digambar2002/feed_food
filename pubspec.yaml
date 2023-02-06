@@ -45,6 +45,9 @@ dependencies:
   shared_preferences: ^2.0.17
   salomon_bottom_bar: ^3.3.1
   flutter_inner_drawer: ^1.0.0+1
+  card_swiper : ^2.0.1
+  background_app_bar: ^2.0.1
+  intl: ^0.18.0
 
 dev_dependencies:
   flutter_test:

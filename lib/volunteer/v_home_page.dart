@@ -1,59 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
-import 'package:flutter_inner_drawer/inner_drawer.dart';
+import 'package:google_fonts/google_fonts.dart';
 
-class VHomePage extends StatefulWidget {
+import '../utils/strings.dart';
+
+class VHomePage extends StatelessWidget {
   const VHomePage({super.key});
 
   @override
-  State<VHomePage> createState() => _VHomePageState();
-}
-
-class _VHomePageState extends State<VHomePage> {
-  var _currentIndex = 0;
-
-  @override
   Widget build(BuildContext context) {
-    return Material(
-        child: Scaffold(
-            bottomNavigationBar: SalomonBottomBar(
-      currentIndex: _currentIndex,
-      onTap: (i) => setState(() => _currentIndex = i),
-      items: [
-        /// Home
-        SalomonBottomBarItem(
-          icon: Icon(Icons.home_outlined),
-          title: Text("Home"),
-          selectedColor: Colors.purple,
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          FeedFoodStrings.BrandName,
+          style: GoogleFonts.dancingScript(
+              fontWeight: FontWeight.w900, fontSize: 26),
         ),
-
-        SalomonBottomBarItem(
-          icon: Icon(Icons.notification_add_outlined),
-          title: Text("Notification"),
-          selectedColor: Colors.orange,
-        ),
-
-        /// Likes
-        SalomonBottomBarItem(
-          icon: Icon(Icons.add_box_outlined, size: 30),
-          title: Text("Add Request"),
-          selectedColor: Colors.red,
-        ),
-
-        /// Search
-        SalomonBottomBarItem(
-          icon: Icon(Icons.history),
-          title: Text("history"),
-          selectedColor: Colors.orange,
-        ),
-
-        /// Profile
-        SalomonBottomBarItem(
-          icon: Icon(Icons.person_2_outlined),
-          title: Text("Profile"),
-          selectedColor: Colors.teal,
-        ),
-      ],
-    )));
+        automaticallyImplyLeading: false,
+        elevation: 0,
+      ),
+      body: Text("Home"),
+    );
   }
 }

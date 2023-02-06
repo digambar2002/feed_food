@@ -1,9 +1,11 @@
 // Author: Digambar Chaudhari
 
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:feed_food/widgets/text_fields.dart';
 import 'package:flutter/material.dart';
 
 import '../models/register_model.dart';
+import '../utils/routes.dart';
 
 class RegisterNgo extends StatefulWidget {
   const RegisterNgo({super.key});
@@ -61,109 +63,112 @@ class _RegisterNgoState extends State<RegisterNgo> {
   // List Of steps
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        leading: BackButton(color: Colors.black),
-        title: Text(
-          "Register NGO",
-          style: TextStyle(
-            color: Colors.blueGrey[900],
-            fontWeight: FontWeight.bold,
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          leading: BackButton(color: Colors.black),
+          title: Text(
+            "Register NGO",
+            style: TextStyle(
+              color: Colors.blueGrey[900],
+              fontWeight: FontWeight.bold,
+            ),
           ),
+          centerTitle: true,
+          backgroundColor: Color(0xfafafa),
+          elevation: 0,
         ),
-        centerTitle: true,
-        backgroundColor: Color(0xfafafa),
-        elevation: 0,
-      ),
-      body: Theme(
-          data: ThemeData(
-            colorScheme: Theme.of(context).colorScheme.copyWith(
-                  primary: Colors.deepPurple[400],
-                ),
-          ),
-          child: Stack(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 5),
-                child: Stepper(
-                  elevation: 0,
-                  type: StepperType.horizontal,
-                  controlsBuilder:
-                      (BuildContext context, ControlsDetails details) {
-                    return Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Expanded(
-                          child: OutlinedButton(
-                            onPressed: details.onStepCancel,
-                            child: const Text('Back'),
-                            style: OutlinedButton.styleFrom(
-                              side: BorderSide(
-                                color: Colors.deepPurple,
+        body: Theme(
+            data: ThemeData(
+              colorScheme: Theme.of(context).colorScheme.copyWith(
+                    primary: Colors.deepPurple[400],
+                  ),
+            ),
+            child: Stack(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(top: 5),
+                  child: Stepper(
+                    elevation: 0,
+                    type: StepperType.horizontal,
+                    controlsBuilder:
+                        (BuildContext context, ControlsDetails details) {
+                      return Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            child: OutlinedButton(
+                              onPressed: details.onStepCancel,
+                              child: const Text('Back'),
+                              style: OutlinedButton.styleFrom(
+                                side: BorderSide(
+                                  color: Colors.deepPurple,
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Expanded(
-                          child: (_active_state <= 1)
-                              ? TextButton(
-                                  onPressed: details.onStepContinue,
-                                  child: const Text('Next'),
-                                  style: TextButton.styleFrom(
-                                    primary: Colors.white,
-                                    backgroundColor: Colors.deepPurple[400],
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Expanded(
+                            child: (_active_state <= 1)
+                                ? TextButton(
+                                    onPressed: details.onStepContinue,
+                                    child: const Text('Next'),
+                                    style: TextButton.styleFrom(
+                                      primary: Colors.white,
+                                      backgroundColor: Colors.deepPurple[400],
+                                    ),
+                                  )
+                                : TextButton(
+                                    onPressed: ((() async {
+                                      await finish(context);
+                                    })),
+                                    child: const Text('Finish'),
+                                    style: TextButton.styleFrom(
+                                      primary: Colors.white,
+                                      backgroundColor: Colors.deepPurple[400],
+                                    ),
                                   ),
-                                )
-                              : TextButton(
-                                  onPressed: ((() async {
-                                    await finish(context);
-                                  })),
-                                  child: const Text('Finish'),
-                                  style: TextButton.styleFrom(
-                                    primary: Colors.white,
-                                    backgroundColor: Colors.deepPurple[400],
-                                  ),
-                                ),
-                        ),
-                      ],
-                    );
-                  },
-                  steps: stepsList(),
-                  currentStep: _active_state,
-                  onStepContinue: () async {
-                    final isLastStep = _active_state == stepsList().length - 1;
+                          ),
+                        ],
+                      );
+                    },
+                    steps: stepsList(),
+                    currentStep: _active_state,
+                    onStepContinue: () async {
+                      final isLastStep =
+                          _active_state == stepsList().length - 1;
 
-                    ngo_form_key[_active_state].currentState?.validate();
+                      ngo_form_key[_active_state].currentState?.validate();
 
-                    bool isDetailsValid = await isDetailComplete();
+                      bool isDetailsValid = await isDetailComplete();
 
-                    if (isDetailsValid) {
-                      if (isLastStep) {
-                        setState(() {
-                          is_completed = true;
-                        });
-                      } else {
-                        if (_active_state < (stepsList().length - 1)) {
-                          _active_state += 1;
+                      if (isDetailsValid) {
+                        if (isLastStep) {
+                          setState(() {
+                            is_completed = true;
+                          });
+                        } else {
+                          if (_active_state < (stepsList().length - 1)) {
+                            _active_state += 1;
+                          }
+                          setState(() {});
                         }
-                        setState(() {});
+                      } else {}
+                    },
+                    onStepCancel: () {
+                      if (_active_state == 0) {
+                        return;
                       }
-                    } else {}
-                  },
-                  onStepCancel: () {
-                    if (_active_state == 0) {
-                      return;
-                    }
-                    _active_state -= 1;
-                    setState(() {});
-                  },
+                      _active_state -= 1;
+                      setState(() {});
+                    },
+                  ),
                 ),
-              ),
-            ],
-          )),
+              ],
+            )),
+      ),
     );
   }
 
@@ -236,13 +241,52 @@ class _RegisterNgoState extends State<RegisterNgo> {
 
         if (username_check != true) {
           ngo_username_error = username_check;
-          print("Hello world");
           setState(() {});
           return false;
         }
         ngo_username_error = null;
+        // print(NGO_type);
         setState(() {});
-        return true;
+
+        showDialog(
+            context: context,
+            barrierDismissible: false,
+            builder: ((context) {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            }));
+
+        var ngo_data_inserted = await RegisterUserModel().InsertNgoData(
+            _NGO_name.text,
+            _NGO_id.text,
+            NGO_type.toString(),
+            _NGO_email.text,
+            _NGO_phone_no.text,
+            _NGO_pincode.text,
+            _NGO_address.text,
+            _NGO_username.text,
+            _NGO_password.text);
+
+        if (ngo_data_inserted == true) {
+          Navigator.of(context).pop();
+          AwesomeDialog(
+            context: context,
+            dismissOnTouchOutside: false,
+            dialogType: DialogType.success,
+            animType: AnimType.scale,
+            title: 'Account Created Successfully',
+            desc: 'Please Check Your Email To activate account',
+            btnOkOnPress: () {
+              Navigator.pushNamed(context, FeedFoodRoutes().loginRoute);
+            },
+          )..show();
+
+          return true;
+        } else {
+          Navigator.of(context).pop();
+          return false;
+        }
       }
     }
   }
@@ -265,7 +309,7 @@ class _RegisterNgoState extends State<RegisterNgo> {
                 ),
 
                 // NGO ID text filed
-                FoodTextField().buildNumber(
+                FoodTextField().buildTextLabel(
                     "Unique ID",
                     "enter your ngo unique id",
                     "ngo id cannot empty",
@@ -374,14 +418,16 @@ class _RegisterNgoState extends State<RegisterNgo> {
           title: const Text("Account"),
           content: Form(
             key: ngo_form_key[2],
-            child: Column(children: [
-              FoodTextField().buildTextLabel("Username", "enter username",
-                  "invalid username", _NGO_username, ngo_username_error),
+            child:
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Text("Username"),
+              FoodTextField().buildTextUsername(
+                  _NGO_username, ngo_username_error, 'enter username'),
               SizedBox(
                 height: 20,
               ),
-              FoodTextField().buildLablePassword("Password", "enter password",
-                  "invalid password", _NGO_password),
+              Text("Password"),
+              BuildPassword(controller_name: _NGO_password),
               SizedBox(
                 height: 20,
               )
