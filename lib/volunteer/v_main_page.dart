@@ -1,5 +1,6 @@
 import 'package:feed_food/utils/strings.dart';
 import 'package:feed_food/volunteer/donate.dart';
+import 'package:feed_food/volunteer/v_donate_page.dart';
 import 'package:feed_food/volunteer/v_home_page.dart';
 import 'package:feed_food/widgets/btn.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +18,7 @@ class _VHomePageState extends State<VMainPage> {
   var _currentIndex = 0;
   List pages = [
     VHomePage(),
-    VDonate(),
+    VDonatePage(),
     Text("history"),
     Text("profile"),
   ];
