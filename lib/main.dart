@@ -9,7 +9,10 @@ import 'package:feed_food/authenticate/register_page_user.dart';
 import 'package:feed_food/intro/splash_screen.dart';
 import 'package:feed_food/intro/walkthrough.dart';
 import 'package:feed_food/intro/welcome_page.dart';
-import 'package:feed_food/ngo/n_home_page.dart';
+import 'package:feed_food/ngo/homepage/n_home_page.dart';
+import 'package:feed_food/ngo/homepage/n_homescreen.dart';
+import 'package:feed_food/ngo/n_notification.dart';
+import 'package:feed_food/ngo/profile/n_profile_page.dart';
 import 'package:feed_food/pages/home_page.dart';
 import 'package:feed_food/authenticate/login_page.dart';
 import 'package:feed_food/authenticate/register_page.dart';
@@ -35,7 +38,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.deepPurple,
         fontFamily: GoogleFonts.poppins().fontFamily,
       ),
-      initialRoute: FeedFoodRoutes().Walkthrough,
+      initialRoute: FeedFoodRoutes().nHomeScreen,
       routes: {
         "/": (context) => LoginPage(),
         FeedFoodRoutes().splashRoute: (context) => SplashScreen(),
@@ -50,7 +53,10 @@ class MyApp extends StatelessWidget {
         FeedFoodRoutes().Walkthrough: (context) => Walkthrough(),
         FeedFoodRoutes().SetPass: (context) => SetPass(),
         FeedFoodRoutes().nHomeRoute: (context) => NHomePage(),
+        FeedFoodRoutes().nHomeScreen: (context) => HomeScreen(),
         FeedFoodRoutes().vHomeRoute: (context) => VHomePage(),
+        FeedFoodRoutes().nNotification: (context) =>NotificationPage(),
+        FeedFoodRoutes().nProfilePage: (context) =>ProfileScreen(),
       },
     );
   }

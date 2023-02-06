@@ -57,7 +57,7 @@ class _NHomePageState extends State<NHomePage> {
 
 
       // Text for topleft corner
-      body: SingleChildScrollView(
+      body: SafeArea(
         child: Container(
           height: 300,
           width: 600,
@@ -81,13 +81,7 @@ class _NHomePageState extends State<NHomePage> {
                     style: TextStyle(color: Colors.white,
                      fontSize: 24),
                   ),
-                  Text(
-                  "Login to account",
-                  style: TextStyle(
-                      fontSize: 24,
-                      color: Colors.white),
-                ),
-                ],
+                ], 
               ),
             ),
           ),
