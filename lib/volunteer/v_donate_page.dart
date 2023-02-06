@@ -41,8 +41,8 @@ class _VDonatePageState extends State<VDonatePage> {
                         TextFormField(
                           decoration: const InputDecoration(
                             filled: true,
-                            hintText: 'Enter a title...',
-                            labelText: 'Title',
+                            hintText: 'Enter a Description',
+                            labelText: 'Food Details',
                           ),
                           onChanged: (value) {
                             setState(() {
@@ -114,25 +114,33 @@ class _VDonatePageState extends State<VDonatePage> {
                                 });
                               },
                             ),
-                            Text('Brushed Teeth',
-                                style: Theme.of(context).textTheme.titleMedium),
-                          ],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Text('Enable feature',
-                                style: Theme.of(context).textTheme.bodyLarge),
-                            Switch(
-                              value: enableFeature,
-                              onChanged: (enabled) {
-                                setState(() {
-                                  enableFeature = enabled;
-                                });
-                              },
+                            Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 20, horizontal: 15),
+                              child: Text(
+                                  'I assure that food quality and \n hygiene has maintained  ',
+                                  style:
+                                      Theme.of(context).textTheme.titleMedium),
                             ),
                           ],
+                        ),
+                        SizedBox(
+                          height: 50,
+                          width: 360,
+                          child: ElevatedButton(
+                            onPressed: (() async {
+                              await VDonatePage();
+                            }),
+                            child: Text(
+                              "Submit",
+                              style: TextStyle(fontSize: 24),
+                            ),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.deepPurple[400],
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(5),
+                                )),
+                          ),
                         ),
                       ].expand(
                         (widget) => [
