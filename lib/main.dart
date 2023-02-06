@@ -13,7 +13,7 @@ import 'package:feed_food/ngo/homepage/n_home_page.dart';
 import 'package:feed_food/ngo/homepage/n_homescreen.dart';
 import 'package:feed_food/ngo/n_notification.dart';
 import 'package:feed_food/ngo/profile/n_profile_page.dart';
-import 'package:feed_food/pages/home_page.dart';
+
 import 'package:feed_food/authenticate/login_page.dart';
 import 'package:feed_food/authenticate/register_page.dart';
 import 'package:feed_food/authenticate/register_page_ngo.dart';
@@ -55,7 +55,7 @@ class MyApp extends StatelessWidget {
         "/": (context) => LoginPage(),
         FeedFoodRoutes().splashRoute: (context) => SplashScreen(),
         FeedFoodRoutes().welcomeRoute: (context) => WelcomePage(),
-        FeedFoodRoutes().homeRoute: (context) => HomePage(),
+
         FeedFoodRoutes().loginRoute: (context) => LoginPage(),
         FeedFoodRoutes().registerRoute: (context) => RegisterPage(),
         FeedFoodRoutes().registerNgo: (context) => RegisterNgo(),
