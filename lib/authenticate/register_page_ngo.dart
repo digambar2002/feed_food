@@ -178,8 +178,16 @@ class _RegisterNgoState extends State<RegisterNgo> {
       if (_NGO_name.text.isEmpty || _NGO_id.text.isEmpty) {
         return false;
       } else {
+        showDialog(
+            context: context,
+            barrierDismissible: false,
+            builder: ((context) {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            }));
         var id_check = await RegisterUserModel().ngoIdValidation(_NGO_id.text);
-
+        Navigator.of(context).pop();
         if (id_check != true) {
           NGO_id_error = id_check;
           setState(() {});
@@ -197,10 +205,20 @@ class _RegisterNgoState extends State<RegisterNgo> {
           _NGO_pincode.text.length != 6) {
         return false;
       } else {
+        showDialog(
+            context: context,
+            barrierDismissible: false,
+            builder: ((context) {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            }));
         var email_check =
             await RegisterUserModel().emailValidation(_NGO_email.text);
         var phone_check =
             await RegisterUserModel().phoneValidation(_NGO_phone_no.text);
+
+        Navigator.of(context).pop();
 
         if (email_check != true) {
           ngo_email_error = email_check;

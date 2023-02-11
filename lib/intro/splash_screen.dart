@@ -21,14 +21,17 @@ class _SplashScreenState extends State<SplashScreen> {
     // TODO: implement initState
 
     getValidationData().whenComplete((() async {
-      Timer(Duration(seconds: 2), (() {
+      Timer(Duration(seconds: 5), (() {
         // if account no from shared preferances are null then it shows login page else volunteer or ngo home page
         if (accountNo == null) {
-          Navigator.pushNamed(context, FeedFoodRoutes().loginRoute);
+          Navigator.of(context)
+              .pushReplacementNamed(FeedFoodRoutes().loginRoute);
         } else if (accountNo != null && accountType == 'volunteer') {
-          Navigator.pushNamed(context, FeedFoodRoutes().vMainRoute);
+          Navigator.of(context)
+              .pushReplacementNamed(FeedFoodRoutes().vMainRoute);
         } else {
-          Navigator.pushNamed(context, FeedFoodRoutes().nHomeRoute);
+          Navigator.of(context)
+              .pushReplacementNamed(FeedFoodRoutes().nHomeRoute);
         }
       }));
     }));
