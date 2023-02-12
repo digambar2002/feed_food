@@ -14,6 +14,7 @@ import 'package:feed_food/pages/home_page.dart';
 import 'package:feed_food/authenticate/login_page.dart';
 import 'package:feed_food/authenticate/register_page.dart';
 import 'package:feed_food/authenticate/register_page_ngo.dart';
+import 'package:feed_food/utils/globals.dart';
 import 'package:feed_food/utils/routes.dart';
 import 'package:feed_food/utils/strings.dart';
 import 'package:feed_food/volunteer/home/v_home_page.dart';
@@ -46,9 +47,19 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.deepPurple,
         fontFamily: GoogleFonts.poppins().fontFamily,
       ),
-      initialRoute: FeedFoodRoutes().registerUser,
+      initialRoute: FeedFoodRoutes().splashRoute,
       routes: {
-        "/": (context) => LoginPage(),
+        "/": ((context) {
+          print(isTypeSet);
+          if (isTypeSet == true) {
+            if (UserType == "volunteer") {
+              return VMainPage();
+            } else {
+              return NHomePage();
+            }
+          }
+          return LoginPage();
+        }),
         FeedFoodRoutes().splashRoute: (context) => SplashScreen(),
         FeedFoodRoutes().welcomeRoute: (context) => WelcomePage(),
         FeedFoodRoutes().homeRoute: (context) => HomePage(),

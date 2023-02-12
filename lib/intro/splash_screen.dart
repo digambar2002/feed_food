@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:feed_food/utils/globals.dart';
 import 'package:feed_food/utils/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
@@ -24,12 +25,34 @@ class _SplashScreenState extends State<SplashScreen> {
       Timer(Duration(seconds: 5), (() {
         // if account no from shared preferances are null then it shows login page else volunteer or ngo home page
         if (accountNo == null) {
+          // set state of global varibale to check already user login or not
+          setState(() {
+            isTypeSet = false;
+            isAccountSet = false;
+            UserAccount = null;
+            UserType = null;
+          });
           Navigator.of(context)
               .pushReplacementNamed(FeedFoodRoutes().loginRoute);
         } else if (accountNo != null && accountType == 'volunteer') {
+          // set state of global varibale to check already user login or not
+          setState(() {
+            isTypeSet = true;
+            isAccountSet = true;
+            UserAccount = accountNo;
+            UserType = accountType;
+          });
+
           Navigator.of(context)
               .pushReplacementNamed(FeedFoodRoutes().vMainRoute);
         } else {
+          // set state of global varibale to check already user login or not
+          setState(() {
+            isTypeSet = true;
+            isAccountSet = true;
+            UserAccount = accountNo;
+            UserType = accountType;
+          });
           Navigator.of(context)
               .pushReplacementNamed(FeedFoodRoutes().nHomeRoute);
         }

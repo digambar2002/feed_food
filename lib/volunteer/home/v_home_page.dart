@@ -1,3 +1,5 @@
+import 'package:feed_food/utils/globals.dart';
+import 'package:feed_food/widgets/cards.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -32,7 +34,7 @@ class VHomePage extends StatelessWidget {
               ),
               IconButton(
                 onPressed: (() {
-                  print("hello");
+                  print(isTypeSet);
                 }),
                 icon: Icon(Icons.volunteer_activism_outlined),
               ),
@@ -47,35 +49,8 @@ class VHomePage extends StatelessWidget {
             height: 20,
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-            child: Container(
-              height: 200,
-              width: 400,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                gradient: LinearGradient(
-                  colors: [
-                    Color.fromARGB(255, 155, 110, 246),
-                    Color.fromARGB(255, 116, 182, 247)
-                  ],
-                  begin: Alignment.bottomLeft,
-                  end: Alignment.topRight,
-                ),
-              ),
-              child: Row(
-                children: [
-                  Column(
-                    children: [
-                      Text("i am unstopable ....."),
-                      TextButton(
-                          onPressed: (() => print("hello world")),
-                          child: Text("Donate"))
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          ),
+              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+              child: VHomeCard()),
         ],
       )),
     );
