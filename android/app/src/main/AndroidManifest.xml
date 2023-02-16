@@ -1,5 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.feed_food">
+    
+
+    <uses-permission android:name="android.permission.INTERNET" />
    <application
         android:label="feed_food"
         android:name="${applicationName}"
@@ -31,4 +34,10 @@
             android:name="flutterEmbedding"
             android:value="2" />
     </application>
+    <queries>
+    <!-- Place inside the <queries> element. -->
+        <intent>
+        <action android:name="android.support.customtabs.action.CustomTabsService" />
+        </intent>
+    </queries>
 </manifest>
