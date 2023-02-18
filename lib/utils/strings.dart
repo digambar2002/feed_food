@@ -21,6 +21,7 @@ class FeedFoodStrings {
   // Other NGO Information
   static final ngo_url1 = "https://www.akshayapatra.org/";
   static final ngo_url2 = "https://give.do/projects/project-nanhi-kali";
+
   static final ngo_url3 = "https://www.wateraid.org/";
   static final ngo_url4 = "https://sadsindia.org/";
 

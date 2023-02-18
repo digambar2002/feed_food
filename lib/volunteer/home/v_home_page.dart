@@ -118,6 +118,12 @@ class VHomePage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10),
               child: NewsCards(),
+              // child: ListView.builder(
+              //     scrollDirection: Axis.vertical,
+              //     shrinkWrap: true,
+              //     itemBuilder: ((context, index) {
+              //       return NewsCards();
+              //     })),
             ),
           ],
         ),

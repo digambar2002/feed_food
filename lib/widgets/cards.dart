@@ -149,7 +149,7 @@ class _NewsCardsState extends State<NewsCards> {
                   height: 8,
                 ),
                 Image.network(
-                    "https://images.hindustantimes.com/tech/img/2023/02/15/1600x900/asteroid_1676434888953_1676434897704_1676434897704.jpg"),
+                    "https://images.immediate.co.uk/production/volatile/sites/4/2022/12/Asteroid-hitting-Earth-677887b.jpg"),
                 SizedBox(
                   height: 10,
                 ),
