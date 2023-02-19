@@ -9,11 +9,10 @@ import 'package:feed_food/authenticate/register_page_user.dart';
 import 'package:feed_food/intro/splash_screen.dart';
 import 'package:feed_food/intro/walkthrough.dart';
 import 'package:feed_food/intro/welcome_page.dart';
-import 'package:feed_food/ngo/homepage/n_home_page.dart';
-import 'package:feed_food/ngo/homepage/n_homescreen.dart';
+import 'package:feed_food/ngo/n_home_page.dart';
+import 'package:feed_food/ngo/n_main_page.dart';
 import 'package:feed_food/ngo/n_notification.dart';
 import 'package:feed_food/ngo/profile/n_profile_page.dart';
-
 import 'package:feed_food/authenticate/login_page.dart';
 import 'package:feed_food/authenticate/register_page.dart';
 import 'package:feed_food/authenticate/register_page_ngo.dart';
@@ -49,13 +48,12 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.deepPurple,
         fontFamily: GoogleFonts.poppins().fontFamily,
       ),
-      initialRoute: FeedFoodRoutes().nHomeScreen,
+      initialRoute: FeedFoodRoutes().nHomePage,
       
       routes: {
         "/": (context) => LoginPage(),
         FeedFoodRoutes().splashRoute: (context) => SplashScreen(),
         FeedFoodRoutes().welcomeRoute: (context) => WelcomePage(),
-
         FeedFoodRoutes().loginRoute: (context) => LoginPage(),
         FeedFoodRoutes().registerRoute: (context) => RegisterPage(),
         FeedFoodRoutes().registerNgo: (context) => RegisterNgo(),
@@ -64,12 +62,11 @@ class MyApp extends StatelessWidget {
         FeedFoodRoutes().OtpPage: (context) => OtpPage(),
         FeedFoodRoutes().Walkthrough: (context) => Walkthrough(),
         FeedFoodRoutes().SetPass: (context) => SetPass(),
-        FeedFoodRoutes().nHomeRoute: (context) => NHomePage(),
-        FeedFoodRoutes().nHomeScreen: (context) => HomeScreen(),
+        FeedFoodRoutes().nHomePage: (context) => nHomePage(),
         FeedFoodRoutes().vMainRoute: (context) => VMainPage(),
         FeedFoodRoutes().vDonateRoute: (context) => VDonate(),
         FeedFoodRoutes().nNotification: (context) =>NotificationPage(),
-        FeedFoodRoutes().nProfilePage: (context) =>ProfileScreen(),
+        FeedFoodRoutes().nMainRoute: (context) =>NMain(),
       },
     );
   }

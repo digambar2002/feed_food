@@ -50,7 +50,7 @@ class _WalkthroughState extends State<Walkthrough> {
                     child: Column(
                       children: [
                         SizedBox(
-                          height: 630,
+                          height: 600,
                         ),
                         Align(
                           alignment: Alignment.topLeft,
@@ -83,7 +83,7 @@ class _WalkthroughState extends State<Walkthrough> {
                     child: Column(
                       children: [
                         SizedBox(
-                          height: 630,
+                          height: 600,
                         ),
                         Align(
                           alignment: Alignment.topLeft,
@@ -116,7 +116,7 @@ class _WalkthroughState extends State<Walkthrough> {
                     child: Column(
                       children: [
                         SizedBox(
-                          height: 630,
+                          height: 600,
                         ),
                         Align(
                           alignment: Alignment.topLeft,

@@ -149,7 +149,7 @@ class _LoginPageState extends State<LoginPage> {
         sharedPreferences.setString("accountNo", reponse['accountNo']);
         sharedPreferences.setString("type", reponse['type']);
         Navigator.of(context).pop();
-        Navigator.pushNamed(context, FeedFoodRoutes().nHomeRoute);
+        Navigator.pushNamed(context, FeedFoodRoutes().nMainRoute);
       } else {
         Navigator.of(context).pop();
         AwesomeDialog(

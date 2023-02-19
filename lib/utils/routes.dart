@@ -13,9 +13,8 @@ class FeedFoodRoutes {
   final String Walkthrough = "/walkthrough";
   final String SetPass = "/set_password";
   final String vMainRoute = "/v_main_page";
-  final String nHomeRoute = "/n_home_page";
-  final String nHomeScreen = "/n_homescreen";
+  final String nHomePage = "/n_home_page";
   final String nNotification = "/n_notification";
-  final String nProfilePage = "/n_profile_page";
   final String vDonateRoute = "/v_donate";
+  final String nMainRoute = "/n_main_page";
 }

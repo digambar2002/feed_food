@@ -28,7 +28,7 @@ class _SplashScreenState extends State<SplashScreen> {
         } else if (accountNo != null && accountType == 'volunteer') {
           Navigator.pushNamed(context, FeedFoodRoutes().vMainRoute);
         } else {
-          Navigator.pushNamed(context, FeedFoodRoutes().nHomeRoute);
+          Navigator.pushNamed(context, FeedFoodRoutes().nMainRoute);
         }
       }));
     }));
