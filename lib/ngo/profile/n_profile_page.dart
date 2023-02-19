@@ -1,20 +1,22 @@
-import 'package:feed_food/ngo/profile/components/body.dart';
 import 'package:flutter/material.dart';
-import 'components/body.dart';
 
 
-class ProfileScreen extends StatelessWidget {
-  static String routeName = '/profile';
+class nProfilePage extends StatelessWidget {
+  const nProfilePage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Profile"),
+        leading: IconButton(onPressed: (){}, icon: const Icon(Icons.line_axis_rounded)),
+        title:Text("Profile", style:Theme.of(context).textTheme.headlineMedium),
+        actions: [
+          IconButton(onPressed: (){}, icon: Icon(Icons.line_axis_rounded))
+        ],
       ),
-      body: Body(),
+      body: SingleChildScrollView(
+        child: Container(),
+      ),
     );
   }
 }
-
-
