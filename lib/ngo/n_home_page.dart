@@ -57,7 +57,7 @@ class nHomePage extends StatelessWidget {
             padding: const EdgeInsets.all(16.0),
             child: GridView.count(
               crossAxisCount: 3,
-              childAspectRatio: 0.85,
+              childAspectRatio: 0.90,
               crossAxisSpacing: 10,
               mainAxisSpacing: 10,
             children:<Widget> [

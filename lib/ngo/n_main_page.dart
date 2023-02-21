@@ -1,4 +1,4 @@
-import 'package:feed_food/ngo/profile/n_profile_page.dart';
+import 'package:feed_food/ngo/profile/body.dart';
 import 'package:flutter/material.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
@@ -16,11 +16,12 @@ class NMain extends StatefulWidget {
 class _NMainState extends State<NMain> {
  var _currentIndex = 0;
   List pages = [
-    nHomePage(),
-    nProfilePage(),
+   nHomePage(),
+  
     
-    Text("history"),
     Text("notification"),
+    Text("post"),
+    Text("history"),
     Text("profile"),
   ];
 
@@ -46,6 +47,13 @@ class _NMainState extends State<NMain> {
                     icon: Icon(Icons.home_outlined),
                     title: Text("Home"),
                     selectedColor: Colors.purple,
+                  ),
+
+                  /// Search
+                  SalomonBottomBarItem(
+                    icon: Icon(Icons.notifications),
+                    title: Text("notifications"),
+                    selectedColor: Colors.pink,
                   ),
 
                   /// Likes
