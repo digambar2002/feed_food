@@ -48,6 +48,7 @@ dependencies:
   card_swiper : ^2.0.1
   background_app_bar: ^2.0.1
   intl: ^0.18.0
+  flutter_web_browser: ^0.17.1
 
 dev_dependencies:
   flutter_test:

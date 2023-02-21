@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:feed_food/utils/globals.dart';
 import 'package:feed_food/utils/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
@@ -21,14 +22,43 @@ class _SplashScreenState extends State<SplashScreen> {
     // TODO: implement initState
 
     getValidationData().whenComplete((() async {
-      Timer(Duration(seconds: 2), (() {
+      Timer(Duration(seconds: 5), (() {
         // if account no from shared preferances are null then it shows login page else volunteer or ngo home page
         if (accountNo == null) {
-          Navigator.pushNamed(context, FeedFoodRoutes().loginRoute);
+          // set state of global varibale to check already user login or not
+          setState(() {
+            isTypeSet = false;
+            isAccountSet = false;
+            UserAccount = null;
+            UserType = null;
+          });
+          Navigator.of(context)
+              .pushReplacementNamed(FeedFoodRoutes().loginRoute);
         } else if (accountNo != null && accountType == 'volunteer') {
-          Navigator.pushNamed(context, FeedFoodRoutes().vMainRoute);
+          // set state of global varibale to check already user login or not
+          setState(() {
+            isTypeSet = true;
+            isAccountSet = true;
+            UserAccount = accountNo;
+            UserType = accountType;
+          });
+
+          Navigator.of(context)
+              .pushReplacementNamed(FeedFoodRoutes().vMainRoute);
         } else {
+<<<<<<< HEAD
           Navigator.pushNamed(context, FeedFoodRoutes().nMainRoute);
+=======
+          // set state of global varibale to check already user login or not
+          setState(() {
+            isTypeSet = true;
+            isAccountSet = true;
+            UserAccount = accountNo;
+            UserType = accountType;
+          });
+          Navigator.of(context)
+              .pushReplacementNamed(FeedFoodRoutes().nHomeRoute);
+>>>>>>> 24f14f1210cfd17944226c8df73c94db8e32d552
         }
       }));
     }));

@@ -1,7 +1,6 @@
 import 'package:feed_food/utils/strings.dart';
-import 'package:feed_food/volunteer/donate.dart';
-import 'package:feed_food/volunteer/v_donate_page.dart';
-import 'package:feed_food/volunteer/v_home_page.dart';
+import 'package:feed_food/volunteer/donate/v_donate_page.dart';
+import 'package:feed_food/volunteer/home/v_home_page.dart';
 import 'package:feed_food/widgets/btn.dart';
 import 'package:flutter/material.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';

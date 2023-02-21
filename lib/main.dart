@@ -16,17 +16,25 @@ import 'package:feed_food/ngo/profile/body.dart';
 import 'package:feed_food/authenticate/login_page.dart';
 import 'package:feed_food/authenticate/register_page.dart';
 import 'package:feed_food/authenticate/register_page_ngo.dart';
+<<<<<<< HEAD
 import 'package:feed_food/ngo/profile/n_edit_profile.dart';
 import 'package:feed_food/ngo/profile/profilemenu.dart';
+=======
+import 'package:feed_food/utils/globals.dart';
+>>>>>>> 24f14f1210cfd17944226c8df73c94db8e32d552
 import 'package:feed_food/utils/routes.dart';
-import 'package:feed_food/volunteer/v_home_page.dart';
-import 'package:feed_food/volunteer/donate.dart';
+import 'package:feed_food/utils/strings.dart';
+import 'package:feed_food/volunteer/home/v_home_page.dart';
 import 'package:feed_food/volunteer/v_main_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/services.dart';
 
+<<<<<<< HEAD
 
+=======
+import 'models/news_model.dart';
+>>>>>>> 24f14f1210cfd17944226c8df73c94db8e32d552
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
@@ -52,10 +60,24 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.deepPurple,
         fontFamily: GoogleFonts.poppins().fontFamily,
       ),
+<<<<<<< HEAD
       initialRoute: FeedFoodRoutes().nHomePage,
       
+=======
+      initialRoute: FeedFoodRoutes().splashRoute,
+>>>>>>> 24f14f1210cfd17944226c8df73c94db8e32d552
       routes: {
-        "/": (context) => LoginPage(),
+        "/": ((context) {
+          print(isTypeSet);
+          if (isTypeSet == true) {
+            if (UserType == "volunteer") {
+              return VMainPage();
+            } else {
+              return NHomePage();
+            }
+          }
+          return LoginPage();
+        }),
         FeedFoodRoutes().splashRoute: (context) => SplashScreen(),
         FeedFoodRoutes().welcomeRoute: (context) => WelcomePage(),
         FeedFoodRoutes().loginRoute: (context) => LoginPage(),
@@ -68,6 +90,7 @@ class MyApp extends StatelessWidget {
         FeedFoodRoutes().SetPass: (context) => SetPass(),
         FeedFoodRoutes().nHomePage: (context) => nHomePage(),
         FeedFoodRoutes().vMainRoute: (context) => VMainPage(),
+<<<<<<< HEAD
         FeedFoodRoutes().vDonateRoute: (context) => VDonate(),
         FeedFoodRoutes().nMainRoute: (context) =>NMain(),
         FeedFoodRoutes().nNotification: (context) =>NotificationPage(),
@@ -76,6 +99,8 @@ class MyApp extends StatelessWidget {
         
 
 
+=======
+>>>>>>> 24f14f1210cfd17944226c8df73c94db8e32d552
       },
     );
   }
