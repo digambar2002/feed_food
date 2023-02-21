@@ -46,9 +46,6 @@ class _SplashScreenState extends State<SplashScreen> {
           Navigator.of(context)
               .pushReplacementNamed(FeedFoodRoutes().vMainRoute);
         } else {
-<<<<<<< HEAD
-          Navigator.pushNamed(context, FeedFoodRoutes().nMainRoute);
-=======
           // set state of global varibale to check already user login or not
           setState(() {
             isTypeSet = true;
@@ -58,7 +55,6 @@ class _SplashScreenState extends State<SplashScreen> {
           });
           Navigator.of(context)
               .pushReplacementNamed(FeedFoodRoutes().nHomeRoute);
->>>>>>> 24f14f1210cfd17944226c8df73c94db8e32d552
         }
       }));
     }));
