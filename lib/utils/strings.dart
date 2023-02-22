@@ -4,8 +4,8 @@
 class FeedFoodStrings {
   // Network
 
-  // static final url = "https://feed-n-joy.000webhostapp.com/";
-  static final url = "http://10.0.2.2/feedfood/";
+  static final url = "https://feed-n-joy.000webhostapp.com/";
+  // static final url = "http://10.0.2.2/feedfood/";
 
   static final register_url_volunteer = url + "authentication/register.php";
 
