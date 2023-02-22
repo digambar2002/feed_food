@@ -1,97 +1,105 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
-import '../utils/routes.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
+import 'package:flutter_inner_drawer/inner_drawer.dart';
 
-class NHomePage extends StatefulWidget {
-  const NHomePage({super.key});
+import '../../utils/strings.dart';
 
-  @override
-  State<NHomePage> createState() => _NHomePageState();
-}
-
-class _NHomePageState extends State<NHomePage> {
-  var _currentIndex = 0;
+class nHomePage extends StatelessWidget {
+  const nHomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        bottomNavigationBar: SalomonBottomBar(
-          currentIndex: _currentIndex,
-          onTap: (i) => setState(() => _currentIndex = i),
-          items: [
-            /// Home
-            SalomonBottomBarItem(
-              icon: Icon(Icons.home_outlined),
-              title: Text("Home"),
-              selectedColor: Colors.purple,
-            ),
-
-            SalomonBottomBarItem(
-              icon: Icon(Icons.notification_add_outlined),
-              title: Text("Notification"),
-              selectedColor: Colors.orange,
-            ),
-
-            /// Likes
-            SalomonBottomBarItem(
-              icon: Icon(Icons.add_box_outlined, size: 30),
-              title: Text("Add Request"),
-              selectedColor: Colors.red,
-            ),
-
-            /// Search
-            SalomonBottomBarItem(
-              icon: Icon(Icons.history),
-              title: Text("history"),
-              selectedColor: Colors.orange,
-            ),
-
-            /// Profile
-            SalomonBottomBarItem(
-              icon: Icon(Icons.person_outline),
-              title: Text("Profile"),
-              selectedColor: Colors.teal,
-            ),
-          ],
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          FeedFoodStrings.BrandName,
+          style: GoogleFonts.dancingScript(
+              fontWeight: FontWeight.w900, fontSize: 26),
         ),
-        // Text for topleft corner
-        body: SingleChildScrollView(
-          child: Container(
-            height: 300,
-            width: 600,
-            decoration:
-                BoxDecoration(color: Color.fromARGB(255, 163, 119, 239)),
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Container(
-                alignment: Alignment.topLeft,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Welcome",
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 18,
-                      ),
+        automaticallyImplyLeading: false,
+        elevation: 0,
+      ),
+      body: Stack(
+        children: <Widget>[
+              Container(
+                 height: 300,
+                 width: 600,
+                decoration: BoxDecoration(color: Color.fromARGB(255, 164, 116, 247)),
+              ),
+              
+              Column(
+                children:<Widget> [
+                   Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Container(
+              alignment: Alignment.topLeft,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Welcome",
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 16,
                     ),
-                    Text(
-                      "NGO Name",
-                      style: TextStyle(color: Colors.white, fontSize: 24),
-                    ),
-                    Text(
-                      "Login to account",
-                      style: TextStyle(fontSize: 24, color: Colors.white),
-                    ),
-                  ],
-                ),
+                  ),
+                  Text(
+                    "NGO Name",
+                    style: TextStyle(color: Colors.white,
+                     fontSize: 18),
+                  ),
+                ], 
               ),
             ),
           ),
-        ),
+          Expanded(child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: GridView.count(
+              crossAxisCount: 3,
+              childAspectRatio: 0.90,
+              crossAxisSpacing: 10,
+              mainAxisSpacing: 10,
+            children:<Widget> [
+              ReqStatusCard(),
+              ReqStatusCard(),
+              ReqStatusCard(),
+            ],
+            ),
+          ),
+          ),
+         ],
+        )
+       ],
+     ),
+    );
+  }
+}
+
+class ReqStatusCard extends StatelessWidget {
+  const ReqStatusCard({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.all(20),
+      decoration: BoxDecoration(color: Colors.white,
+      borderRadius: BorderRadius.circular(13),
+      ),
+      child: Column(
+        children: <Widget>[
+          Spacer(),
+          Text(
+            "Food Request",
+            textAlign: TextAlign.center,
+            style: TextStyle(color: Colors.black,
+             fontSize: 10, 
+             fontWeight: FontWeight.bold),
+
+          )
+        ],
       ),
     );
   }

@@ -13,6 +13,11 @@ class FeedFoodRoutes {
   final String Walkthrough = "/walkthrough";
   final String SetPass = "/set_password";
   final String vMainRoute = "/v_main_page";
-  final String nHomeRoute = "/n_home_page";
-  final String vDonateRoute = "/v_donate";
+    final String vDonateRoute = "/v_donate";
+    final String nMainRoute = "/n_main_page";
+  final String nHomePage = "/n_home_page";
+  final String nNotification = "/n_notification";
+  final String nBody= "/body.dart";
+  final String nEditProfile= "/n_edit_profile";
+  
 }
