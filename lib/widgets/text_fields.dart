@@ -863,4 +863,172 @@ class FoodTextField {
       ],
     );
   }
+
+  Widget PostTextArea(var hint_text, var error_flag, var controller_name) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        SizedBox(
+          height: 5,
+        ),
+        Stack(
+          children: [
+            Container(
+              alignment: Alignment.centerLeft,
+              decoration: BoxDecoration(
+                  color: Colors.black12,
+                  borderRadius: BorderRadius.circular(10),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.white,
+                      blurRadius: 0,
+                      offset: Offset(0, 2),
+                    )
+                  ]),
+              height: 200,
+            ),
+            TextFormField(
+              controller: controller_name,
+              maxLines: 8,
+              keyboardType: TextInputType.multiline,
+              style: TextStyle(color: Colors.black),
+              decoration: InputDecoration(
+                  border: InputBorder.none,
+                  contentPadding:
+                      EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                  hintText: hint_text,
+                  hintStyle: TextStyle(color: Colors.black54),
+                  errorStyle: TextStyle(
+                    height: 2,
+                  )),
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return error_flag;
+                }
+                return null;
+              },
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
+  Widget buildLocation(var controller_name, var error_text) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const SizedBox(
+          height: 5,
+        ),
+        Stack(
+          children: [
+            Container(
+              alignment: Alignment.centerLeft,
+              decoration: BoxDecoration(
+                  color: Colors.black12,
+                  borderRadius: BorderRadius.circular(10),
+                  // ignore: prefer_const_literals_to_create_immutables
+                  boxShadow: [
+                    const BoxShadow(
+                      color: Colors.white,
+                      blurRadius: 0,
+                      offset: Offset(0, 2),
+                    )
+                  ]),
+              height: 60,
+            ),
+            TextFormField(
+              controller: controller_name,
+              autovalidateMode: AutovalidateMode.onUserInteraction,
+              keyboardType: TextInputType.emailAddress,
+              style: const TextStyle(color: Colors.black),
+              decoration: InputDecoration(
+                  border: InputBorder.none,
+                  contentPadding: EdgeInsets.only(top: 18),
+                  prefixIcon: Padding(
+                    padding: EdgeInsets.only(top: 16),
+                    child: Icon(
+                      Icons.email_outlined,
+                      color: Colors.black54,
+                    ),
+                  ),
+                  hintText: 'Enter Address',
+                  errorText: error_text,
+                  hintStyle: TextStyle(color: Colors.black54),
+                  errorStyle: TextStyle(
+                    height: 2,
+                  )),
+              validator: (value) {
+                final bool emailValid = RegExp(
+                        r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                    .hasMatch(controller_name.text);
+
+                if (value!.isEmpty) {
+                  return "email not empty";
+                } else if (!emailValid) {
+                  return "invalid email enter";
+                }
+
+                return null;
+              },
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
+  Widget buildTimeFiled() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const SizedBox(
+          height: 5,
+        ),
+        Stack(
+          children: [
+            Container(
+              alignment: Alignment.centerLeft,
+              decoration: BoxDecoration(
+                color: Colors.black12,
+                borderRadius: BorderRadius.circular(10),
+                // ignore: prefer_const_literals_to_create_immutables
+                boxShadow: [
+                  const BoxShadow(
+                    color: Colors.white,
+                    blurRadius: 0,
+                    offset: Offset(0, 2),
+                  ),
+                ],
+              ),
+              height: 60,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      Icon(Icons.alarm_outlined),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        "select cooking time",
+                        style: TextStyle(color: Colors.black54),
+                      ),
+                    ],
+                  ),
+                  TextButton(
+                      onPressed: (() => print("hello")), child: Text("select")),
+                ],
+              ),
+            )
+          ],
+        )
+      ],
+    );
+  }
 }

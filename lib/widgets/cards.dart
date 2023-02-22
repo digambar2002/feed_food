@@ -1,7 +1,12 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
+
+import 'package:feed_food/models/news_model.dart';
 
 class VHomeCard extends StatelessWidget {
   const VHomeCard({super.key});
@@ -89,6 +94,7 @@ class TileCrad extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       // color: Color.fromARGB(255, 199, 185, 249),
+      elevation: 5,
       child: InkWell(
         onTap: (() async {
           await FlutterWebBrowser.openWebPage(
@@ -128,14 +134,13 @@ class TileCrad extends StatelessWidget {
   }
 }
 
-class NewsCards extends StatefulWidget {
-  const NewsCards({super.key});
+// Volunteer home page card
+class NewsCards extends StatelessWidget {
+  // we need list of articles
+  final Articles articles;
+  String str = "";
+  NewsCards({super.key, required this.articles}) : assert(articles != null);
 
-  @override
-  State<NewsCards> createState() => _NewsCardsState();
-}
-
-class _NewsCardsState extends State<NewsCards> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -148,19 +153,40 @@ class _NewsCardsState extends State<NewsCards> {
                 SizedBox(
                   height: 8,
                 ),
-                Image.network(
-                    "https://images.immediate.co.uk/production/volatile/sites/4/2022/12/Asteroid-hitting-Earth-677887b.jpg"),
+                FadeInImage(
+                    placeholder: AssetImage("assets/images/news_default.jpg"),
+                    image: NetworkImage(
+                      articles.urlToImage,
+                    )),
+                // Image.network(
+                //   articles.urlToImage,
+                //   errorBuilder: (context, error, stackTrace) {
+                //     return Text("can't load image");
+                //   },
+                // ),
                 SizedBox(
-                  height: 10,
+                  height: 15,
                 ),
                 Align(
                   alignment: Alignment.topLeft,
-                  child: Text(
-                    "2023-02-15",
-                    style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.deepPurple[200]),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                          topRight: Radius.circular(5),
+                          bottomRight: Radius.circular(5)),
+                      color: Colors.deepPurple[400],
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(5.0),
+                      child: Text(
+                        articles.author,
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
                   ),
                 ),
                 SizedBox(
@@ -170,20 +196,42 @@ class _NewsCardsState extends State<NewsCards> {
                   children: [
                     Flexible(
                       child: Text(
-                        "Asteroid today: Space rock speeding towards Earth at a fearsome 60905 kmph - HT Tech",
+                        articles.title,
                         overflow: TextOverflow.visible,
                         style: TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.w100),
+                            fontSize: 16, fontWeight: FontWeight.w600),
                       ),
-                    )
+                    ),
                   ],
                 ),
-                SizedBox(
-                  height: 20,
-                ),
+                TextButton(
+                    onPressed: (() async {
+                      await FlutterWebBrowser.openWebPage(
+                        url: articles.url,
+                        customTabsOptions: const CustomTabsOptions(
+                          colorScheme: CustomTabsColorScheme.dark,
+                          toolbarColor: Colors.deepPurple,
+                          secondaryToolbarColor: Colors.green,
+                          navigationBarColor: Colors.amber,
+                          shareState: CustomTabsShareState.on,
+                          instantAppsEnabled: true,
+                          showTitle: true,
+                          urlBarHidingEnabled: true,
+                        ),
+                      );
+                    }),
+                    child: Text(
+                      "read more",
+                      style: TextStyle(),
+                    )),
               ],
             ),
           )),
     );
   }
+
+  // strConvert() {
+  //   str = articles.title;
+  //   return str.substring(0, 90) + "...";
+  // }
 }
