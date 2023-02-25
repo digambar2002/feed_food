@@ -18,7 +18,9 @@ class _VDonatePageState extends State<VDonatePage> {
   bool? brushedTeeth = false;
   bool enableFeature = false;
   var food_details = TextEditingController();
-  var location_details = TextEditingController();
+  var address_details = TextEditingController();
+  var zip_details = TextEditingController();
+  TimeOfDay _timeOfDay = TimeOfDay.now();
 
   @override
   Widget build(BuildContext context) {
@@ -125,17 +127,53 @@ class _VDonatePageState extends State<VDonatePage> {
                         ),
                       ],
                     ),
-                    FoodTextField().buildTimeFiled(),
-                    FoodTextField()
-                        .buildLocation(location_details, "no location found"),
-                    _FormDatePicker(
-                      date: date,
-                      onChanged: (value) {
-                        setState(() {
-                          date = value;
-                        });
-                      },
+                    Align(
+                        alignment: Alignment.topLeft,
+                        child: Text("cooking time")),
+                    Container(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              children: [
+                                Icon(Icons.alarm_outlined),
+                                SizedBox(
+                                  width: 10,
+                                ),
+                                Text(
+                                  _timeOfDay.format(context).toString(),
+                                  style: TextStyle(color: Colors.black54),
+                                ),
+                              ],
+                            ),
+                            TextButton(
+                                onPressed: _showTimePicker,
+                                child: Text("select")),
+                          ],
+                        ),
+                      ),
                     ),
+                    Row(children: <Widget>[
+                      Expanded(child: Divider()),
+                      Text(
+                        "Address",
+                        style: TextStyle(
+                            fontWeight: FontWeight.w600, fontSize: 16),
+                      ),
+                      Expanded(child: Divider()),
+                    ]),
+                    FoodTextField().buildTextArea(
+                        "Pickup Addres",
+                        "enter your food pickup address",
+                        "address not empty",
+                        address_details),
+                    FoodTextField().buildPincode(
+                        "Zip code",
+                        "enter food pickup area code",
+                        "enter pincode",
+                        zip_details),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -152,7 +190,7 @@ class _VDonatePageState extends State<VDonatePage> {
                           padding: const EdgeInsets.symmetric(
                               vertical: 20, horizontal: 15),
                           child: Text(
-                              'I assure that food quality and \n hygiene has maintained  ',
+                              'Use my current location \n to pickup food',
                               style: Theme.of(context).textTheme.titleMedium),
                         ),
                       ],
@@ -191,61 +229,13 @@ class _VDonatePageState extends State<VDonatePage> {
       ),
     );
   }
-}
 
-class _FormDatePicker extends StatefulWidget {
-  final DateTime date;
-  final ValueChanged<DateTime> onChanged;
-
-  const _FormDatePicker({
-    required this.date,
-    required this.onChanged,
-  });
-
-  @override
-  State<_FormDatePicker> createState() => _FormDatePickerState();
-}
-
-class _FormDatePickerState extends State<_FormDatePicker> {
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            Text(
-              'Date',
-              style: Theme.of(context).textTheme.bodyLarge,
-            ),
-            Text(
-              intl.DateFormat.yMd().format(widget.date),
-              style: Theme.of(context).textTheme.titleMedium,
-            ),
-          ],
-        ),
-        TextButton(
-          child: const Text('Edit'),
-          onPressed: () async {
-            var newDate = await showDatePicker(
-              context: context,
-              initialDate: widget.date,
-              firstDate: DateTime(1900),
-              lastDate: DateTime(2100),
-            );
-
-            // Don't change the date if the date picker returns null.
-            if (newDate == null) {
-              return;
-            }
-
-            widget.onChanged(newDate);
-          },
-        )
-      ],
-    );
+  void _showTimePicker() {
+    showTimePicker(context: context, initialTime: TimeOfDay.now())
+        .then((value) {
+      setState(() {
+        _timeOfDay = value!;
+      });
+    });
   }
 }

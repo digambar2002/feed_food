@@ -49,6 +49,13 @@ dependencies:
   background_app_bar: ^2.0.1
   intl: ^0.18.0
   flutter_web_browser: ^0.17.1
+  flutter_native_splash: ^2.2.18
+
+flutter_native_splash:
+  image: assets/images/logo.png
+  color: "#f9f9f9"
+  android_12: 
+    image: assets/images/logo.png
 
 dev_dependencies:
   flutter_test:

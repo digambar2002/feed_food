@@ -112,7 +112,7 @@ class TileCrad extends StatelessWidget {
           );
         }),
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
           child: Column(
             children: [
               Image.asset(
@@ -154,10 +154,21 @@ class NewsCards extends StatelessWidget {
                   height: 8,
                 ),
                 FadeInImage(
-                    placeholder: AssetImage("assets/images/news_default.jpg"),
-                    image: NetworkImage(
-                      articles.urlToImage,
-                    )),
+                  placeholder: AssetImage("assets/images/news_default.jpg"),
+                  image: NetworkImage(
+                    articles.urlToImage,
+                  ),
+                  imageErrorBuilder: (context, error, stackTrace) {
+                    return Container(
+                      color: Colors.amber,
+                      alignment: Alignment.center,
+                      child: const Text(
+                        'Whoops!',
+                        style: TextStyle(fontSize: 30),
+                      ),
+                    );
+                  },
+                ),
                 // Image.network(
                 //   articles.urlToImage,
                 //   errorBuilder: (context, error, stackTrace) {
