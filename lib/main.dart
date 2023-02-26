@@ -5,6 +5,7 @@
 
 import 'dart:async';
 
+import 'package:feed_food/volunteer/history/v_history_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -92,9 +93,9 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.deepPurple,
         fontFamily: GoogleFonts.poppins().fontFamily,
       ),
-      initialRoute: initialRoute,
+      initialRoute: "/",
       routes: {
-        "/": ((context) => LoginPage()),
+        "/": ((context) => VHistory()),
         FeedFoodRoutes().splashRoute: (context) => SplashScreen(),
         FeedFoodRoutes().welcomeRoute: (context) => WelcomePage(),
         FeedFoodRoutes().loginRoute: (context) => LoginPage(),
@@ -108,6 +109,7 @@ class MyApp extends StatelessWidget {
         FeedFoodRoutes().nHomePage: (context) => nHomePage(),
         FeedFoodRoutes().vMainRoute: (context) => VMainPage(),
         FeedFoodRoutes().nMainRoute: (context) => NMain(),
+        FeedFoodRoutes().vHistory: (context) => VHistory(),
       },
     );
   }
