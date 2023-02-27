@@ -50,6 +50,9 @@ dependencies:
   intl: ^0.18.0
   flutter_web_browser: ^0.17.1
   flutter_native_splash: ^2.2.18
+  location: ^4.4.0
+  geocoding: ^2.0.5
+  permission_handler: ^10.2.0
 
 flutter_native_splash:
   image: assets/images/logo.png
