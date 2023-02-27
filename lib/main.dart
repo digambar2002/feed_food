@@ -6,6 +6,7 @@
 import 'dart:async';
 
 import 'package:feed_food/volunteer/donate/get_location.dart';
+import 'package:feed_food/volunteer/history/v_history_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -102,6 +103,7 @@ class MyApp extends StatelessWidget {
         FeedFoodRoutes().nHomePage: (context) => nHomePage(),
         FeedFoodRoutes().vMainRoute: (context) => VMainPage(),
         FeedFoodRoutes().nMainRoute: (context) => NMain(),
+        FeedFoodRoutes().vHistory: (context) => VHistory(),
       },
     );
   }
