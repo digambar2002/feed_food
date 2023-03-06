@@ -5,8 +5,10 @@
 
 import 'dart:async';
 
+import 'package:feed_food/utils/globals.dart';
 import 'package:feed_food/volunteer/donate/get_location.dart';
 import 'package:feed_food/volunteer/history/v_history_page.dart';
+import 'package:feed_food/volunteer/profile/v_edit_profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -26,9 +28,6 @@ import 'package:feed_food/ngo/n_home_page.dart';
 import 'package:feed_food/ngo/n_main_page.dart';
 import 'package:feed_food/utils/routes.dart';
 import 'package:feed_food/volunteer/v_main_page.dart';
-
-var accountNo = null;
-var accountType = null;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -59,11 +58,13 @@ Future<dynamic> getValidationData() async {
       await SharedPreferences.getInstance();
 
   var obtainType = sharedPreferences.getString("type");
-
-  print(obtainType);
-
-  accountType = obtainType;
-  return accountType;
+  var obtainAccountNo = sharedPreferences.getString("accountNo");
+  var obtainUsername = sharedPreferences.getString("username");
+  UserType = obtainType;
+  UserAccountNo = obtainAccountNo;
+  UserUsername = obtainUsername;
+  print(obtainUsername);
+  return obtainType;
 }
 
 class MyApp extends StatelessWidget {
@@ -87,9 +88,9 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.deepPurple,
         fontFamily: GoogleFonts.poppins().fontFamily,
       ),
-      initialRoute: "/",
+      initialRoute: initialRoute,
       routes: {
-        "/": ((context) => GetLocatin()),
+        "/": ((context) => LoginPage()),
         FeedFoodRoutes().splashRoute: (context) => SplashScreen(),
         FeedFoodRoutes().welcomeRoute: (context) => WelcomePage(),
         FeedFoodRoutes().loginRoute: (context) => LoginPage(),
@@ -104,6 +105,7 @@ class MyApp extends StatelessWidget {
         FeedFoodRoutes().vMainRoute: (context) => VMainPage(),
         FeedFoodRoutes().nMainRoute: (context) => NMain(),
         FeedFoodRoutes().vHistory: (context) => VHistory(),
+        FeedFoodRoutes().vEditProfile: (context) => VEditProfile(),
       },
     );
   }

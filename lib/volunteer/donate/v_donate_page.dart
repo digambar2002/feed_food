@@ -1,6 +1,12 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:feed_food/models/food_post_model.dart';
+import 'package:feed_food/utils/globals.dart';
+import 'package:feed_food/volunteer/donate/get_location.dart';
 import 'package:feed_food/widgets/text_fields.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart' as intl;
+
+import '../../utils/routes.dart';
 
 class VDonatePage extends StatefulWidget {
   const VDonatePage({super.key});
@@ -14,12 +20,14 @@ class _VDonatePageState extends State<VDonatePage> {
   String title = '';
   String description = '';
   DateTime date = DateTime.now();
-  double maxValue = 0;
+  double maxValue = 2;
   bool? brushedTeeth = false;
   bool enableFeature = false;
   var food_details = TextEditingController();
   var address_details = TextEditingController();
   var zip_details = TextEditingController();
+  String? lattitude;
+  String? longitude;
   TimeOfDay _timeOfDay = TimeOfDay.now();
 
   @override
@@ -27,8 +35,10 @@ class _VDonatePageState extends State<VDonatePage> {
     return Scaffold(
       appBar: AppBar(
           centerTitle: true,
+          // ignore: prefer_const_constructors
           title: Text(
             "Create New Post",
+            // ignore: prefer_const_constructors
             style: TextStyle(
               fontWeight: FontWeight.w600,
               fontSize: 18,
@@ -38,7 +48,8 @@ class _VDonatePageState extends State<VDonatePage> {
           elevation: 0.5,
           leading: IconButton(
             onPressed: (() {
-              print("hello");
+              Navigator.pushReplacementNamed(
+                  context, FeedFoodRoutes().vMainRoute);
             }),
             icon: const Icon(Icons.close),
           ),
@@ -46,8 +57,10 @@ class _VDonatePageState extends State<VDonatePage> {
             Row(
               children: [
                 TextButton(
-                  onPressed: (() => print("hello")),
-                  child: Text(
+                  onPressed: (() async {
+                    await postRequest(context);
+                  }),
+                  child: const Text(
                     "Post",
                     style: TextStyle(
                         color: Colors.deepPurple, fontWeight: FontWeight.w600),
@@ -79,13 +92,13 @@ class _VDonatePageState extends State<VDonatePage> {
                           width: 10,
                         ),
                         Text(
-                          "Johan Macron",
+                          UserUsername,
                           style: TextStyle(fontSize: 16),
                         ),
                       ],
                     ),
-                    FoodTextField().PostTextArea(
-                        "enter food details you have", "hello", food_details),
+                    FoodTextField().PostTextArea("enter food details you have",
+                        "value cannot empty", food_details),
                     Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -106,7 +119,7 @@ class _VDonatePageState extends State<VDonatePage> {
                                   style:
                                       Theme.of(context).textTheme.titleMedium,
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 5,
                                 ),
                                 Text("person"),
@@ -127,32 +140,30 @@ class _VDonatePageState extends State<VDonatePage> {
                         ),
                       ],
                     ),
-                    Align(
+                    const Align(
                         alignment: Alignment.topLeft,
                         child: Text("cooking time")),
-                    Container(
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Row(
-                              children: [
-                                Icon(Icons.alarm_outlined),
-                                SizedBox(
-                                  width: 10,
-                                ),
-                                Text(
-                                  _timeOfDay.format(context).toString(),
-                                  style: TextStyle(color: Colors.black54),
-                                ),
-                              ],
-                            ),
-                            TextButton(
-                                onPressed: _showTimePicker,
-                                child: Text("select")),
-                          ],
-                        ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            children: [
+                              Icon(Icons.alarm_outlined),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Text(
+                                _timeOfDay.format(context).toString(),
+                                style: TextStyle(color: Colors.black54),
+                              ),
+                            ],
+                          ),
+                          TextButton(
+                              onPressed: _showTimePicker,
+                              child: Text("select")),
+                        ],
                       ),
                     ),
                     Row(children: <Widget>[
@@ -164,6 +175,51 @@ class _VDonatePageState extends State<VDonatePage> {
                       ),
                       Expanded(child: Divider()),
                     ]),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Checkbox(
+                          value: brushedTeeth,
+                          onChanged: (checked) async {
+                            setState(() {
+                              brushedTeeth = checked;
+                            });
+
+                            if (checked!) {
+                              showDialog(
+                                  context: context,
+                                  barrierDismissible: false,
+                                  builder: ((context) {
+                                    return const Center(
+                                      child: CircularProgressIndicator(),
+                                    );
+                                  }));
+
+                              Map<String, dynamic?> data =
+                                  await GetLocatinState().getAddress();
+
+                              setState(() {
+                                address_details.text =
+                                    data['locality'] + ", " + data['country'];
+
+                                zip_details.text = data['zip_code'];
+                                lattitude = data['lattitude'].toString();
+                                longitude = data['longitude'].toString();
+
+                                Navigator.of(context).pop();
+                              });
+                            }
+                          },
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 20, horizontal: 15),
+                          child: Text('use my current location',
+                              style: Theme.of(context).textTheme.titleMedium),
+                        ),
+                      ],
+                    ),
                     FoodTextField().buildTextArea(
                         "Pickup Addres",
                         "enter your food pickup address",
@@ -172,35 +228,17 @@ class _VDonatePageState extends State<VDonatePage> {
                     FoodTextField().buildPincode(
                         "Zip code",
                         "enter food pickup area code",
-                        "enter pincode",
+                        "zip code cannot empty",
                         zip_details),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Checkbox(
-                          value: brushedTeeth,
-                          onChanged: (checked) {
-                            setState(() {
-                              brushedTeeth = checked;
-                            });
-                          },
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 20, horizontal: 15),
-                          child: Text(
-                              'Use my current location \n to pickup food',
-                              style: Theme.of(context).textTheme.titleMedium),
-                        ),
-                      ],
+                    SizedBox(
+                      height: 20,
                     ),
                     SizedBox(
                       height: 50,
                       width: 360,
                       child: ElevatedButton(
                         onPressed: (() async {
-                          await VDonatePage();
+                          await postRequest(context);
                         }),
                         child: Text(
                           "Post",
@@ -237,5 +275,47 @@ class _VDonatePageState extends State<VDonatePage> {
         _timeOfDay = value!;
       });
     });
+  }
+
+  Future postRequest(BuildContext context) async {
+    // checking form is correct
+    if (_formKey.currentState!.validate()) {
+      showDialog(
+          context: context,
+          barrierDismissible: false,
+          builder: ((context) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }));
+
+      dynamic reponse = await FoodPostModel().InsertFoodPostData(
+          UserAccountNo,
+          food_details.text,
+          maxValue.toString(),
+          _timeOfDay.format(context).toString(),
+          address_details.text,
+          zip_details.text,
+          longitude.toString(),
+          lattitude.toString(),
+          'Pending');
+
+      if (reponse == true) {
+        Navigator.of(context).pop();
+        AwesomeDialog(
+          context: context,
+          dialogType: DialogType.success,
+          animType: AnimType.scale,
+          title: 'Food Request Submitted',
+          desc: 'Thanks for donating food',
+          btnOkOnPress: () {
+            Navigator.pushReplacementNamed(
+                context, FeedFoodRoutes().vMainRoute);
+          },
+        )..show();
+      }
+    } else {
+      print(_formKey.currentState?.validate());
+    }
   }
 }

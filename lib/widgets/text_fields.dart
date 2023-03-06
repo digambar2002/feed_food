@@ -816,9 +816,9 @@ class FoodTextField {
                   )),
               validator: (value) {
                 if (value!.isEmpty) {
-                  return "phone number can not empty";
-                } else if (value.length != 6) {
                   return error_flag;
+                } else if (value.length != 6) {
+                  return "enter valid zip code";
                 }
                 return null;
               },
@@ -885,11 +885,11 @@ class FoodTextField {
                       offset: Offset(0, 2),
                     )
                   ]),
-              height: 200,
+              height: 120,
             ),
             TextFormField(
               controller: controller_name,
-              maxLines: 8,
+              maxLines: 4,
               keyboardType: TextInputType.multiline,
               style: TextStyle(color: Colors.black),
               decoration: InputDecoration(

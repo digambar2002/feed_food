@@ -20,4 +20,5 @@ class FeedFoodRoutes {
   final String nBody = "/body.dart";
   final String nEditProfile = "/n_edit_profile";
   final String vHistory = "/v_history_page";
+  final String vEditProfile = "/v_edit_profile";
 }

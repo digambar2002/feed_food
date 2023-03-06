@@ -154,7 +154,8 @@ class NewsCards extends StatelessWidget {
                   height: 8,
                 ),
                 FadeInImage(
-                  placeholder: AssetImage("assets/images/news_default.jpg"),
+                  placeholder:
+                      const AssetImage("assets/images/news_default.jpg"),
                   image: NetworkImage(
                     articles.urlToImage,
                   ),
@@ -245,4 +246,37 @@ class NewsCards extends StatelessWidget {
   //   str = articles.title;
   //   return str.substring(0, 90) + "...";
   // }
+}
+
+class VProfilNumberData extends StatefulWidget {
+  String title_text;
+  String number_text;
+  VProfilNumberData({
+    super.key,
+    required this.title_text,
+    required this.number_text,
+  });
+
+  @override
+  State<VProfilNumberData> createState() => _VProfilNumberDataState();
+}
+
+class _VProfilNumberDataState extends State<VProfilNumberData> {
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Text(widget.number_text,
+            style: const TextStyle(
+                color: Colors.black87,
+                fontSize: 20,
+                fontWeight: FontWeight.w600)),
+        Text(widget.title_text,
+            style: const TextStyle(
+                color: Colors.black54,
+                fontSize: 14,
+                fontWeight: FontWeight.w600)),
+      ],
+    );
+  }
 }
