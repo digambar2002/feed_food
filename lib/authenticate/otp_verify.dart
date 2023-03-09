@@ -1,12 +1,10 @@
 import 'dart:math';
 
 import 'package:awesome_dialog/awesome_dialog.dart';
-import 'package:feed_food/authenticate/forgot_password.dart';
 import 'package:feed_food/utils/routes.dart';
 import 'package:feed_food/widgets/btn.dart';
 import 'package:feed_food/widgets/text_fields.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../models/forgot_pass_model.dart';
@@ -33,31 +31,31 @@ class _OtpPageState extends State<OtpPage> {
     return SafeArea(
       child: Scaffold(
           body: SingleChildScrollView(
-        physics: BouncingScrollPhysics(),
+        physics: const BouncingScrollPhysics(),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Form(
             key: _OtpKey,
             child: Column(children: [
-              SizedBox(
+              const SizedBox(
                 height: 5,
               ),
               Image.asset(
                 "assets/images/OTP.png",
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Container(
                 // forgotpasswordUYR (2:682)
 
-                child: Text(
+                child: const Text(
                   'Verification',
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 26),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(
+              const Padding(
+                padding: EdgeInsets.symmetric(
                   vertical: 5,
                   horizontal: 25,
                 ),
@@ -92,7 +90,7 @@ class _OtpPageState extends State<OtpPage> {
                           vertical: 10, horizontal: 20),
                       child: Text(
                         _otp_error,
-                        style: TextStyle(color: Colors.red, fontSize: 12),
+                        style: const TextStyle(color: Colors.red, fontSize: 12),
                       ),
                     ),
                   ],
@@ -108,7 +106,7 @@ class _OtpPageState extends State<OtpPage> {
                       children: [
                         TweenAnimationBuilder(
                             tween: Tween(begin: 30.0, end: 0),
-                            duration: Duration(seconds: 30),
+                            duration: const Duration(seconds: 30),
                             builder: ((context, value, child) => Row(
                                   children: [
                                     Btn().buildResendBtn(
@@ -127,7 +125,7 @@ class _OtpPageState extends State<OtpPage> {
                   ],
                 ),
               ),
-              SizedBox(height: 25),
+              const SizedBox(height: 25),
               SizedBox(
                 height: 60,
                 width: 360,
@@ -135,15 +133,15 @@ class _OtpPageState extends State<OtpPage> {
                   onPressed: ((() async {
                     await validate();
                   })),
-                  child: Text(
-                    "Verify",
-                    style: TextStyle(fontSize: 24),
-                  ),
                   style: ElevatedButton.styleFrom(
                       primary: Colors.deepPurple[300],
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       )),
+                  child: const Text(
+                    "Verify",
+                    style: TextStyle(fontSize: 24),
+                  ),
                 ),
               ),
             ]),
@@ -165,7 +163,7 @@ class _OtpPageState extends State<OtpPage> {
 
       if (enterOtp == otp) {
         sharedPreferences.remove("forgotPassOtp");
-        Navigator.pushNamed(context, FeedFoodRoutes().SetPass);
+        Navigator.pushReplacementNamed(context, FeedFoodRoutes().SetPass);
         return true;
       } else {
         _otp_error = "invalid otp entered";
@@ -186,7 +184,7 @@ class _OtpPageState extends State<OtpPage> {
         barrierDismissible: false,
         context: context,
         builder: ((context) {
-          return Center(
+          return const Center(
             child: CircularProgressIndicator(),
           );
         }));

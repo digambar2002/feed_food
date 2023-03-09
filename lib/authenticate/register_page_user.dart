@@ -1,15 +1,12 @@
 // Author: Digambar Chaudhari
 
-import 'dart:convert';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:feed_food/models/register_model.dart';
 import 'package:feed_food/utils/routes.dart';
-import 'package:feed_food/utils/strings.dart';
 import 'package:feed_food/widgets/btn.dart';
 
 import 'package:feed_food/widgets/text_fields.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 
 class RegisterUser extends StatefulWidget {
   RegisterUser({super.key});
@@ -38,16 +35,16 @@ class _RegisterUserState extends State<RegisterUser> {
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
-          physics: BouncingScrollPhysics(),
+          physics: const BouncingScrollPhysics(),
           child: Column(children: [
-            SizedBox(
+            const SizedBox(
               height: 2,
             ),
             Image.asset(
               "assets/images/new.jpg",
               height: 250,
             ),
-            SizedBox(
+            const SizedBox(
               height: 2,
             ),
             Text(
@@ -57,7 +54,7 @@ class _RegisterUserState extends State<RegisterUser> {
                   fontWeight: FontWeight.w800,
                   color: Colors.deepPurple[400]),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Padding(
@@ -71,15 +68,15 @@ class _RegisterUserState extends State<RegisterUser> {
                   children: [
                     FoodTextField().buildTextUsername(
                         _username, username_error, "username"),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     FoodTextField().buildEmail(_email, email_error),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     FoodTextField().buildPhone(_phone_no, phone_error),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     BuildPassword(controller_name: _password)
@@ -87,7 +84,7 @@ class _RegisterUserState extends State<RegisterUser> {
                 ),
               ),
             ),
-            SizedBox(height: 35),
+            const SizedBox(height: 35),
             SizedBox(
               height: 60,
               width: 320,
@@ -95,19 +92,19 @@ class _RegisterUserState extends State<RegisterUser> {
                 onPressed: (() async {
                   dynamic flag = await signup(context);
                 }),
-                child: Text(
-                  "Sign Up",
-                  style: TextStyle(fontSize: 24),
-                ),
                 style: ElevatedButton.styleFrom(
                   primary: Colors.deepPurple[300],
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
                 ),
+                child: const Text(
+                  "Sign Up",
+                  style: TextStyle(fontSize: 24),
+                ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Btn().buildLoginBtn(
@@ -127,7 +124,7 @@ class _RegisterUserState extends State<RegisterUser> {
           context: context,
           barrierDismissible: false,
           builder: ((context) {
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(),
             );
           }));
@@ -168,7 +165,7 @@ class _RegisterUserState extends State<RegisterUser> {
             context: context,
             barrierDismissible: false,
             builder: ((context) {
-              return Center(
+              return const Center(
                 child: CircularProgressIndicator(),
               );
             }));
@@ -184,9 +181,10 @@ class _RegisterUserState extends State<RegisterUser> {
             title: 'Account Created Successfully',
             desc: 'Please Check Your Email To activate account',
             btnOkOnPress: () {
-              Navigator.pushNamed(context, FeedFoodRoutes().loginRoute);
+              Navigator.pushReplacementNamed(
+                  context, FeedFoodRoutes().loginRoute);
             },
-          )..show();
+          ).show();
           return true;
         } else {
           Navigator.of(context).pop();

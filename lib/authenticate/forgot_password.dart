@@ -6,7 +6,6 @@ import 'dart:math';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:feed_food/models/forgot_pass_model.dart';
 import 'package:feed_food/utils/routes.dart';
-import 'package:feed_food/widgets/btn.dart';
 import 'package:feed_food/widgets/text_fields.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -29,7 +28,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
           barrierDismissible: false,
           context: context,
           builder: ((context) {
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(),
             );
           }));
@@ -53,7 +52,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
           sharedPreferences.setString("forgotPassOtp", otp.toString());
           sharedPreferences.setString("forgotEmail", _email.text);
           Navigator.of(context).pop();
-          Navigator.pushNamed(context, FeedFoodRoutes().OtpPage);
+          Navigator.pushReplacementNamed(context, FeedFoodRoutes().OtpPage);
         } else {
           AwesomeDialog(
             context: context,
@@ -82,32 +81,32 @@ class _ForgotPasswordState extends State<ForgotPassword> {
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
-          physics: BouncingScrollPhysics(),
+          physics: const BouncingScrollPhysics(),
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Form(
               key: _ForgotFormKey,
               child: Column(children: [
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Image.asset(
                   "assets/images/forgot_pass.png",
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 Container(
                   alignment: Alignment.center,
                   // forgotpasswordUYR (2:682)
 
-                  child: Text(
+                  child: const Text(
                     'Forgot Password?',
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 26),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(
+                const Padding(
+                  padding: EdgeInsets.symmetric(
                     vertical: 20,
                     horizontal: 15,
                   ),
@@ -127,7 +126,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                   ),
                   child: FoodTextField().buildEmail(_email, _mail_error),
                 ),
-                SizedBox(height: 25),
+                const SizedBox(height: 25),
                 SizedBox(
                   height: 50,
                   width: 320,
@@ -135,7 +134,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                     onPressed: ((() async {
                       await authenticate(context);
                     })),
-                    child: Text(
+                    child: const Text(
                       "Continue",
                       style: TextStyle(fontSize: 24),
                     ),

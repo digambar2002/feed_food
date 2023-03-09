@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:feed_food/utils/globals.dart';
+import 'package:feed_food/utils/logout.dart';
 import 'package:feed_food/utils/routes.dart';
 import 'package:feed_food/volunteer/profile/v_edit_profile.dart';
 import 'package:feed_food/volunteer/profile/model.dart';
@@ -93,7 +94,33 @@ class _VProfilePageState extends State<VProfilePage> {
                 child: Column(
                   children: [
                     const SizedBox(
-                      height: 70,
+                      height: 25,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const Text(
+                            'My Profile',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20,
+                                fontWeight: FontWeight.w600),
+                          ),
+                          IconButton(
+                              onPressed: (() {
+                                LogOut().logOut(context);
+                              }),
+                              icon: const Icon(
+                                Icons.logout_outlined,
+                                color: Colors.white,
+                              ))
+                        ],
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 20,
                     ),
                     Column(children: [
                       Stack(
@@ -165,7 +192,7 @@ class _VProfilePageState extends State<VProfilePage> {
                                     placeholder:
                                         AssetImage('assets/images/avtar.png'),
                                     image: NetworkImage(
-                                        'https://avatars.githubusercontent.com/u/78303325?v=4'),
+                                        'https://volunteercentrewi.org/wp-content/uploads/2021/07/avatar-1577909_640.png'),
                                     height: 120,
                                   ),
                                 ),
@@ -248,7 +275,7 @@ class _VProfilePageState extends State<VProfilePage> {
                                 : Center(
                                     child: Column(
                                       children: [
-                                        SizedBox(
+                                        const SizedBox(
                                           height: 20,
                                         ),
                                         OutlinedButton.icon(
@@ -264,13 +291,13 @@ class _VProfilePageState extends State<VProfilePage> {
                                               });
                                             });
                                           },
-                                          icon: Icon(
+                                          icon: const Icon(
                                             Icons.edit,
                                             size: 24.0,
                                           ),
-                                          label: Text('add address'),
+                                          label: const Text('add address'),
                                         ),
-                                        SizedBox(
+                                        const SizedBox(
                                           height: 30,
                                         ),
                                       ],
@@ -339,7 +366,7 @@ class _VProfilePageState extends State<VProfilePage> {
                 ]),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
           ],

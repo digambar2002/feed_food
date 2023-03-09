@@ -9,6 +9,8 @@ import 'package:feed_food/widgets/text_fields.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../utils/globals.dart';
+
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
@@ -142,8 +144,15 @@ class _LoginPageState extends State<LoginPage> {
         sharedPreferences.setString("accountNo", response['accountNo']);
         sharedPreferences.setString("type", response['type']);
         sharedPreferences.setString("username", response['username']);
+
+        // Setting Globals
+        UserUsername = response['username'];
+        UserAccountNo = response['accountNo'];
+        UserType = response['type'];
+
         Navigator.of(context).pop();
-        Navigator.pushNamed(context, FeedFoodRoutes().vMainRoute);
+        Navigator.pushNamedAndRemoveUntil(
+            context, FeedFoodRoutes().vMainRoute, (r) => false);
       } else if (response['success'] == true && response['type'] == 'ngo') {
         final SharedPreferences sharedPreferences =
             await SharedPreferences.getInstance();
@@ -152,7 +161,8 @@ class _LoginPageState extends State<LoginPage> {
         sharedPreferences.setString("type", response['type']);
         sharedPreferences.setString("username", response['username']);
         Navigator.of(context).pop();
-        Navigator.pushNamed(context, FeedFoodRoutes().nMainRoute);
+        Navigator.pushNamedAndRemoveUntil(
+            context, FeedFoodRoutes().nMainRoute, (r) => false);
       } else {
         Navigator.of(context).pop();
         AwesomeDialog(

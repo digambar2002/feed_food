@@ -1,5 +1,4 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
-import 'package:feed_food/authenticate/forgot_password.dart';
 import 'package:feed_food/models/forgot_pass_model.dart';
 import 'package:feed_food/utils/routes.dart';
 import 'package:flutter/material.dart';
@@ -48,7 +47,7 @@ class _SetPassState extends State<SetPass> {
         appBar: AppBar(
           elevation: 0,
           backgroundColor: Colors.white,
-          title: Text(
+          title: const Text(
             "Create Your Account",
             style: TextStyle(color: Colors.black),
           ),
@@ -58,15 +57,15 @@ class _SetPassState extends State<SetPass> {
             key: _Set_Pass,
             child: Container(
               color: Colors.white,
-              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
+                  const Text(
                     "Set a password",
                     style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Text(
@@ -74,7 +73,7 @@ class _SetPassState extends State<SetPass> {
                     style: TextStyle(
                         fontSize: 16, height: 1.5, color: Colors.grey.shade600),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 30,
                   ),
                   TextFormField(
@@ -95,33 +94,33 @@ class _SetPassState extends State<SetPass> {
                           });
                         },
                         icon: _isVisible
-                            ? Icon(
+                            ? const Icon(
                                 Icons.visibility,
                                 color: Colors.black,
                               )
-                            : Icon(
+                            : const Icon(
                                 Icons.visibility_off,
                                 color: Colors.grey,
                               ),
                       ),
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
-                          borderSide: BorderSide(color: Colors.black)),
+                          borderSide: const BorderSide(color: Colors.black)),
                       focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
-                          borderSide: BorderSide(color: Colors.black)),
+                          borderSide: const BorderSide(color: Colors.black)),
                       hintText: "Password",
-                      contentPadding:
-                          EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                      contentPadding: const EdgeInsets.symmetric(
+                          horizontal: 20, vertical: 20),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 30,
                   ),
                   Row(
                     children: [
                       AnimatedContainer(
-                        duration: Duration(milliseconds: 500),
+                        duration: const Duration(milliseconds: 500),
                         width: 20,
                         height: 20,
                         decoration: BoxDecoration(
@@ -132,7 +131,7 @@ class _SetPassState extends State<SetPass> {
                                 ? Border.all(color: Colors.transparent)
                                 : Border.all(color: Colors.grey.shade400),
                             borderRadius: BorderRadius.circular(50)),
-                        child: Center(
+                        child: const Center(
                           child: Icon(
                             Icons.check,
                             color: Colors.white,
@@ -140,19 +139,19 @@ class _SetPassState extends State<SetPass> {
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 10,
                       ),
-                      Text("Contains at least 8 characters")
+                      const Text("Contains at least 8 characters")
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Row(
                     children: [
                       AnimatedContainer(
-                        duration: Duration(milliseconds: 500),
+                        duration: const Duration(milliseconds: 500),
                         width: 20,
                         height: 20,
                         decoration: BoxDecoration(
@@ -163,7 +162,7 @@ class _SetPassState extends State<SetPass> {
                                 ? Border.all(color: Colors.transparent)
                                 : Border.all(color: Colors.grey.shade400),
                             borderRadius: BorderRadius.circular(50)),
-                        child: Center(
+                        child: const Center(
                           child: Icon(
                             Icons.check,
                             color: Colors.white,
@@ -171,19 +170,19 @@ class _SetPassState extends State<SetPass> {
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 10,
                       ),
-                      Text("Contains at least 1 number")
+                      const Text("Contains at least 1 number")
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Row(
                     children: [
                       AnimatedContainer(
-                        duration: Duration(milliseconds: 500),
+                        duration: const Duration(milliseconds: 500),
                         width: 20,
                         height: 20,
                         decoration: BoxDecoration(
@@ -194,7 +193,7 @@ class _SetPassState extends State<SetPass> {
                                 ? Border.all(color: Colors.transparent)
                                 : Border.all(color: Colors.grey.shade400),
                             borderRadius: BorderRadius.circular(50)),
-                        child: Center(
+                        child: const Center(
                           child: Icon(
                             Icons.check,
                             color: Colors.white,
@@ -202,19 +201,19 @@ class _SetPassState extends State<SetPass> {
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 10,
                       ),
-                      Text("Contains at least 1 special symbol")
+                      const Text("Contains at least 1 special symbol")
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Row(
                     children: [
                       AnimatedContainer(
-                        duration: Duration(milliseconds: 500),
+                        duration: const Duration(milliseconds: 500),
                         width: 20,
                         height: 20,
                         decoration: BoxDecoration(
@@ -225,7 +224,7 @@ class _SetPassState extends State<SetPass> {
                                 ? Border.all(color: Colors.transparent)
                                 : Border.all(color: Colors.grey.shade400),
                             borderRadius: BorderRadius.circular(50)),
-                        child: Center(
+                        child: const Center(
                           child: Icon(
                             Icons.check,
                             color: Colors.white,
@@ -233,13 +232,13 @@ class _SetPassState extends State<SetPass> {
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 10,
                       ),
-                      Text("Contains at least 1 Capital Letter")
+                      const Text("Contains at least 1 Capital Letter")
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 50,
                   ),
                   MaterialButton(
@@ -249,15 +248,15 @@ class _SetPassState extends State<SetPass> {
                       await authenticate(context);
                     },
                     color: Colors.deepPurple[400],
-                    child: Text(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(5)),
+                    child: const Text(
                       "SUBMIT",
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 16,
                           fontWeight: FontWeight.w600),
                     ),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5)),
                   )
                 ],
               ),
@@ -277,7 +276,7 @@ class _SetPassState extends State<SetPass> {
           barrierDismissible: false,
           context: context,
           builder: ((context) {
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(),
             );
           }));
@@ -285,7 +284,7 @@ class _SetPassState extends State<SetPass> {
       var email = sharedPreferences.getString("forgotEmail");
       var flag =
           await ForgotPasswordModel().resetPassword(_password.text, email);
-      print(flag);
+
       if (flag == true) {
         Navigator.of(context).pop();
 
@@ -296,9 +295,10 @@ class _SetPassState extends State<SetPass> {
           title: 'Successfull !',
           desc: 'Password reset successfully',
           btnOkOnPress: () {
-            Navigator.pushNamed(context, FeedFoodRoutes().loginRoute);
+            Navigator.pushReplacementNamed(
+                context, FeedFoodRoutes().loginRoute);
           },
-        )..show();
+        ).show();
 
         return true;
       }

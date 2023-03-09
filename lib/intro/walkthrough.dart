@@ -6,6 +6,7 @@ import 'package:feed_food/intro/welcome_page.dart';
 import 'package:feed_food/utils/routes.dart';
 import 'package:feed_food/utils/strings.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class Walkthrough extends StatefulWidget {
@@ -40,7 +41,7 @@ class _WalkthroughState extends State<Walkthrough> {
               children: [
                 // container are the walkthrough pages.
                 Container(
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     image: DecorationImage(
                         image: AssetImage("assets/images/walk1.png"),
                         fit: BoxFit.fill),
@@ -49,10 +50,10 @@ class _WalkthroughState extends State<Walkthrough> {
                     padding: const EdgeInsets.all(12.0),
                     child: Column(
                       children: [
-                        SizedBox(
+                        const SizedBox(
                           height: 600,
                         ),
-                        Align(
+                        const Align(
                           alignment: Alignment.topLeft,
                           child: Text(
                             FeedFoodStrings.Whead1,
@@ -63,7 +64,7 @@ class _WalkthroughState extends State<Walkthrough> {
                             ),
                           ),
                         ),
-                        Text(
+                        const Text(
                           FeedFoodStrings.subtittle1,
                           style: TextStyle(color: Colors.white, fontSize: 14),
                         )
@@ -73,7 +74,7 @@ class _WalkthroughState extends State<Walkthrough> {
                 ),
 
                 Container(
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     image: DecorationImage(
                         image: AssetImage("assets/images/walk2.png"),
                         fit: BoxFit.fill),
@@ -82,10 +83,10 @@ class _WalkthroughState extends State<Walkthrough> {
                     padding: const EdgeInsets.all(12.0),
                     child: Column(
                       children: [
-                        SizedBox(
+                        const SizedBox(
                           height: 600,
                         ),
-                        Align(
+                        const Align(
                           alignment: Alignment.topLeft,
                           child: Text(
                             FeedFoodStrings.Whead2,
@@ -96,7 +97,7 @@ class _WalkthroughState extends State<Walkthrough> {
                             ),
                           ),
                         ),
-                        Text(
+                        const Text(
                           FeedFoodStrings.subtittle2,
                           style: TextStyle(color: Colors.white, fontSize: 14),
                         )
@@ -106,7 +107,7 @@ class _WalkthroughState extends State<Walkthrough> {
                 ),
 
                 Container(
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     image: DecorationImage(
                         image: AssetImage("assets/images/walk3.png"),
                         fit: BoxFit.fill),
@@ -115,10 +116,10 @@ class _WalkthroughState extends State<Walkthrough> {
                     padding: const EdgeInsets.all(12.0),
                     child: Column(
                       children: [
-                        SizedBox(
+                        const SizedBox(
                           height: 600,
                         ),
-                        Align(
+                        const Align(
                           alignment: Alignment.topLeft,
                           child: Text(
                             FeedFoodStrings.Whead3,
@@ -129,7 +130,7 @@ class _WalkthroughState extends State<Walkthrough> {
                             ),
                           ),
                         ),
-                        Text(
+                        const Text(
                           FeedFoodStrings.subtittle3,
                           style: TextStyle(color: Colors.white, fontSize: 14),
                         )
@@ -142,7 +143,7 @@ class _WalkthroughState extends State<Walkthrough> {
 
             //dot indicators
             Container(
-              alignment: Alignment(0, 0.95),
+              alignment: const Alignment(0, 0.95),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -150,11 +151,11 @@ class _WalkthroughState extends State<Walkthrough> {
                   GestureDetector(
                       onTap: () {
                         _controller.previousPage(
-                            duration: Duration(microseconds: 500),
+                            duration: const Duration(microseconds: 500),
                             curve: Curves.easeIn);
                       },
-                      child: Padding(
-                        padding: const EdgeInsets.all(25.0),
+                      child: const Padding(
+                        padding: EdgeInsets.all(25.0),
                         child: Text("Previous",
                             style:
                                 TextStyle(color: Colors.white, fontSize: 14)),
@@ -165,7 +166,7 @@ class _WalkthroughState extends State<Walkthrough> {
                     controller: _controller,
                     count: 3,
                     axisDirection: Axis.horizontal,
-                    effect: SlideEffect(
+                    effect: const SlideEffect(
                         radius: 9.0,
                         dotWidth: 8.0,
                         dotHeight: 8.0,
@@ -175,18 +176,22 @@ class _WalkthroughState extends State<Walkthrough> {
                   //net or done
                   onLastPage
                       ? GestureDetector(
-                          onTap: () {
-                            Navigator.push(
+                          onTap: () async {
+                            final SharedPreferences sharedPreferences =
+                                await SharedPreferences.getInstance();
+
+                            sharedPreferences.setString("walkthrough", 'true');
+                            Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
                                 builder: (context) {
-                                  return WelcomePage();
+                                  return const WelcomePage();
                                 },
                               ),
                             );
                           },
-                          child: Padding(
-                            padding: const EdgeInsets.all(25.0),
+                          child: const Padding(
+                            padding: EdgeInsets.all(25.0),
                             child: Text("Done",
                                 style: TextStyle(
                                     color: Colors.white, fontSize: 14)),
@@ -194,11 +199,11 @@ class _WalkthroughState extends State<Walkthrough> {
                       : GestureDetector(
                           onTap: () {
                             _controller.nextPage(
-                                duration: Duration(microseconds: 500),
+                                duration: const Duration(microseconds: 500),
                                 curve: Curves.easeIn);
                           },
-                          child: Padding(
-                            padding: const EdgeInsets.all(25.0),
+                          child: const Padding(
+                            padding: EdgeInsets.all(25.0),
                             child: Text("Next",
                                 style: TextStyle(
                                     color: Colors.white, fontSize: 14)),

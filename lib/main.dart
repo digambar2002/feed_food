@@ -36,15 +36,17 @@ void main() async {
       statusBarColor: Color.fromARGB(255, 250, 250, 250),
       statusBarIconBrightness: Brightness.dark));
 
-  var getType = await getValidationData();
+  var reponse = await getValidationData();
 
   setType() {
-    if (getType == "volunteer") {
+    if (reponse[0] == "volunteer") {
       return FeedFoodRoutes().vMainRoute;
-    } else if (getType == "ngo") {
+    } else if (reponse[0] == "ngo") {
       return FeedFoodRoutes().nMainRoute;
+    } else if (reponse[1] == null) {
+      return FeedFoodRoutes().Walkthrough;
     }
-    return FeedFoodRoutes().loginRoute;
+    return FeedFoodRoutes().welcomeRoute;
   }
 
   runApp(MyApp(
@@ -60,11 +62,13 @@ Future<dynamic> getValidationData() async {
   var obtainType = sharedPreferences.getString("type");
   var obtainAccountNo = sharedPreferences.getString("accountNo");
   var obtainUsername = sharedPreferences.getString("username");
+  var walkthrough = sharedPreferences.getString("walkthrough");
+
   UserType = obtainType;
   UserAccountNo = obtainAccountNo;
   UserUsername = obtainUsername;
-  print(obtainUsername);
-  return obtainType;
+
+  return [obtainType, walkthrough];
 }
 
 class MyApp extends StatelessWidget {
@@ -90,7 +94,6 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: initialRoute,
       routes: {
-        "/": ((context) => LoginPage()),
         FeedFoodRoutes().splashRoute: (context) => SplashScreen(),
         FeedFoodRoutes().welcomeRoute: (context) => WelcomePage(),
         FeedFoodRoutes().loginRoute: (context) => LoginPage(),
