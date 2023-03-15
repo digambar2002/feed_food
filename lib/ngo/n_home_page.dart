@@ -20,85 +20,73 @@ class nHomePage extends StatelessWidget {
               color: Colors.deepPurple[500]),
         ),
       ),
-      body: Stack(
-        children: <Widget>[
-          Container(
-            height: 280,
-            width: 600,
-            decoration:
-                BoxDecoration(color: Color.fromARGB(255, 164, 116, 247)),
-          ),
-          SafeArea(
+      body: Container(
+        child: Column(
+          children: [
+            Container(
+              height: 280,
+              width: 800,
+              decoration: BoxDecoration(color: Colors.deepPurple),
               child: Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                SizedBox(
-                  height: 5,
-                ),
-                Text(
-                  "Welcome",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18,
-                  ),
-                ),
-                SizedBox(
-                  height: 2,
-                ),
-                Text(
-                  "NGO Name",
-                  style: TextStyle(color: Colors.white, fontSize: 14),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Text(
-                  "Request Status",
-                  style: TextStyle(color: Colors.white, fontSize: 14),
-                ),
-                Expanded(
-                  child: GridView.count(
-                    crossAxisCount: 3,
-                    childAspectRatio: .99,
-                    crossAxisSpacing: 15,
-                    mainAxisSpacing: 15,
-                    children: <Widget>[
-                      ReqCards(
-                        title1: "10",
-                        title2: "Total",
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Text(
+                      "Welcome",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
                       ),
-                      ReqCards(
-                        title1: "6",
-                        title2: "Pendding",
-                      ),
-                      ReqCards(title1: "4", title2: "Accepted"),
-                    ],
+                    ),
+                    SizedBox(
+                      height: 2,
+                    ),
+                    Text(
+                      "NGO Name",
+                      style: TextStyle(color: Colors.white, fontSize: 14),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Text(
+                      "Request Status",
+                      style: TextStyle(color: Colors.white, fontSize: 14),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        ReqCards(title1: "5", title2: "New"),
+                        ReqCards(title1: "1", title2: "Pendding"),
+                        ReqCards(title1: "3", title2: "Aceepted"),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(13),
+              ),
+              child: Column(
+                children: [
+                  Text(
+                    "New Request",
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18),
                   ),
-                ),
-                Text(
-                  "New Request",
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18),
-                ),
-                Text(
-                  "New Request",
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18),
-                ),
-                Container(
-                  height: 90,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(13),
-                  ),
-                  child: Row(
+                  Row(
                     children: <Widget>[
                       Image(
                         image: AssetImage("assets/images/nHome1.png"),
@@ -145,55 +133,11 @@ class nHomePage extends StatelessWidget {
                       ),
                     ],
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          )),
-        ],
-      ),
-    );
-  }
-}
-
-class ReqCards extends StatelessWidget {
-  final String title1;
-  final String title2;
-
-  const ReqCards({
-    Key? key,
-    required this.title1,
-    required this.title2,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(18),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(16),
-      ),
-      child: Column(
-        children: <Widget>[
-          Spacer(),
-          Text(
-            title1,
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: 30,
-            ),
-          ),
-          Spacer(),
-          Text(
-            title2,
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: 12,
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
