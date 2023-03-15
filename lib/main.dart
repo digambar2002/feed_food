@@ -116,10 +116,10 @@ class MyApp extends StatelessWidget {
         FeedFoodRoutes().OtpPage: (context) => OtpPage(),
         FeedFoodRoutes().Walkthrough: (context) => Walkthrough(),
         FeedFoodRoutes().SetPass: (context) => SetPass(),
-        FeedFoodRoutes().nEditProfile: (context) => nEditProfile(),
+
         FeedFoodRoutes().nMainRoute: (context) => NMain(),
         FeedFoodRoutes().vMainRoute: (context) => VMainPage(),
-        FeedFoodRoutes().fooddetail: (context) => FoodDetail(),
+
 
         FeedFoodRoutes().nMainRoute: (context) => NMain(),
         FeedFoodRoutes().vHistory: (context) => VHistory(),
