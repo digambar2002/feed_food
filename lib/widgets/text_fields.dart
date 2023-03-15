@@ -569,7 +569,7 @@ class FoodTextField {
                       offset: Offset(0, 2),
                     )
                   ]),
-              height: 100,
+              height: 125,
             ),
             TextFormField(
               controller: controller_name,
@@ -816,9 +816,9 @@ class FoodTextField {
                   )),
               validator: (value) {
                 if (value!.isEmpty) {
-                  return "phone number can not empty";
-                } else if (value.length != 6) {
                   return error_flag;
+                } else if (value.length != 6) {
+                  return "enter valid zip code";
                 }
                 return null;
               },
@@ -885,11 +885,11 @@ class FoodTextField {
                       offset: Offset(0, 2),
                     )
                   ]),
-              height: 200,
+              height: 120,
             ),
             TextFormField(
               controller: controller_name,
-              maxLines: 8,
+              maxLines: 4,
               keyboardType: TextInputType.multiline,
               style: TextStyle(color: Colors.black),
               decoration: InputDecoration(
@@ -914,72 +914,7 @@ class FoodTextField {
     );
   }
 
-  Widget buildLocation(var controller_name, var error_text) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const SizedBox(
-          height: 5,
-        ),
-        Stack(
-          children: [
-            Container(
-              alignment: Alignment.centerLeft,
-              decoration: BoxDecoration(
-                  color: Colors.black12,
-                  borderRadius: BorderRadius.circular(10),
-                  // ignore: prefer_const_literals_to_create_immutables
-                  boxShadow: [
-                    const BoxShadow(
-                      color: Colors.white,
-                      blurRadius: 0,
-                      offset: Offset(0, 2),
-                    )
-                  ]),
-              height: 60,
-            ),
-            TextFormField(
-              controller: controller_name,
-              autovalidateMode: AutovalidateMode.onUserInteraction,
-              keyboardType: TextInputType.emailAddress,
-              style: const TextStyle(color: Colors.black),
-              decoration: InputDecoration(
-                  border: InputBorder.none,
-                  contentPadding: EdgeInsets.only(top: 18),
-                  prefixIcon: Padding(
-                    padding: EdgeInsets.only(top: 16),
-                    child: Icon(
-                      Icons.email_outlined,
-                      color: Colors.black54,
-                    ),
-                  ),
-                  hintText: 'Enter Address',
-                  errorText: error_text,
-                  hintStyle: TextStyle(color: Colors.black54),
-                  errorStyle: TextStyle(
-                    height: 2,
-                  )),
-              validator: (value) {
-                final bool emailValid = RegExp(
-                        r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                    .hasMatch(controller_name.text);
-
-                if (value!.isEmpty) {
-                  return "email not empty";
-                } else if (!emailValid) {
-                  return "invalid email enter";
-                }
-
-                return null;
-              },
-            ),
-          ],
-        ),
-      ],
-    );
-  }
-
-  Widget buildTimeFiled() {
+  Widget buildTimeFiled(BuildContext context, String time) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -1016,13 +951,15 @@ class FoodTextField {
                         width: 10,
                       ),
                       Text(
-                        "select cooking time",
+                        time ?? "select cooking time",
                         style: TextStyle(color: Colors.black54),
                       ),
                     ],
                   ),
                   TextButton(
-                      onPressed: (() => print("hello")), child: Text("select")),
+                      onPressed: (() => showTimePicker(
+                          context: context, initialTime: TimeOfDay.now())),
+                      child: Text("select")),
                 ],
               ),
             )

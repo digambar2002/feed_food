@@ -1,44 +1,84 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 // Author: Digambar Chaudhari
 // Author: Renuka Nathjogi
 // Author: Bhavesh Patil
 
-import 'package:feed_food/authenticate/otp_verify.dart';
+import 'dart:async';
+
+import 'package:feed_food/utils/globals.dart';
+import 'package:feed_food/volunteer/donate/get_location.dart';
+import 'package:feed_food/volunteer/history/v_history_page.dart';
+import 'package:feed_food/volunteer/profile/v_edit_profile.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 import 'package:feed_food/authenticate/forgot_password.dart';
-import 'package:feed_food/authenticate/set_password.dart';
+import 'package:feed_food/authenticate/login_page.dart';
+import 'package:feed_food/authenticate/otp_verify.dart';
+import 'package:feed_food/authenticate/register_page.dart';
+import 'package:feed_food/authenticate/register_page_ngo.dart';
 import 'package:feed_food/authenticate/register_page_user.dart';
+import 'package:feed_food/authenticate/set_password.dart';
 import 'package:feed_food/intro/splash_screen.dart';
 import 'package:feed_food/intro/walkthrough.dart';
 import 'package:feed_food/intro/welcome_page.dart';
 import 'package:feed_food/ngo/food_detail.dart';
 import 'package:feed_food/ngo/n_home_page.dart';
 import 'package:feed_food/ngo/n_main_page.dart';
-import 'package:feed_food/ngo/n_notification.dart';
-import 'package:feed_food/ngo/profile/body.dart';
-import 'package:feed_food/authenticate/login_page.dart';
-import 'package:feed_food/authenticate/register_page.dart';
-import 'package:feed_food/authenticate/register_page_ngo.dart';
-import 'package:feed_food/ngo/n_edit_profile.dart';
-import 'package:feed_food/utils/globals.dart';
 import 'package:feed_food/utils/routes.dart';
-import 'package:feed_food/utils/strings.dart';
-import 'package:feed_food/volunteer/home/v_home_page.dart';
 import 'package:feed_food/volunteer/v_main_page.dart';
-import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:flutter/services.dart';
-import 'models/news_model.dart';
 
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
 
-void main() {
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
       statusBarColor: Color.fromARGB(255, 250, 250, 250),
       statusBarIconBrightness: Brightness.dark));
 
-  runApp(const MyApp());
+  var reponse = await getValidationData();
+
+  setType() {
+    if (reponse[0] == "volunteer") {
+      return FeedFoodRoutes().vMainRoute;
+    } else if (reponse[0] == "ngo") {
+      return FeedFoodRoutes().nMainRoute;
+    } else if (reponse[1] == null) {
+      return FeedFoodRoutes().Walkthrough;
+    }
+    return FeedFoodRoutes().welcomeRoute;
+  }
+
+  runApp(MyApp(
+    initialRoute: setType(),
+  ));
+}
+
+// Grabing shared data in varibales
+Future<dynamic> getValidationData() async {
+  final SharedPreferences sharedPreferences =
+      await SharedPreferences.getInstance();
+
+  var obtainType = sharedPreferences.getString("type");
+  var obtainAccountNo = sharedPreferences.getString("accountNo");
+  var obtainUsername = sharedPreferences.getString("username");
+  var walkthrough = sharedPreferences.getString("walkthrough");
+
+  UserType = obtainType;
+  UserAccountNo = obtainAccountNo;
+  UserUsername = obtainUsername;
+
+  return [obtainType, walkthrough];
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final String initialRoute;
+
+  const MyApp({
+    Key? key,
+    required this.initialRoute,
+  }) : super(key: key);
 
   // This widget is the root of your application.
   @override
@@ -53,7 +93,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.deepPurple,
         fontFamily: GoogleFonts.poppins().fontFamily,
       ),
-      initialRoute: FeedFoodRoutes().nMainRoute,
+      initialRoute: initialRoute,
       routes: {
         "/": ((context) {
           print(isTypeSet);
@@ -61,7 +101,7 @@ class MyApp extends StatelessWidget {
             if (UserType == "volunteer") {
               return VMainPage();
             } else {
-              return NMain();
+              return nHomePage();
             }
           }
           return LoginPage();
@@ -81,11 +121,12 @@ class MyApp extends StatelessWidget {
         FeedFoodRoutes().vMainRoute: (context) => VMainPage(),
         FeedFoodRoutes().fooddetail: (context) => FoodDetail(),
 
+        FeedFoodRoutes().nMainRoute: (context) => NMain(),
+        FeedFoodRoutes().vHistory: (context) => VHistory(),
+        FeedFoodRoutes().vEditProfile: (context) => VEditProfile(),
       },
     );
   }
 }
-
-
 
 // http://10.0.2.2/feedfood/authentication/login.php

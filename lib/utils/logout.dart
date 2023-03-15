@@ -9,6 +9,7 @@ class LogOut {
 
     sharedPreferences.remove("accountNo");
     sharedPreferences.remove("type");
-    Navigator.pushNamed(context, FeedFoodRoutes().loginRoute);
+    sharedPreferences.remove("username");
+    Navigator.pushReplacementNamed(context, FeedFoodRoutes().loginRoute);
   }
 }

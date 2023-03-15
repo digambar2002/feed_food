@@ -31,7 +31,7 @@ class _VHomePageState extends State<VHomePage> {
   getNews() async {
     // URL for the news API endpoint
     var url =
-        'https://newsapi.org/v2/top-headlines?country=in&apiKey=492cea89686a4a0cbd038b1015ad08c3';
+        'https://newsapi.org/v2/top-headlines?country=us&apiKey=492cea89686a4a0cbd038b1015ad08c3';
     try {
       // Make a GET request to the API endpoint
       var response = await http.get(Uri.parse(url));
@@ -87,21 +87,19 @@ class _VHomePageState extends State<VHomePage> {
       ),
       body: SingleChildScrollView(
         physics: ScrollPhysics(),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const SizedBox(
-              height: 20,
-            ),
-            const Padding(
-                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-                child: VHomeCard()),
-            const SizedBox(
-              height: 10,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-              child: Column(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const SizedBox(
+                height: 20,
+              ),
+              VHomeCard(),
+              const SizedBox(
+                height: 30,
+              ),
+              Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
@@ -112,7 +110,7 @@ class _VHomePageState extends State<VHomePage> {
                         color: Colors.blueGrey[900]),
                   ),
                   const SizedBox(
-                    height: 10,
+                    height: 20,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -141,13 +139,10 @@ class _VHomePageState extends State<VHomePage> {
                   ),
                 ],
               ),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-              child: Align(
+              const SizedBox(
+                height: 30,
+              ),
+              Align(
                 alignment: Alignment.topLeft,
                 child: Text(
                   "Lates Update",
@@ -157,14 +152,10 @@ class _VHomePageState extends State<VHomePage> {
                       color: Colors.blueGrey[900]),
                 ),
               ),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Flexible(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                // child: NewsCards(),
+              SizedBox(
+                height: 10,
+              ),
+              Flexible(
                 child: (NewsModel.News != null && NewsModel.News.isNotEmpty)
                     ? ListView.builder(
                         shrinkWrap: true,
@@ -179,8 +170,8 @@ class _VHomePageState extends State<VHomePage> {
                         child: CircularProgressIndicator(),
                       ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

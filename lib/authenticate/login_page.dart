@@ -9,6 +9,8 @@ import 'package:feed_food/widgets/text_fields.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../utils/globals.dart';
+
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
@@ -29,19 +31,19 @@ class _LoginPageState extends State<LoginPage> {
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
-            physics: BouncingScrollPhysics(),
+            physics: const BouncingScrollPhysics(),
             child: Form(
               key: _loginFormKey,
               child: Column(
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Image.asset(
                     "assets/images/login.png",
                     height: 300,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Text(
@@ -51,7 +53,7 @@ class _LoginPageState extends State<LoginPage> {
                         fontWeight: FontWeight.w800,
                         color: Colors.deepPurple[400]),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Padding(
@@ -61,18 +63,18 @@ class _LoginPageState extends State<LoginPage> {
                       children: [
                         FoodTextField()
                             .buildText("username or email", _username),
-                        SizedBox(
+                        const SizedBox(
                           height: 20,
                         ),
                         BuildPassword(controller_name: _password),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
                         Btn().buildForgotBtn(
                             // Function as paramenter
                             onClick: () => Navigator.pushNamed(
                                 context, FeedFoodRoutes().ForgotPassword)),
-                        SizedBox(
+                        const SizedBox(
                           height: 20,
                         ),
                         SizedBox(
@@ -82,7 +84,8 @@ class _LoginPageState extends State<LoginPage> {
                             onPressed: (() async {
                               await authenticate(context);
                             }),
-                            child: Text(
+                            // ignore: sort_child_properties_last
+                            child: const Text(
                               "Login",
                               style: TextStyle(fontSize: 24),
                             ),
@@ -93,7 +96,7 @@ class _LoginPageState extends State<LoginPage> {
                                 )),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 20,
                         ),
                         Btn().buildRegisterbtBtn(
@@ -101,7 +104,7 @@ class _LoginPageState extends State<LoginPage> {
                               context: context,
                               builder: ((context) =>
                                   FeedFoodSheet().buildSheet(context)),
-                              shape: RoundedRectangleBorder(
+                              shape: const RoundedRectangleBorder(
                                   borderRadius: BorderRadius.vertical(
                                       top: Radius.circular(20)))),
                         ),
@@ -125,31 +128,41 @@ class _LoginPageState extends State<LoginPage> {
           context: context,
           barrierDismissible: false,
           builder: ((context) {
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(),
             );
           }));
 
-      dynamic reponse =
+      dynamic response =
           await LoginModel().LoginUser(_username.text, _password.text);
 
       // check user type
-      if (reponse['success'] == true && reponse['type'] == 'volunteer') {
+      if (response['success'] == true && response['type'] == 'volunteer') {
+        final SharedPreferences sharedPreferences =
+            await SharedPreferences.getInstance();
+        // print(response['username']);
+        sharedPreferences.setString("accountNo", response['accountNo']);
+        sharedPreferences.setString("type", response['type']);
+        sharedPreferences.setString("username", response['username']);
+
+        // Setting Globals
+        UserUsername = response['username'];
+        UserAccountNo = response['accountNo'];
+        UserType = response['type'];
+
+        Navigator.of(context).pop();
+        Navigator.pushNamedAndRemoveUntil(
+            context, FeedFoodRoutes().vMainRoute, (r) => false);
+      } else if (response['success'] == true && response['type'] == 'ngo') {
         final SharedPreferences sharedPreferences =
             await SharedPreferences.getInstance();
 
-        sharedPreferences.setString("accountNo", reponse['accountNo']);
-        sharedPreferences.setString("type", reponse['type']);
+        sharedPreferences.setString("accountNo", response['accountNo']);
+        sharedPreferences.setString("type", response['type']);
+        sharedPreferences.setString("username", response['username']);
         Navigator.of(context).pop();
-        Navigator.pushNamed(context, FeedFoodRoutes().vMainRoute);
-      } else if (reponse['success'] == true && reponse['type'] == 'ngo') {
-        final SharedPreferences sharedPreferences =
-            await SharedPreferences.getInstance();
-
-        sharedPreferences.setString("accountNo", reponse['accountNo']);
-        sharedPreferences.setString("type", reponse['type']);
-        Navigator.of(context).pop();
-        Navigator.pushNamed(context, FeedFoodRoutes().nMainRoute);
+        Navigator.pushNamedAndRemoveUntil(
+            context, FeedFoodRoutes().nMainRoute, (r) => false);
       } else {
         Navigator.of(context).pop();
         AwesomeDialog(
@@ -157,7 +170,7 @@ class _LoginPageState extends State<LoginPage> {
           dialogType: DialogType.error,
           animType: AnimType.scale,
           title: 'Error !',
-          desc: reponse['success'].toString(),
+          desc: response['success'].toString(),
           btnOkOnPress: (() => null),
         ).show();
       }

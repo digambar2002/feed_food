@@ -17,7 +17,8 @@ class FeedFoodRoutes {
   final String nMainRoute = "/n_main_page";
   final String nHomePage = "/n_home_page";
   final String nNotification = "/n_notification";
-  final String nEditProfile= "/n_edit_profile";
-  final String fooddetail= "/food_detail";
-  
+  final String nBody = "/body.dart";
+  final String nEditProfile = "/n_edit_profile";
+  final String vHistory = "/v_history_page";
+  final String vEditProfile = "/v_edit_profile";
 }
