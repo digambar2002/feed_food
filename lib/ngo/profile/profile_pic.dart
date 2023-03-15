@@ -3,6 +3,9 @@ import 'package:http/http.dart';
 import 'body.dart';
 
 
+
+
+
 class ProfilePic extends StatelessWidget {
   const ProfilePic({
     super.key,
@@ -22,13 +25,25 @@ class ProfilePic extends StatelessWidget {
                   height: 115,
                   width: 115,
                   child: CircleAvatar(
-                    backgroundImage: AssetImage("assets/images/walk3.png",
+                    backgroundImage: AssetImage("assets/images/Profile Pic.png"),
                     ),
                     
                   ),
                 ),
         ),
+      ],
   
-        ),],);
+    );
   }
 }
+
+
+
+
+
+
+
+
+
+
+   

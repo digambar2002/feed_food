@@ -9,6 +9,7 @@ import 'package:feed_food/authenticate/register_page_user.dart';
 import 'package:feed_food/intro/splash_screen.dart';
 import 'package:feed_food/intro/walkthrough.dart';
 import 'package:feed_food/intro/welcome_page.dart';
+import 'package:feed_food/ngo/food_detail.dart';
 import 'package:feed_food/ngo/n_home_page.dart';
 import 'package:feed_food/ngo/n_main_page.dart';
 import 'package:feed_food/ngo/n_notification.dart';
@@ -16,6 +17,7 @@ import 'package:feed_food/ngo/profile/body.dart';
 import 'package:feed_food/authenticate/login_page.dart';
 import 'package:feed_food/authenticate/register_page.dart';
 import 'package:feed_food/authenticate/register_page_ngo.dart';
+import 'package:feed_food/ngo/n_edit_profile.dart';
 import 'package:feed_food/utils/globals.dart';
 import 'package:feed_food/utils/routes.dart';
 import 'package:feed_food/utils/strings.dart';
@@ -24,8 +26,8 @@ import 'package:feed_food/volunteer/v_main_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/services.dart';
-
 import 'models/news_model.dart';
+
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
@@ -51,7 +53,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.deepPurple,
         fontFamily: GoogleFonts.poppins().fontFamily,
       ),
-      initialRoute: FeedFoodRoutes().splashRoute,
+      initialRoute: FeedFoodRoutes().nMainRoute,
       routes: {
         "/": ((context) {
           print(isTypeSet);
@@ -59,7 +61,7 @@ class MyApp extends StatelessWidget {
             if (UserType == "volunteer") {
               return VMainPage();
             } else {
-              return nHomePage();
+              return NMain();
             }
           }
           return LoginPage();
@@ -74,8 +76,11 @@ class MyApp extends StatelessWidget {
         FeedFoodRoutes().OtpPage: (context) => OtpPage(),
         FeedFoodRoutes().Walkthrough: (context) => Walkthrough(),
         FeedFoodRoutes().SetPass: (context) => SetPass(),
-        FeedFoodRoutes().nHomePage: (context) => nHomePage(),
+        FeedFoodRoutes().nEditProfile: (context) => nEditProfile(),
+        FeedFoodRoutes().nMainRoute: (context) => NMain(),
         FeedFoodRoutes().vMainRoute: (context) => VMainPage(),
+        FeedFoodRoutes().fooddetail: (context) => FoodDetail(),
+
       },
     );
   }
