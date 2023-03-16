@@ -5,20 +5,16 @@ import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 import 'n_home_page.dart';
 
 class NMain extends StatefulWidget {
-
   const NMain({super.key});
-
 
   @override
   State<NMain> createState() => _NMainState();
 }
 
 class _NMainState extends State<NMain> {
- var _currentIndex = 0;
+  var _currentIndex = 0;
   List pages = [
-   nHomePage(),
-  
-    
+    nHomePage(),
     Text("notification"),
     Text("post"),
     Text("history"),
@@ -80,6 +76,7 @@ class _NMainState extends State<NMain> {
           ),
         ),
       ),
-    );;
+    );
+    ;
   }
 }

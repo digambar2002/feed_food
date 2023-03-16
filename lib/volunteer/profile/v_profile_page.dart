@@ -5,6 +5,7 @@ import 'package:feed_food/utils/logout.dart';
 import 'package:feed_food/utils/routes.dart';
 import 'package:feed_food/volunteer/profile/v_edit_profile.dart';
 import 'package:feed_food/volunteer/profile/model.dart';
+import 'package:feed_food/widgets/dialogue_box.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -110,7 +111,10 @@ class _VProfilePageState extends State<VProfilePage> {
                           ),
                           IconButton(
                               onPressed: (() {
-                                LogOut().logOut(context);
+                                showDialog(
+                                    context: context,
+                                    builder: ((context) =>
+                                        MyDialogue().logotDialogue(context)));
                               }),
                               icon: const Icon(
                                 Icons.logout_outlined,

@@ -75,12 +75,12 @@ class _VHomePageState extends State<VHomePage> {
                 }),
                 icon: const Icon(Icons.notifications_outlined),
               ),
-              IconButton(
-                onPressed: (() {
-                  print(isTypeSet);
-                }),
-                icon: const Icon(Icons.volunteer_activism_outlined),
-              ),
+              // IconButton(
+              //   onPressed: (() {
+              //     print(isTypeSet);
+              //   }),
+              //   icon: const Icon(Icons.volunteer_activism_outlined),
+              // ),
             ],
           )
         ],
