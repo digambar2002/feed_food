@@ -1,7 +1,9 @@
+import 'package:feed_food/ngo/n_notification.dart';
 import 'package:feed_food/ngo/profile/body.dart';
+import 'package:feed_food/ngo/n_edit_profile.dart';
+import 'package:feed_food/ngo/n_history.dart';
 import 'package:flutter/material.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
-
 import 'n_home_page.dart';
 
 class NMain extends StatefulWidget {
@@ -15,10 +17,9 @@ class _NMainState extends State<NMain> {
   var _currentIndex = 0;
   List pages = [
     nHomePage(),
-    Text("notification"),
-    Text("post"),
-    Text("history"),
-    Text("profile"),
+    nNotification(),
+    nHistory(),
+    nBody(),
   ];
 
   @override
@@ -52,13 +53,6 @@ class _NMainState extends State<NMain> {
                     selectedColor: Colors.pink,
                   ),
 
-                  /// Likes
-                  SalomonBottomBarItem(
-                    icon: Icon(Icons.add_box_outlined, size: 30),
-                    title: Text("Post"),
-                    selectedColor: Colors.red,
-                  ),
-
                   /// Search
                   SalomonBottomBarItem(
                     icon: Icon(Icons.history),
@@ -77,6 +71,5 @@ class _NMainState extends State<NMain> {
         ),
       ),
     );
-    ;
   }
 }

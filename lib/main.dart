@@ -24,6 +24,7 @@ import 'package:feed_food/authenticate/set_password.dart';
 import 'package:feed_food/intro/splash_screen.dart';
 import 'package:feed_food/intro/walkthrough.dart';
 import 'package:feed_food/intro/welcome_page.dart';
+import 'package:feed_food/ngo/food_detail.dart';
 import 'package:feed_food/ngo/n_home_page.dart';
 import 'package:feed_food/ngo/n_main_page.dart';
 import 'package:feed_food/utils/routes.dart';
@@ -94,6 +95,17 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: initialRoute,
       routes: {
+        "/": ((context) {
+          print(isTypeSet);
+          if (isTypeSet == true) {
+            if (UserType == "volunteer") {
+              return VMainPage();
+            } else {
+              return nHomePage();
+            }
+          }
+          return LoginPage();
+        }),
         FeedFoodRoutes().splashRoute: (context) => SplashScreen(),
         FeedFoodRoutes().welcomeRoute: (context) => WelcomePage(),
         FeedFoodRoutes().loginRoute: (context) => LoginPage(),
@@ -104,8 +116,11 @@ class MyApp extends StatelessWidget {
         FeedFoodRoutes().OtpPage: (context) => OtpPage(),
         FeedFoodRoutes().Walkthrough: (context) => Walkthrough(),
         FeedFoodRoutes().SetPass: (context) => SetPass(),
-        FeedFoodRoutes().nHomePage: (context) => nHomePage(),
+
+        FeedFoodRoutes().nMainRoute: (context) => NMain(),
         FeedFoodRoutes().vMainRoute: (context) => VMainPage(),
+
+
         FeedFoodRoutes().nMainRoute: (context) => NMain(),
         FeedFoodRoutes().vHistory: (context) => VHistory(),
         FeedFoodRoutes().vEditProfile: (context) => VEditProfile(),

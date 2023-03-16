@@ -280,3 +280,34 @@ class _VProfilNumberDataState extends State<VProfilNumberData> {
     );
   }
 }
+
+
+class ReqCards extends StatelessWidget {
+  final String title1;
+  final String title2;
+
+  const ReqCards({
+    Key? key,
+    required this.title1,
+    required this.title2,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      child: Container(
+        height: 110,
+        width: 110,
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(title1),
+              Text(title2),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
