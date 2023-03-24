@@ -298,7 +298,7 @@ class _VDonatePageState extends State<VDonatePage> {
           zip_details.text,
           longitude.toString(),
           lattitude.toString(),
-          'Pending');
+          'new');
 
       if (reponse == true) {
         Navigator.of(context).pop();

@@ -1,10 +1,12 @@
-import 'package:feed_food/ngo/n_notification.dart';
-import 'package:feed_food/ngo/profile/body.dart';
-import 'package:feed_food/ngo/n_edit_profile.dart';
-import 'package:feed_food/ngo/n_history.dart';
+import 'package:feed_food/ngo/complete/n_complete.dart';
+import 'package:feed_food/ngo/pending/n_pending.dart';
+import 'package:feed_food/ngo/profile/n_profile.dart';
+import 'package:feed_food/ngo/profile/n_edit_profile.dart';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
-import 'n_home_page.dart';
+import 'home/n_home_page.dart';
 
 class NMain extends StatefulWidget {
   const NMain({super.key});
@@ -16,14 +18,17 @@ class NMain extends StatefulWidget {
 class _NMainState extends State<NMain> {
   var _currentIndex = 0;
   List pages = [
-    nHomePage(),
-    nNotification(),
-    nHistory(),
-    nBody(),
+    NHomePage(),
+    nPendingRequest(),
+    NComplete(),
+    NProfile(),
   ];
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      statusBarColor: Colors.white,
+    ));
     return SafeArea(
       child: Scaffold(
         body: Center(
@@ -48,15 +53,15 @@ class _NMainState extends State<NMain> {
 
                   /// Search
                   SalomonBottomBarItem(
-                    icon: Icon(Icons.notifications),
-                    title: Text("notifications"),
+                    icon: Icon(Icons.history_outlined),
+                    title: Text("Pending"),
                     selectedColor: Colors.pink,
                   ),
 
                   /// Search
                   SalomonBottomBarItem(
-                    icon: Icon(Icons.history),
-                    title: Text("history"),
+                    icon: Icon(Icons.done_all_outlined),
+                    title: Text("Completed"),
                     selectedColor: Colors.orange,
                   ),
 

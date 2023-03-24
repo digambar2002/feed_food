@@ -71,9 +71,9 @@ class _VHomePageState extends State<VHomePage> {
             children: [
               IconButton(
                 onPressed: (() {
-                  print("hello");
+                  FlutterWebBrowser.openWebPage(url: FeedFoodStrings.url);
                 }),
-                icon: const Icon(Icons.notifications_outlined),
+                icon: const Icon(Icons.public_outlined),
               ),
               // IconButton(
               //   onPressed: (() {
@@ -86,7 +86,7 @@ class _VHomePageState extends State<VHomePage> {
         ],
       ),
       body: SingleChildScrollView(
-        physics: ScrollPhysics(),
+        physics: const ScrollPhysics(),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
@@ -95,7 +95,7 @@ class _VHomePageState extends State<VHomePage> {
               const SizedBox(
                 height: 20,
               ),
-              VHomeCard(),
+              const VHomeCard(),
               const SizedBox(
                 height: 30,
               ),
@@ -114,7 +114,7 @@ class _VHomePageState extends State<VHomePage> {
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
+                    children: const [
                       TileCrad(
                         title_text: "Food",
                         image_url: "assets/images/v_home_icon_1.png",
@@ -152,21 +152,21 @@ class _VHomePageState extends State<VHomePage> {
                       color: Colors.blueGrey[900]),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Flexible(
                 child: (NewsModel.News != null && NewsModel.News.isNotEmpty)
                     ? ListView.builder(
                         shrinkWrap: true,
-                        physics: NeverScrollableScrollPhysics(),
+                        physics: const NeverScrollableScrollPhysics(),
                         itemCount: NewsModel.News.length,
                         itemBuilder: ((context, index) {
                           return NewsCards(
                             articles: NewsModel.News[index],
                           );
                         }))
-                    : Center(
+                    : const Center(
                         child: CircularProgressIndicator(),
                       ),
               ),

@@ -4,8 +4,9 @@
 class FeedFoodStrings {
   // Network
 
-  // static final url = "https://feed-n-joy.000webhostapp.com/";
-  static const url = "http://10.0.2.2/feedfood/";
+  static final url = "https://feed-n-joy.000webhostapp.com/";
+  // static const url = "http://10.0.2.2/feedfood/";
+  // static const url = "http://192.168.182.152/feedfood/";
 
   static final register_url_volunteer = url + "authentication/register.php";
 
@@ -26,6 +27,16 @@ class FeedFoodStrings {
       url + "volunteer/update_profile.php";
 
   static final volunteer_stat_profile_url = url + "volunteer/stat.php";
+
+  // NGO Urls
+  static final ngo_food_request_url = url + "ngo/food_request.php";
+  static final ngo_food_pending_url = url + "ngo/food_pending.php";
+  static final ngo_food_complete_url = url + "ngo/food_complete.php";
+  static final ngo_food_details_url = url + "ngo/food_details.php";
+  static final ngo_stat_url = url + "ngo/stat.php";
+  static final ngo_update_food_url = url + "ngo/update.php";
+  static final ngo_update_complete_food_url = url + "ngo/update_complete.php";
+  static final ngo_profile_url = url + "ngo/profile.php";
 
   // Other NGO Information
   static const ngo_url1 = "https://www.akshayapatra.org/";

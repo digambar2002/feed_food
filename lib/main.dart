@@ -6,7 +6,6 @@
 import 'dart:async';
 
 import 'package:feed_food/utils/globals.dart';
-import 'package:feed_food/volunteer/donate/get_location.dart';
 import 'package:feed_food/volunteer/history/v_history_page.dart';
 import 'package:feed_food/volunteer/profile/v_edit_profile.dart';
 import 'package:flutter/material.dart';
@@ -24,8 +23,7 @@ import 'package:feed_food/authenticate/set_password.dart';
 import 'package:feed_food/intro/splash_screen.dart';
 import 'package:feed_food/intro/walkthrough.dart';
 import 'package:feed_food/intro/welcome_page.dart';
-import 'package:feed_food/ngo/food_detail.dart';
-import 'package:feed_food/ngo/n_home_page.dart';
+import 'package:feed_food/ngo/home/n_home_page.dart';
 import 'package:feed_food/ngo/n_main_page.dart';
 import 'package:feed_food/utils/routes.dart';
 import 'package:feed_food/volunteer/v_main_page.dart';
@@ -95,17 +93,6 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: initialRoute,
       routes: {
-        "/": ((context) {
-          print(isTypeSet);
-          if (isTypeSet == true) {
-            if (UserType == "volunteer") {
-              return VMainPage();
-            } else {
-              return nHomePage();
-            }
-          }
-          return LoginPage();
-        }),
         FeedFoodRoutes().splashRoute: (context) => SplashScreen(),
         FeedFoodRoutes().welcomeRoute: (context) => WelcomePage(),
         FeedFoodRoutes().loginRoute: (context) => LoginPage(),
@@ -116,11 +103,8 @@ class MyApp extends StatelessWidget {
         FeedFoodRoutes().OtpPage: (context) => OtpPage(),
         FeedFoodRoutes().Walkthrough: (context) => Walkthrough(),
         FeedFoodRoutes().SetPass: (context) => SetPass(),
-
         FeedFoodRoutes().nMainRoute: (context) => NMain(),
         FeedFoodRoutes().vMainRoute: (context) => VMainPage(),
-
-
         FeedFoodRoutes().nMainRoute: (context) => NMain(),
         FeedFoodRoutes().vHistory: (context) => VHistory(),
         FeedFoodRoutes().vEditProfile: (context) => VEditProfile(),

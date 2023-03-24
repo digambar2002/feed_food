@@ -21,6 +21,8 @@ class _VEditProfileState extends State<VEditProfile> {
   final _c_address = TextEditingController();
   final _c_zipCode = TextEditingController();
 
+  bool data = false;
+
   @override
   void initState() {
     // TODO: implement initState
@@ -52,6 +54,8 @@ class _VEditProfileState extends State<VEditProfile> {
         if (response['pincode'] != null) {
           _c_zipCode.text = response['pincode'];
         }
+
+        data = true;
       });
     } catch (e) {
       // print(e);
@@ -66,98 +70,104 @@ class _VEditProfileState extends State<VEditProfile> {
         elevation: 2,
         title: Text('Edit Profile'),
       ),
-      body: SingleChildScrollView(
-        physics: const BouncingScrollPhysics(),
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Form(
-            key: _formKey,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                TextFormField(
-                  controller: _c_firstName,
-                  decoration: InputDecoration(labelText: 'First Name'),
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return 'Please enter your first name';
-                    }
-                    return null;
-                  },
-                ),
-                TextFormField(
-                  controller: _c_lastName,
-                  decoration: InputDecoration(labelText: 'Last Name'),
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return 'Please enter your last name';
-                    }
-                    return null;
-                  },
-                ),
-                TextFormField(
-                  controller: _c_address,
-                  decoration: InputDecoration(labelText: 'Address'),
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return 'Please enter your address';
-                    }
-                    return null;
-                  },
-                ),
-                TextFormField(
-                  controller: _c_zipCode,
-                  keyboardType: TextInputType.number,
-                  decoration: InputDecoration(labelText: 'Zip Code'),
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return 'Please enter your zip code';
-                    }
-                    return null;
-                  },
-                ),
-                SizedBox(height: 16),
-                Center(
-                    child: SizedBox(
-                  height: 50,
-                  width: 360,
-                  child: ElevatedButton(
-                    onPressed: () async {
-                      if (_formKey.currentState!.validate()) {
-                        // Form is valid, do something
-                        showDialog(
-                            context: context,
-                            barrierDismissible: false,
-                            builder: ((context) {
-                              return const Center(
-                                child: CircularProgressIndicator(),
-                              );
-                            }));
-                        dynamic flag = await ProfileModel().userProfileUpdate(
-                            _c_firstName.text,
-                            _c_lastName.text,
-                            _c_address.text,
-                            _c_zipCode.text);
+      body: data == false
+          ? Center(
+              child: CircularProgressIndicator(),
+            )
+          : SingleChildScrollView(
+              physics: const BouncingScrollPhysics(),
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Form(
+                  key: _formKey,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      TextFormField(
+                        controller: _c_firstName,
+                        decoration: InputDecoration(labelText: 'First Name'),
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return 'Please enter your first name';
+                          }
+                          return null;
+                        },
+                      ),
+                      TextFormField(
+                        controller: _c_lastName,
+                        decoration: InputDecoration(labelText: 'Last Name'),
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return 'Please enter your last name';
+                          }
+                          return null;
+                        },
+                      ),
+                      TextFormField(
+                        controller: _c_address,
+                        decoration: InputDecoration(labelText: 'Address'),
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return 'Please enter your address';
+                          }
+                          return null;
+                        },
+                      ),
+                      TextFormField(
+                        controller: _c_zipCode,
+                        keyboardType: TextInputType.number,
+                        decoration: InputDecoration(labelText: 'Zip Code'),
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return 'Please enter your zip code';
+                          }
+                          return null;
+                        },
+                      ),
+                      SizedBox(height: 16),
+                      Center(
+                          child: SizedBox(
+                        height: 50,
+                        width: 360,
+                        child: ElevatedButton(
+                          onPressed: () async {
+                            if (_formKey.currentState!.validate()) {
+                              // Form is valid, do something
+                              showDialog(
+                                  context: context,
+                                  barrierDismissible: false,
+                                  builder: ((context) {
+                                    return const Center(
+                                      child: CircularProgressIndicator(),
+                                    );
+                                  }));
+                              dynamic flag = await ProfileModel()
+                                  .userProfileUpdate(
+                                      _c_firstName.text,
+                                      _c_lastName.text,
+                                      _c_address.text,
+                                      _c_zipCode.text);
 
-                        if (flag == true) {
-                          Navigator.of(context).pop();
-                          Navigator.of(context).pop();
-                        } else {
-                          Navigator.of(context).pop();
-                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                            content: Text("Something went wrong"),
-                          ));
-                        }
-                      }
-                    },
-                    child: Text('Submit'),
+                              if (flag == true) {
+                                Navigator.of(context).pop();
+                                Navigator.of(context).pop();
+                              } else {
+                                Navigator.of(context).pop();
+                                ScaffoldMessenger.of(context)
+                                    .showSnackBar(SnackBar(
+                                  content: Text("Something went wrong"),
+                                ));
+                              }
+                            }
+                          },
+                          child: Text('Submit'),
+                        ),
+                      )),
+                    ],
                   ),
-                )),
-              ],
+                ),
+              ),
             ),
-          ),
-        ),
-      ),
     );
   }
 }

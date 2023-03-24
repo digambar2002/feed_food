@@ -32,6 +32,8 @@ class _VProfilePageState extends State<VProfilePage> {
   String? completed;
   String? pending;
 
+  bool data = false;
+
   @override
   void initState() {
     // TODO: implement initState
@@ -62,6 +64,8 @@ class _VProfilePageState extends State<VProfilePage> {
 
         email = response['email'] ?? '';
         phoneNo = response['phone'] ?? '';
+
+        data = true;
       });
 
       print(response['fname']);
@@ -80,259 +84,287 @@ class _VProfilePageState extends State<VProfilePage> {
       child: Scaffold(
         backgroundColor: const Color.fromARGB(255, 255, 255, 255),
         resizeToAvoidBottomInset: true,
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              Container(
-                decoration: const BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [
-                      Color.fromARGB(255, 155, 110, 246),
-                      Color.fromARGB(255, 116, 182, 247)
-                    ],
-                  ),
-                ),
+        body: data == false
+            ? Center(
+                child: CircularProgressIndicator(),
+              )
+            : SingleChildScrollView(
                 child: Column(
                   children: [
-                    const SizedBox(
-                      height: 25,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const Text(
-                            'My Profile',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 20,
-                                fontWeight: FontWeight.w600),
-                          ),
-                          IconButton(
-                              onPressed: (() {
-                                showDialog(
-                                    context: context,
-                                    builder: ((context) =>
-                                        MyDialogue().logotDialogue(context)));
-                              }),
-                              icon: const Icon(
-                                Icons.logout_outlined,
-                                color: Colors.white,
-                              ))
-                        ],
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    Column(children: [
-                      Stack(
-                        children: [
-                          Positioned(
-                            top: 200,
-                            child: Container(
-                              decoration: const BoxDecoration(
-                                color: Color.fromARGB(255, 255, 255, 255),
-                                borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(20),
-                                    topRight: Radius.circular(20)),
-                              ),
-                              height: 600,
-                              width: 400,
-                            ),
-                          ),
-                          Stack(
-                            alignment: Alignment.topCenter,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                  top: 50,
-                                  left: 10,
-                                  right: 10,
-                                  bottom: 30,
-                                ),
-                                child: Card(
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(15)),
-                                  elevation: 5,
-                                  child: Center(
-                                      child: Column(
-                                    children: [
-                                      const SizedBox(
-                                        height: 90,
-                                      ),
-                                      Text(
-                                        name ?? UserUsername,
-                                        style: const TextStyle(
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: 18),
-                                      ),
-                                      Text(
-                                        UserType,
-                                        style: const TextStyle(
-                                            fontWeight: FontWeight.w600,
-                                            color: Colors.grey),
-                                      ),
-                                      const SizedBox(
-                                        height: 30,
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.all(10.0),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceEvenly,
-                                          children: [],
-                                        ),
-                                      )
-                                    ],
-                                  )),
-                                ),
-                              ),
-                              Stack(children: [
-                                ClipRRect(
-                                  borderRadius: BorderRadius.circular(80.0),
-                                  child: const FadeInImage(
-                                    placeholder:
-                                        AssetImage('assets/images/avtar.png'),
-                                    image: NetworkImage(
-                                        'https://volunteercentrewi.org/wp-content/uploads/2021/07/avatar-1577909_640.png'),
-                                    height: 120,
-                                  ),
-                                ),
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.fromLTRB(75, 75, 0, 0),
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      color: Colors.deepPurple,
-                                      borderRadius: BorderRadius.circular(40),
-                                    ),
-                                    child: IconButton(
-                                      color: Colors.white,
-                                      icon: const Icon(Icons.edit),
-                                      onPressed: () {
-                                        Navigator.pushNamed(context,
-                                                FeedFoodRoutes().vEditProfile)
-                                            .then((_) {
-                                          setState(() {
-                                            // Call setState to refresh the page.
-                                            userProfile();
-                                          });
-                                        });
-                                      },
-                                    ),
-                                  ),
-                                ),
-                              ]),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ]),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  children: [
-                    Card(
-                      elevation: 10,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15)),
-                      child: SizedBox(
-                        width: 600,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(10.0),
-                              child: RichText(
-                                text: const TextSpan(children: [
-                                  WidgetSpan(
-                                    child: Icon(
-                                      Icons.location_on_outlined,
-                                      color: Colors.grey,
-                                    ),
-                                  ),
-                                  TextSpan(
-                                    text: " Address",
-                                    style: TextStyle(
-                                        color: Colors.black54, fontSize: 16),
-                                  ),
-                                ]),
-                              ),
-                            ),
-                            address != null
-                                ? Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        vertical: 20, horizontal: 40),
-                                    child: Text(
-                                      '${address}',
-                                      style: const TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w600),
-                                    ),
-                                  )
-                                : Center(
-                                    child: Column(
-                                      children: [
-                                        const SizedBox(
-                                          height: 20,
-                                        ),
-                                        OutlinedButton.icon(
-                                          onPressed: () {
-                                            Navigator.pushNamed(
-                                                    context,
-                                                    FeedFoodRoutes()
-                                                        .vEditProfile)
-                                                .then((_) {
-                                              setState(() {
-                                                // Call setState to refresh the page.
-                                                userProfile();
-                                              });
-                                            });
-                                          },
-                                          icon: const Icon(
-                                            Icons.edit,
-                                            size: 24.0,
-                                          ),
-                                          label: const Text('add address'),
-                                        ),
-                                        const SizedBox(
-                                          height: 30,
-                                        ),
-                                      ],
-                                    ),
-                                  ),
+                    Container(
+                      decoration: const BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: [
+                            Color.fromARGB(255, 155, 110, 246),
+                            Color.fromARGB(255, 116, 182, 247)
                           ],
                         ),
                       ),
+                      child: Column(
+                        children: [
+                          const SizedBox(
+                            height: 25,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                const Text(
+                                  'My Profile',
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.w600),
+                                ),
+                                IconButton(
+                                    onPressed: (() {
+                                      showDialog(
+                                          context: context,
+                                          builder: ((context) => MyDialogue()
+                                              .logotDialogue(context)));
+                                    }),
+                                    icon: const Icon(
+                                      Icons.logout_outlined,
+                                      color: Colors.white,
+                                    ))
+                              ],
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          Column(children: [
+                            Stack(
+                              children: [
+                                Positioned(
+                                  top: 200,
+                                  child: Container(
+                                    decoration: const BoxDecoration(
+                                      color: Color.fromARGB(255, 255, 255, 255),
+                                      borderRadius: BorderRadius.only(
+                                          topLeft: Radius.circular(20),
+                                          topRight: Radius.circular(20)),
+                                    ),
+                                    height: 600,
+                                    width: 400,
+                                  ),
+                                ),
+                                Stack(
+                                  alignment: Alignment.topCenter,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                        top: 50,
+                                        left: 10,
+                                        right: 10,
+                                        bottom: 30,
+                                      ),
+                                      child: Card(
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(15)),
+                                        elevation: 5,
+                                        child: Center(
+                                            child: Column(
+                                          children: [
+                                            const SizedBox(
+                                              height: 90,
+                                            ),
+                                            Text(
+                                              name ?? UserUsername,
+                                              style: const TextStyle(
+                                                  fontWeight: FontWeight.w600,
+                                                  fontSize: 18),
+                                            ),
+                                            Text(
+                                              UserType,
+                                              style: const TextStyle(
+                                                  fontWeight: FontWeight.w600,
+                                                  color: Colors.grey),
+                                            ),
+                                            const SizedBox(
+                                              height: 30,
+                                            ),
+                                            Padding(
+                                              padding:
+                                                  const EdgeInsets.all(10.0),
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceEvenly,
+                                                children: [],
+                                              ),
+                                            )
+                                          ],
+                                        )),
+                                      ),
+                                    ),
+                                    Stack(children: [
+                                      ClipRRect(
+                                        borderRadius:
+                                            BorderRadius.circular(80.0),
+                                        child: const FadeInImage(
+                                          placeholder: AssetImage(
+                                              'assets/images/avtar.png'),
+                                          image: NetworkImage(
+                                              'https://cdn-icons-png.flaticon.com/512/3135/3135715.png'),
+                                          height: 120,
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.fromLTRB(
+                                            75, 75, 0, 0),
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                            color: Colors.deepPurple,
+                                            borderRadius:
+                                                BorderRadius.circular(40),
+                                          ),
+                                          child: IconButton(
+                                            color: Colors.white,
+                                            icon: const Icon(Icons.edit),
+                                            onPressed: () {
+                                              Navigator.pushNamed(
+                                                      context,
+                                                      FeedFoodRoutes()
+                                                          .vEditProfile)
+                                                  .then((_) {
+                                                setState(() {
+                                                  // Call setState to refresh the page.
+                                                  userProfile();
+                                                });
+                                              });
+                                            },
+                                          ),
+                                        ),
+                                      ),
+                                    ]),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ]),
+                        ],
+                      ),
                     ),
-                    const SizedBox(
-                      height: 20,
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        children: [
+                          Card(
+                            elevation: 1,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(15)),
+                            child: SizedBox(
+                              width: 600,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(10.0),
+                                    child: RichText(
+                                      text: const TextSpan(children: [
+                                        WidgetSpan(
+                                          child: Icon(
+                                            Icons.location_on_outlined,
+                                            color: Colors.grey,
+                                          ),
+                                        ),
+                                        TextSpan(
+                                          text: " Address",
+                                          style: TextStyle(
+                                              color: Colors.black54,
+                                              fontSize: 16),
+                                        ),
+                                      ]),
+                                    ),
+                                  ),
+                                  address != null
+                                      ? Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              vertical: 20, horizontal: 40),
+                                          child: Text(
+                                            '${address}',
+                                            style: const TextStyle(
+                                                color: Colors.black,
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w600),
+                                          ),
+                                        )
+                                      : Center(
+                                          child: Column(
+                                            children: [
+                                              const SizedBox(
+                                                height: 20,
+                                              ),
+                                              OutlinedButton.icon(
+                                                onPressed: () {
+                                                  Navigator.pushNamed(
+                                                          context,
+                                                          FeedFoodRoutes()
+                                                              .vEditProfile)
+                                                      .then((_) {
+                                                    setState(() {
+                                                      // Call setState to refresh the page.
+                                                      userProfile();
+                                                    });
+                                                  });
+                                                },
+                                                icon: const Icon(
+                                                  Icons.edit,
+                                                  size: 24.0,
+                                                ),
+                                                label:
+                                                    const Text('add address'),
+                                              ),
+                                              const SizedBox(
+                                                height: 30,
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Divider(
+                            thickness: 2,
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          infoCard(' Mobile', "+91-${phoneNo}",
+                              Icons.smartphone_outlined),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Divider(
+                            thickness: 2,
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          infoCard(' Email', "${email}", Icons.email_outlined),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                        ],
+                      ),
                     ),
-                    infoCard(
-                        ' Mobile', "+91-${phoneNo}", Icons.smartphone_outlined),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    infoCard(' Email', "${email}", Icons.email_outlined),
                   ],
                 ),
               ),
-            ],
-          ),
-        ),
       ),
     );
   }
 
   Widget infoCard(String keyName, String valueName, IconData iconName) {
     return Card(
-      elevation: 20,
+      elevation: 1,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
       child: SizedBox(
         width: 600,

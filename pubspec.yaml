@@ -53,6 +53,7 @@ dependencies:
   location: ^4.4.0
   geocoding: ^2.0.5
   permission_handler: ^10.2.0
+  maps_launcher: ^2.2.0
 
 flutter_native_splash:
   image: assets/images/logo.png

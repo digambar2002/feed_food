@@ -121,61 +121,79 @@ class _LoginPageState extends State<LoginPage> {
   // login authenticate method
   Future authenticate(BuildContext context) async {
     // checking form is correct
-    if (_loginFormKey.currentState!.validate()) {
-      // sending data to login model and collecting response
 
-      showDialog(
-          context: context,
-          barrierDismissible: false,
-          builder: ((context) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          }));
+    try {
+      if (_loginFormKey.currentState!.validate()) {
+        // sending data to login model and collecting response
 
-      dynamic response =
-          await LoginModel().LoginUser(_username.text, _password.text);
+        showDialog(
+            context: context,
+            barrierDismissible: false,
+            builder: ((context) {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            }));
 
-      // check user type
-      if (response['success'] == true && response['type'] == 'volunteer') {
-        final SharedPreferences sharedPreferences =
-            await SharedPreferences.getInstance();
-        // print(response['username']);
-        sharedPreferences.setString("accountNo", response['accountNo']);
-        sharedPreferences.setString("type", response['type']);
-        sharedPreferences.setString("username", response['username']);
+        dynamic response =
+            await LoginModel().LoginUser(_username.text, _password.text);
 
-        // Setting Globals
-        UserUsername = response['username'];
-        UserAccountNo = response['accountNo'];
-        UserType = response['type'];
+        // check user type
+        if (response['success'] == true && response['type'] == 'volunteer') {
+          final SharedPreferences sharedPreferences =
+              await SharedPreferences.getInstance();
+          // print(response['username']);
+          sharedPreferences.setString("accountNo", response['accountNo']);
+          sharedPreferences.setString("type", response['type']);
+          sharedPreferences.setString("username", response['username']);
 
-        Navigator.of(context).pop();
-        Navigator.pushNamedAndRemoveUntil(
-            context, FeedFoodRoutes().vMainRoute, (r) => false);
-      } else if (response['success'] == true && response['type'] == 'ngo') {
-        final SharedPreferences sharedPreferences =
-            await SharedPreferences.getInstance();
+          // Setting Globals
+          UserUsername = response['username'];
+          UserAccountNo = response['accountNo'];
+          UserType = response['type'];
 
-        sharedPreferences.setString("accountNo", response['accountNo']);
-        sharedPreferences.setString("type", response['type']);
-        sharedPreferences.setString("username", response['username']);
-        Navigator.of(context).pop();
-        Navigator.pushNamedAndRemoveUntil(
-            context, FeedFoodRoutes().nMainRoute, (r) => false);
+          Navigator.of(context).pop();
+          Navigator.pushNamedAndRemoveUntil(
+              context, FeedFoodRoutes().vMainRoute, (r) => false);
+        } else if (response['success'] == true && response['type'] == 'ngo') {
+          final SharedPreferences sharedPreferences =
+              await SharedPreferences.getInstance();
+
+          sharedPreferences.setString("accountNo", response['accountNo']);
+          sharedPreferences.setString("type", response['type']);
+          sharedPreferences.setString("username", response['username']);
+
+          // Setting Globals
+          UserUsername = response['username'];
+          UserAccountNo = response['accountNo'];
+          UserType = response['type'];
+
+          Navigator.of(context).pop();
+          Navigator.pushNamedAndRemoveUntil(
+              context, FeedFoodRoutes().nMainRoute, (r) => false);
+        } else {
+          Navigator.of(context).pop();
+          AwesomeDialog(
+            context: context,
+            dialogType: DialogType.error,
+            animType: AnimType.scale,
+            title: 'Error !',
+            desc: response['success'].toString(),
+            btnOkOnPress: (() => null),
+          ).show();
+        }
       } else {
-        Navigator.of(context).pop();
-        AwesomeDialog(
-          context: context,
-          dialogType: DialogType.error,
-          animType: AnimType.scale,
-          title: 'Error !',
-          desc: response['success'].toString(),
-          btnOkOnPress: (() => null),
-        ).show();
+        print(_loginFormKey.currentState?.validate());
       }
-    } else {
-      print(_loginFormKey.currentState?.validate());
+    } catch (e) {
+      Navigator.of(context).pop();
+      AwesomeDialog(
+        context: context,
+        dialogType: DialogType.error,
+        animType: AnimType.scale,
+        title: 'Error !',
+        btnOkOnPress: (() => null),
+      ).show();
     }
   }
 }

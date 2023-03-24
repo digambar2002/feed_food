@@ -27,6 +27,7 @@ class _VHistoryState extends State<VHistory> {
     // URL for the news API endpoint
     var url = FeedFoodStrings.volunteer_history_url;
     try {
+      print(UserAccountNo);
       // Make a GET request to the API endpoint
       var response = await await http.post(Uri.parse(url), body: {
         'accountNo': UserAccountNo,
@@ -51,6 +52,20 @@ class _VHistoryState extends State<VHistory> {
 
   @override
   Widget build(BuildContext context) {
+    List<String> randomImages = [
+      "assets/images/nHome1.png",
+      "assets/images/nHome2.png",
+      "assets/images/nHome3.png",
+      "assets/images/nHome4.jpg",
+      "assets/images/nHome5.jpg",
+      "assets/images/nHome6.jpg",
+      "assets/images/nHome7.jpg",
+      "assets/images/nHome8.jpg",
+      "assets/images/nHome9.jpg",
+      "assets/images/nHome10.jpg",
+    ];
+    String imagePath;
+
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
@@ -79,82 +94,94 @@ class _VHistoryState extends State<VHistory> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(0),
                       ),
-                      child: ClipPath(
-                        child: Container(
-                          width: MediaQuery.of(context).size.width,
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 10, vertical: 10),
-                          decoration: const BoxDecoration(
-                            border: Border(
-                              left: BorderSide(
-                                color: Colors.deepPurple,
-                                width: 5,
-                              ),
-                            ),
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    FoodPostHistoryList.postHistory[index]
-                                                .FoodDetails.length >
-                                            20
-                                        ? FoodPostHistoryList
-                                                .postHistory[index].FoodDetails
-                                                .substring(0, 20) +
-                                            '...'
-                                        : FoodPostHistoryList
-                                            .postHistory[index].FoodDetails,
-                                    style: const TextStyle(
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.w500,
-                                        color: Colors.deepPurple),
-                                  ),
-                                  const SizedBox(
-                                    height: 10,
-                                  ),
-                                  Text(
-                                    FoodPostHistoryList.postHistory[index]
-                                                .Address.length >
-                                            25
-                                        ? FoodPostHistoryList
-                                                .postHistory[index].Address
-                                                .substring(0, 25) +
-                                            '...'
-                                        : FoodPostHistoryList
-                                            .postHistory[index].Address,
-                                    style: const TextStyle(
-                                        color: Colors.black, fontSize: 14),
-                                  ),
-                                  Text(
-                                      FoodPostHistoryList
-                                          .postHistory[index].CurrentTime
-                                          .replaceAll(" ", "\n"),
-                                      style: const TextStyle(
-                                          color: Colors.black54, fontSize: 12)),
-                                ],
-                              ),
-                              Column(
-                                children: [
-                                  Text(
-                                    FoodPostHistoryList
-                                        .postHistory[index].Status,
-                                    style: TextStyle(
-                                        color: FoodPostHistoryList
+                      child: Padding(
+                        padding: const EdgeInsets.only(right: 10),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              children: [
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(8.0),
+                                  child: Container(
+                                      width: 90,
+                                      height: 90,
+                                      decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                          image:
+                                              AssetImage(randomImages[index]),
+                                          fit: BoxFit.cover,
+                                        ),
+                                      )),
+                                ),
+                                SizedBox(
+                                  width: 20,
+                                ),
+                                Container(
+                                  width: 150,
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        FoodPostHistoryList.postHistory[index]
+                                                    .FoodDetails.length >
+                                                26
+                                            ? FoodPostHistoryList
                                                     .postHistory[index]
-                                                    .Status ==
-                                                "Completed"
-                                            ? Colors.green
-                                            : Colors.orange,
-                                        fontSize: 14),
+                                                    .FoodDetails
+                                                    .substring(0, 20) +
+                                                '...'
+                                            : FoodPostHistoryList
+                                                .postHistory[index].FoodDetails,
+                                        style: const TextStyle(
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w500,
+                                            color: Colors.deepPurple),
+                                      ),
+                                      const SizedBox(
+                                        height: 10,
+                                      ),
+                                      Text(
+                                        FoodPostHistoryList.postHistory[index]
+                                                    .Address.length >
+                                                25
+                                            ? FoodPostHistoryList
+                                                    .postHistory[index].Address
+                                                    .substring(0, 25) +
+                                                '...'
+                                            : FoodPostHistoryList
+                                                .postHistory[index].Address,
+                                        style: const TextStyle(
+                                            color: Colors.black, fontSize: 12),
+                                      ),
+                                      Text(
+                                          FoodPostHistoryList
+                                              .postHistory[index].CurrentTime
+                                              .replaceAll(" ", "\n"),
+                                          style: const TextStyle(
+                                              color: Colors.black54,
+                                              fontSize: 10)),
+                                    ],
                                   ),
-                                ],
-                              ),
-                            ],
-                          ),
+                                ),
+                              ],
+                            ),
+                            Text(
+                              FoodPostHistoryList.postHistory[index].Status,
+                              style: TextStyle(
+                                  color: FoodPostHistoryList
+                                              .postHistory[index].Status ==
+                                          "completed"
+                                      ? Colors.green
+                                      : FoodPostHistoryList
+                                                  .postHistory[index].Status ==
+                                              "new"
+                                          ? Colors.deepPurple
+                                          : Colors.orange,
+                                  fontSize: 10),
+                            ),
+                          ],
                         ),
                       ),
                     ),

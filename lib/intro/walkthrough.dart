@@ -29,7 +29,7 @@ class _WalkthroughState extends State<Walkthrough> {
       child: Scaffold(
         body: SingleChildScrollView(
           child: Container(
-            height: 800,
+            height: 760,
             child: Stack(
               children: [
                 PageView(
@@ -54,7 +54,7 @@ class _WalkthroughState extends State<Walkthrough> {
                         child: Column(
                           children: [
                             const SizedBox(
-                              height: 600,
+                              height: 550,
                             ),
                             const Align(
                               alignment: Alignment.topLeft,
@@ -88,7 +88,7 @@ class _WalkthroughState extends State<Walkthrough> {
                         child: Column(
                           children: [
                             const SizedBox(
-                              height: 600,
+                              height: 550,
                             ),
                             const Align(
                               alignment: Alignment.topLeft,
@@ -122,7 +122,7 @@ class _WalkthroughState extends State<Walkthrough> {
                         child: Column(
                           children: [
                             const SizedBox(
-                              height: 600,
+                              height: 550,
                             ),
                             const Align(
                               alignment: Alignment.topLeft,
