@@ -55,21 +55,21 @@ class _NMainState extends State<NMain> {
                   SalomonBottomBarItem(
                     icon: Icon(Icons.history_outlined),
                     title: Text("Pending"),
-                    selectedColor: Colors.pink,
+                    selectedColor: Colors.orange,
                   ),
 
                   /// Search
                   SalomonBottomBarItem(
                     icon: Icon(Icons.done_all_outlined),
                     title: Text("Completed"),
-                    selectedColor: Colors.orange,
+                    selectedColor: Colors.teal,
                   ),
 
                   /// Profile
                   SalomonBottomBarItem(
                     icon: Icon(Icons.person_outline),
                     title: Text("Profile"),
-                    selectedColor: Colors.teal,
+                    selectedColor: Colors.pink,
                   ),
                 ]),
           ),

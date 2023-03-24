@@ -96,14 +96,17 @@ class _nPendingRequestState extends State<nPendingRequest> {
                     child: Text("nothing is pending"),
                   ),
                 )
-              : ListView.builder(
-                  shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
-                  itemCount: NgoFoodRequest.requestList.length,
-                  itemBuilder: ((context, index) {
-                    return NPendingCard(
-                        foodRequest: NgoFoodRequest.requestList[index]);
-                  }),
+              : Padding(
+                  padding: const EdgeInsets.only(top: 10),
+                  child: ListView.builder(
+                    shrinkWrap: true,
+                    physics: NeverScrollableScrollPhysics(),
+                    itemCount: NgoFoodRequest.requestList.length,
+                    itemBuilder: ((context, index) {
+                      return NPendingCard(
+                          foodRequest: NgoFoodRequest.requestList[index]);
+                    }),
+                  ),
                 ),
     );
   }

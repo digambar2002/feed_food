@@ -96,14 +96,17 @@ class _NCompleteState extends State<NComplete> {
                     child: Text("You didn't complete any food request"),
                   ),
                 )
-              : ListView.builder(
-                  shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
-                  itemCount: NgoFoodRequest.requestList.length,
-                  itemBuilder: ((context, index) {
-                    return NCompleteCard(
-                        foodRequest: NgoFoodRequest.requestList[index]);
-                  }),
+              : Padding(
+                  padding: const EdgeInsets.only(top: 10),
+                  child: ListView.builder(
+                    shrinkWrap: true,
+                    physics: NeverScrollableScrollPhysics(),
+                    itemCount: NgoFoodRequest.requestList.length,
+                    itemBuilder: ((context, index) {
+                      return NCompleteCard(
+                          foodRequest: NgoFoodRequest.requestList[index]);
+                    }),
+                  ),
                 ),
     );
   }

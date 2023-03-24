@@ -113,7 +113,7 @@ class _NProfileState extends State<NProfile> {
                       padding: const EdgeInsets.all(0.0),
                       child: Column(
                         children: [
-                          Text("Digambar"),
+                          Text(name ?? ""),
                           const SizedBox(
                             height: 30,
                           ),
