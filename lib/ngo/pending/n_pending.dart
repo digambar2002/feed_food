@@ -74,7 +74,7 @@ class _nPendingRequestState extends State<nPendingRequest> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Pending Request",
+                "Pending",
                 style: TextStyle(
                   color: Colors.black,
                   fontWeight: FontWeight.bold,

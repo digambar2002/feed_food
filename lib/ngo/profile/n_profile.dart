@@ -54,7 +54,7 @@ class _NProfileState extends State<NProfile> {
         }
 
         email = response['ngoEmail'] ?? '';
-        phoneNo = response['ngoType'] ?? '';
+        phoneNo = response['ngoPhoneNo'] ?? '';
 
         data = true;
       });
@@ -148,7 +148,7 @@ class _NProfileState extends State<NProfile> {
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold),
                                     ),
-                                    trailing: Text(email ?? ""),
+                                    trailing: Text("+91 ${phoneNo}" ?? ""),
                                   ),
                                   ListTile(
                                     leading: Text(

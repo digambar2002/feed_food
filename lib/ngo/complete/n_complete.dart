@@ -74,7 +74,7 @@ class _NCompleteState extends State<NComplete> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Completed Request",
+                "Completed",
                 style: TextStyle(
                   color: Colors.black,
                   fontWeight: FontWeight.bold,

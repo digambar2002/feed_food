@@ -31,48 +31,47 @@ class _NMainState extends State<NMain> {
     ));
     return SafeArea(
       child: Scaffold(
+        backgroundColor: Colors.white,
         body: Center(
           child: pages[_currentIndex],
         ),
         bottomNavigationBar: Padding(
           padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 0),
-          child: Card(
-            child: SalomonBottomBar(
-                onTap: ((index) {
-                  setState(() {});
-                  _currentIndex = index;
-                }),
-                currentIndex: _currentIndex,
-                items: [
-                  /// Home
-                  SalomonBottomBarItem(
-                    icon: Icon(Icons.home_outlined),
-                    title: Text("Home"),
-                    selectedColor: Colors.purple,
-                  ),
+          child: SalomonBottomBar(
+              onTap: ((index) {
+                setState(() {});
+                _currentIndex = index;
+              }),
+              currentIndex: _currentIndex,
+              items: [
+                /// Home
+                SalomonBottomBarItem(
+                  icon: Icon(Icons.home_outlined),
+                  title: Text("Home"),
+                  selectedColor: Colors.purple,
+                ),
 
-                  /// Search
-                  SalomonBottomBarItem(
-                    icon: Icon(Icons.history_outlined),
-                    title: Text("Pending"),
-                    selectedColor: Colors.orange,
-                  ),
+                /// Search
+                SalomonBottomBarItem(
+                  icon: Icon(Icons.history_outlined),
+                  title: Text("Pending"),
+                  selectedColor: Colors.orange,
+                ),
 
-                  /// Search
-                  SalomonBottomBarItem(
-                    icon: Icon(Icons.done_all_outlined),
-                    title: Text("Completed"),
-                    selectedColor: Colors.teal,
-                  ),
+                /// Search
+                SalomonBottomBarItem(
+                  icon: Icon(Icons.done_all_outlined),
+                  title: Text("Completed"),
+                  selectedColor: Colors.teal,
+                ),
 
-                  /// Profile
-                  SalomonBottomBarItem(
-                    icon: Icon(Icons.person_outline),
-                    title: Text("Profile"),
-                    selectedColor: Colors.pink,
-                  ),
-                ]),
-          ),
+                /// Profile
+                SalomonBottomBarItem(
+                  icon: Icon(Icons.person_outline),
+                  title: Text("Profile"),
+                  selectedColor: Colors.pink,
+                ),
+              ]),
         ),
       ),
     );

@@ -32,43 +32,41 @@ class _VHomePageState extends State<VMainPage> {
       ),
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 0),
-        child: Card(
-          child: SalomonBottomBar(
-              onTap: ((index) {
-                setState(() {});
-                _currentIndex = index;
-              }),
-              currentIndex: _currentIndex,
-              items: [
-                /// Home
-                SalomonBottomBarItem(
-                  icon: Icon(Icons.home_outlined),
-                  title: Text("Home"),
-                  selectedColor: Colors.purple,
-                ),
+        child: SalomonBottomBar(
+            onTap: ((index) {
+              setState(() {});
+              _currentIndex = index;
+            }),
+            currentIndex: _currentIndex,
+            items: [
+              /// Home
+              SalomonBottomBarItem(
+                icon: Icon(Icons.home_outlined),
+                title: Text("Home"),
+                selectedColor: Colors.purple,
+              ),
 
-                /// Likes
-                SalomonBottomBarItem(
-                  icon: Icon(Icons.add_box_outlined, size: 30),
-                  title: Text("Post"),
-                  selectedColor: Colors.red,
-                ),
+              /// Likes
+              SalomonBottomBarItem(
+                icon: Icon(Icons.add_box_outlined, size: 30),
+                title: Text("Post"),
+                selectedColor: Colors.red,
+              ),
 
-                /// Search
-                SalomonBottomBarItem(
-                  icon: Icon(Icons.history),
-                  title: Text("history"),
-                  selectedColor: Colors.orange,
-                ),
+              /// Search
+              SalomonBottomBarItem(
+                icon: Icon(Icons.history),
+                title: Text("history"),
+                selectedColor: Colors.orange,
+              ),
 
-                /// Profile
-                SalomonBottomBarItem(
-                  icon: Icon(Icons.person_outline),
-                  title: Text("Profile"),
-                  selectedColor: Colors.teal,
-                ),
-              ]),
-        ),
+              /// Profile
+              SalomonBottomBarItem(
+                icon: Icon(Icons.person_outline),
+                title: Text("Profile"),
+                selectedColor: Colors.teal,
+              ),
+            ]),
       ),
     );
   }
