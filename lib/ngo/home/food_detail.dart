@@ -7,7 +7,6 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:feed_food/utils/globals.dart';
 import 'package:flutter/material.dart';
 
-import 'package:feed_food/widgets/sheet.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:maps_launcher/maps_launcher.dart';
@@ -48,6 +47,7 @@ class _NFoodDetailState extends State<NFoodDetail> {
 
   @override
   void initState() {
+    // ignore: todo
     // TODO: implement initState
     getFood();
     super.initState();
@@ -81,12 +81,12 @@ class _NFoodDetailState extends State<NFoodDetail> {
           lat = response['latitude'];
           long = response['longitude'];
           phone = response['phone'];
-          print(lat);
           // data in database
           status = "2";
         });
       }
     } catch (e) {
+      // ignore: avoid_print
       print(e);
 
       Navigator.pop(context);
@@ -116,6 +116,7 @@ class _NFoodDetailState extends State<NFoodDetail> {
       var response = jsonDecode(res.body);
 
       if (response['success'] == true) {
+        // ignore: use_build_context_synchronously
         Navigator.of(context).pop();
         AwesomeDialog(
           context: context,
@@ -130,8 +131,6 @@ class _NFoodDetailState extends State<NFoodDetail> {
         ).show();
       } else {}
     } catch (e) {
-      print(e);
-
       Navigator.pop(context);
       return false;
     }
@@ -139,7 +138,7 @@ class _NFoodDetailState extends State<NFoodDetail> {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
         statusBarColor: Colors.white, statusBarBrightness: Brightness.light));
     return status == "0"
         ? const Scaffold(
@@ -154,8 +153,8 @@ class _NFoodDetailState extends State<NFoodDetail> {
                 alignment: Alignment.centerLeft,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text(
+                  children: const [
+                    Text(
                       "Food Detail",
                       style: TextStyle(
                         color: Colors.black,
@@ -183,15 +182,15 @@ class _NFoodDetailState extends State<NFoodDetail> {
                 onPressed: () {
                   updateFoodStatus();
                 },
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.green[800],
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(0),
+                    )),
                 child: const Text(
                   "Accept",
                   style: TextStyle(fontSize: 20),
                 ),
-                style: ElevatedButton.styleFrom(
-                    primary: Colors.green[800],
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(0),
-                    )),
               ),
             ),
           );
@@ -311,7 +310,7 @@ class _NFoodDetailState extends State<NFoodDetail> {
                     height: 6,
                   ),
                   Text(
-                    "For ${quantity} People",
+                    "For $quantity People",
                     style: const TextStyle(
                       color: Colors.black,
                       fontSize: 12,
@@ -342,7 +341,7 @@ class _NFoodDetailState extends State<NFoodDetail> {
                     ),
                   ),
                   Text(
-                    "Mobile No: ${phone}" ?? "",
+                    "Mobile No: $phone",
                     style: const TextStyle(
                       color: Colors.black,
                       fontSize: 12,

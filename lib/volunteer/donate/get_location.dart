@@ -8,8 +8,6 @@ class GetLocatinState {
 
   void getLatLong() async {
     locationData = await loc.Location.instance.getLocation();
-    print("lattitude: ${locationData!.latitude}");
-    print("longitude: ${locationData!.longitude}");
   }
 
   getAddress() async {

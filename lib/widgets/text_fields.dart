@@ -19,7 +19,7 @@ class _BuildPasswordState extends State<BuildPassword> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SizedBox(
+        const SizedBox(
           height: 5,
         ),
         Stack(
@@ -29,7 +29,7 @@ class _BuildPasswordState extends State<BuildPassword> {
               decoration: BoxDecoration(
                   color: Colors.black12,
                   borderRadius: BorderRadius.circular(10),
-                  boxShadow: [
+                  boxShadow: const [
                     BoxShadow(
                       color: Colors.white,
                       blurRadius: 0,
@@ -41,15 +41,15 @@ class _BuildPasswordState extends State<BuildPassword> {
             TextFormField(
               controller: widget.controller_name,
               keyboardType: TextInputType.visiblePassword,
-              style: TextStyle(color: Colors.black),
+              style: const TextStyle(color: Colors.black),
               obscureText: !_isVisible,
               enableSuggestions: false,
               autocorrect: false,
               decoration: InputDecoration(
                 border: InputBorder.none,
-                contentPadding: EdgeInsets.only(top: 18),
-                prefixIcon: Padding(
-                  padding: const EdgeInsets.only(top: 8),
+                contentPadding: const EdgeInsets.only(top: 18),
+                prefixIcon: const Padding(
+                  padding: EdgeInsets.only(top: 8),
                   child: Icon(
                     Icons.lock_outline,
                     color: Colors.black54,
@@ -65,19 +65,19 @@ class _BuildPasswordState extends State<BuildPassword> {
                       });
                     },
                     icon: _isVisible
-                        ? Icon(
+                        ? const Icon(
                             Icons.visibility_outlined,
                             color: Colors.black,
                           )
-                        : Icon(
+                        : const Icon(
                             Icons.visibility_off_outlined,
                             color: Colors.grey,
                           ),
                   ),
                 ),
                 hintText: 'password',
-                hintStyle: TextStyle(color: Colors.black54),
-                errorStyle: TextStyle(
+                hintStyle: const TextStyle(color: Colors.black54),
+                errorStyle: const TextStyle(
                   height: 2,
                 ),
               ),
@@ -118,7 +118,7 @@ class _BuildPasswordState extends State<BuildPassword> {
 
 class FoodTextField {
   //  Email Text Field
-  Widget buildEmail(var controller_name, var error_text) {
+  Widget buildEmail(var controllerName, var errorText) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -143,14 +143,14 @@ class FoodTextField {
               height: 60,
             ),
             TextFormField(
-              controller: controller_name,
+              controller: controllerName,
               autovalidateMode: AutovalidateMode.onUserInteraction,
               keyboardType: TextInputType.emailAddress,
               style: const TextStyle(color: Colors.black),
               decoration: InputDecoration(
                   border: InputBorder.none,
-                  contentPadding: EdgeInsets.only(top: 18),
-                  prefixIcon: Padding(
+                  contentPadding: const EdgeInsets.only(top: 18),
+                  prefixIcon: const Padding(
                     padding: EdgeInsets.only(top: 16),
                     child: Icon(
                       Icons.email_outlined,
@@ -158,15 +158,15 @@ class FoodTextField {
                     ),
                   ),
                   hintText: 'Email',
-                  errorText: error_text,
-                  hintStyle: TextStyle(color: Colors.black54),
-                  errorStyle: TextStyle(
+                  errorText: errorText,
+                  hintStyle: const TextStyle(color: Colors.black54),
+                  errorStyle: const TextStyle(
                     height: 2,
                   )),
               validator: (value) {
                 final bool emailValid = RegExp(
                         r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                    .hasMatch(controller_name.text);
+                    .hasMatch(controllerName.text);
 
                 if (value!.isEmpty) {
                   return "email not empty";
@@ -184,16 +184,16 @@ class FoodTextField {
   }
 
   Widget buildEmailNoIcon(
-      var controller_name, var label, var hint_text, var email_error) {
+      var controllerName, var label, var hintText, var emailError) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SizedBox(
+        const SizedBox(
           height: 5,
         ),
         Text(
           label,
-          style: TextStyle(fontWeight: FontWeight.w500),
+          style: const TextStyle(fontWeight: FontWeight.w500),
         ),
         Stack(
           children: [
@@ -202,7 +202,7 @@ class FoodTextField {
               decoration: BoxDecoration(
                   color: Colors.black12,
                   borderRadius: BorderRadius.circular(10),
-                  boxShadow: [
+                  boxShadow: const [
                     BoxShadow(
                       color: Colors.white,
                       blurRadius: 0,
@@ -212,23 +212,23 @@ class FoodTextField {
               height: 60,
             ),
             TextFormField(
-              controller: controller_name,
+              controller: controllerName,
               keyboardType: TextInputType.text,
-              style: TextStyle(color: Colors.black),
+              style: const TextStyle(color: Colors.black),
               decoration: InputDecoration(
                   border: InputBorder.none,
                   contentPadding:
-                      EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-                  hintText: hint_text,
-                  hintStyle: TextStyle(color: Colors.black54),
-                  errorText: email_error,
-                  errorStyle: TextStyle(
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                  hintText: hintText,
+                  hintStyle: const TextStyle(color: Colors.black54),
+                  errorText: emailError,
+                  errorStyle: const TextStyle(
                     height: 2,
                   )),
               validator: (value) {
                 final bool emailValid = RegExp(
                         r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                    .hasMatch(controller_name.text);
+                    .hasMatch(controllerName.text);
 
                 if (value!.isEmpty) {
                   return "email not empty";
@@ -246,11 +246,11 @@ class FoodTextField {
   }
 
   // Password Text Field
-  Widget buildPassword(controller_name) {
+  Widget buildPassword(controllerName) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SizedBox(
+        const SizedBox(
           height: 5,
         ),
         Stack(
@@ -260,7 +260,7 @@ class FoodTextField {
               decoration: BoxDecoration(
                   color: Colors.black12,
                   borderRadius: BorderRadius.circular(10),
-                  boxShadow: [
+                  boxShadow: const [
                     BoxShadow(
                       color: Colors.white,
                       blurRadius: 0,
@@ -270,17 +270,17 @@ class FoodTextField {
               height: 60,
             ),
             TextFormField(
-              controller: controller_name,
+              controller: controllerName,
               keyboardType: TextInputType.visiblePassword,
-              style: TextStyle(color: Colors.black),
+              style: const TextStyle(color: Colors.black),
               obscureText: true,
               enableSuggestions: false,
               autocorrect: false,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 border: InputBorder.none,
                 contentPadding: EdgeInsets.only(top: 18),
                 prefixIcon: Padding(
-                  padding: const EdgeInsets.only(top: 16),
+                  padding: EdgeInsets.only(top: 16),
                   child: Icon(
                     Icons.lock_outline,
                     color: Colors.black54,
@@ -308,16 +308,16 @@ class FoodTextField {
   }
 
   Widget buildLablePassword(
-      var label, var hint_text, var error_flag, var controller_name) {
+      var label, var hintText, var errorFlag, var controllerName) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SizedBox(
+        const SizedBox(
           height: 5,
         ),
         Text(
           label,
-          style: TextStyle(fontWeight: FontWeight.w500),
+          style: const TextStyle(fontWeight: FontWeight.w500),
         ),
         Stack(
           children: [
@@ -326,7 +326,7 @@ class FoodTextField {
               decoration: BoxDecoration(
                   color: Colors.black12,
                   borderRadius: BorderRadius.circular(10),
-                  boxShadow: [
+                  boxShadow: const [
                     BoxShadow(
                       color: Colors.white,
                       blurRadius: 0,
@@ -337,23 +337,23 @@ class FoodTextField {
             ),
             TextFormField(
               keyboardType: TextInputType.visiblePassword,
-              controller: controller_name,
-              style: TextStyle(color: Colors.black),
+              controller: controllerName,
+              style: const TextStyle(color: Colors.black),
               obscureText: true,
               enableSuggestions: false,
               autocorrect: false,
               decoration: InputDecoration(
                   border: InputBorder.none,
                   contentPadding:
-                      EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-                  hintText: hint_text,
-                  hintStyle: TextStyle(color: Colors.black54),
-                  errorStyle: TextStyle(
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                  hintText: hintText,
+                  hintStyle: const TextStyle(color: Colors.black54),
+                  errorStyle: const TextStyle(
                     height: 2,
                   )),
               validator: (value) {
                 if (value!.isEmpty) {
-                  return error_flag;
+                  return errorFlag;
                 } else if (value.length < 6) {
                   return "password cannot be less than 6";
                 }
@@ -367,7 +367,7 @@ class FoodTextField {
   }
 
   //  Username Filed
-  Widget buildTextUsername(var controller_name, var text_error, var hint_text) {
+  Widget buildTextUsername(var controllerName, var textError, var hintText) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -392,29 +392,29 @@ class FoodTextField {
               height: 60,
             ),
             TextFormField(
-              controller: controller_name,
+              controller: controllerName,
               autovalidateMode: AutovalidateMode.onUserInteraction,
               keyboardType: TextInputType.emailAddress,
               style: const TextStyle(color: Colors.black),
               decoration: InputDecoration(
                   border: InputBorder.none,
-                  contentPadding: EdgeInsets.only(top: 18),
-                  prefixIcon: Padding(
+                  contentPadding: const EdgeInsets.only(top: 18),
+                  prefixIcon: const Padding(
                     padding: EdgeInsets.only(top: 16),
                     child: Icon(
                       Icons.person_outline_outlined,
                       color: Colors.black54,
                     ),
                   ),
-                  hintText: hint_text,
-                  errorText: text_error,
-                  hintStyle: TextStyle(color: Colors.black54),
-                  errorStyle: TextStyle(
+                  hintText: hintText,
+                  errorText: textError,
+                  hintStyle: const TextStyle(color: Colors.black54),
+                  errorStyle: const TextStyle(
                     height: 2,
                   )),
               validator: (value) {
                 final bool usernameValid = RegExp(r"^[a-zA-Z0-9_]{5,15}$")
-                    .hasMatch(controller_name.text);
+                    .hasMatch(controllerName.text);
                 if (value!.isEmpty) {
                   return "username cannot empty";
                 } else if (!usernameValid) {
@@ -429,11 +429,11 @@ class FoodTextField {
     );
   }
 
-  Widget buildText(var hint_text, controller_name) {
+  Widget buildText(var hintText, controllerName) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SizedBox(
+        const SizedBox(
           height: 5,
         ),
         Stack(
@@ -443,7 +443,7 @@ class FoodTextField {
               decoration: BoxDecoration(
                   color: Colors.black12,
                   borderRadius: BorderRadius.circular(10),
-                  boxShadow: [
+                  boxShadow: const [
                     BoxShadow(
                       color: Colors.white,
                       blurRadius: 0,
@@ -453,23 +453,23 @@ class FoodTextField {
               height: 60,
             ),
             TextFormField(
-              controller: controller_name,
+              controller: controllerName,
               keyboardType: TextInputType.text,
-              style: TextStyle(color: Colors.black),
+              style: const TextStyle(color: Colors.black),
               autocorrect: false,
               decoration: InputDecoration(
                 border: InputBorder.none,
-                contentPadding: EdgeInsets.only(top: 18),
-                prefixIcon: Padding(
-                  padding: const EdgeInsets.only(top: 16),
+                contentPadding: const EdgeInsets.only(top: 18),
+                prefixIcon: const Padding(
+                  padding: EdgeInsets.only(top: 16),
                   child: Icon(
                     Icons.person_outline_rounded,
                     color: Colors.black54,
                   ),
                 ),
-                hintText: hint_text,
-                hintStyle: TextStyle(color: Colors.black54),
-                errorStyle: TextStyle(
+                hintText: hintText,
+                hintStyle: const TextStyle(color: Colors.black54),
+                errorStyle: const TextStyle(
                   height: 2,
                 ),
               ),
@@ -487,17 +487,17 @@ class FoodTextField {
   }
 
 // Simple Lable Text Filed
-  Widget buildTextLabel(var label, var hint_text, var error_flag,
-      var controller_name, var error_text) {
+  Widget buildTextLabel(var label, var hintText, var errorFlag,
+      var controllerName, var errorText) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SizedBox(
+        const SizedBox(
           height: 5,
         ),
         Text(
           label,
-          style: TextStyle(fontWeight: FontWeight.w500),
+          style: const TextStyle(fontWeight: FontWeight.w500),
         ),
         Stack(
           children: [
@@ -506,7 +506,7 @@ class FoodTextField {
               decoration: BoxDecoration(
                   color: Colors.black12,
                   borderRadius: BorderRadius.circular(10),
-                  boxShadow: [
+                  boxShadow: const [
                     BoxShadow(
                       color: Colors.white,
                       blurRadius: 0,
@@ -516,22 +516,22 @@ class FoodTextField {
               height: 60,
             ),
             TextFormField(
-              controller: controller_name,
+              controller: controllerName,
               keyboardType: TextInputType.text,
-              style: TextStyle(color: Colors.black),
+              style: const TextStyle(color: Colors.black),
               decoration: InputDecoration(
                   border: InputBorder.none,
                   contentPadding:
-                      EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-                  hintText: hint_text,
-                  errorText: error_text,
-                  hintStyle: TextStyle(color: Colors.black54),
-                  errorStyle: TextStyle(
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                  hintText: hintText,
+                  errorText: errorText,
+                  hintStyle: const TextStyle(color: Colors.black54),
+                  errorStyle: const TextStyle(
                     height: 2,
                   )),
               validator: (value) {
                 if (value!.isEmpty) {
-                  return error_flag;
+                  return errorFlag;
                 }
                 return null;
               },
@@ -544,16 +544,16 @@ class FoodTextField {
 
 // Text Area for address
   Widget buildTextArea(
-      var label, var hint_text, var error_flag, var controller_name) {
+      var label, var hintText, var errorFlag, var controllerName) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SizedBox(
+        const SizedBox(
           height: 5,
         ),
         Text(
           label,
-          style: TextStyle(fontWeight: FontWeight.w500),
+          style: const TextStyle(fontWeight: FontWeight.w500),
         ),
         Stack(
           children: [
@@ -562,7 +562,7 @@ class FoodTextField {
               decoration: BoxDecoration(
                   color: Colors.black12,
                   borderRadius: BorderRadius.circular(10),
-                  boxShadow: [
+                  boxShadow: const [
                     BoxShadow(
                       color: Colors.white,
                       blurRadius: 0,
@@ -572,22 +572,22 @@ class FoodTextField {
               height: 125,
             ),
             TextFormField(
-              controller: controller_name,
+              controller: controllerName,
               maxLines: 4,
               keyboardType: TextInputType.multiline,
-              style: TextStyle(color: Colors.black),
+              style: const TextStyle(color: Colors.black),
               decoration: InputDecoration(
                   border: InputBorder.none,
                   contentPadding:
-                      EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-                  hintText: hint_text,
-                  hintStyle: TextStyle(color: Colors.black54),
-                  errorStyle: TextStyle(
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                  hintText: hintText,
+                  hintStyle: const TextStyle(color: Colors.black54),
+                  errorStyle: const TextStyle(
                     height: 2,
                   )),
               validator: (value) {
                 if (value!.isEmpty) {
-                  return error_flag;
+                  return errorFlag;
                 }
                 return null;
               },
@@ -599,17 +599,17 @@ class FoodTextField {
   }
 
   // Simple Number field Widget
-  Widget buildNumber(var label, var hint_text, var error_flag,
-      var controller_name, var error_text) {
+  Widget buildNumber(var label, var hintText, var errorFlag, var controllerName,
+      var errorText) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SizedBox(
+        const SizedBox(
           height: 5,
         ),
         Text(
           label,
-          style: TextStyle(fontWeight: FontWeight.w500),
+          style: const TextStyle(fontWeight: FontWeight.w500),
         ),
         Stack(
           children: [
@@ -618,7 +618,7 @@ class FoodTextField {
               decoration: BoxDecoration(
                   color: Colors.black12,
                   borderRadius: BorderRadius.circular(10),
-                  boxShadow: [
+                  boxShadow: const [
                     BoxShadow(
                       color: Colors.white,
                       blurRadius: 0,
@@ -628,22 +628,22 @@ class FoodTextField {
               height: 60,
             ),
             TextFormField(
-              controller: controller_name,
+              controller: controllerName,
               keyboardType: TextInputType.number,
-              style: TextStyle(color: Colors.black),
+              style: const TextStyle(color: Colors.black),
               decoration: InputDecoration(
                   border: InputBorder.none,
                   contentPadding:
-                      EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-                  hintText: hint_text,
-                  errorText: error_text,
-                  hintStyle: TextStyle(color: Colors.black54),
-                  errorStyle: TextStyle(
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                  hintText: hintText,
+                  errorText: errorText,
+                  hintStyle: const TextStyle(color: Colors.black54),
+                  errorStyle: const TextStyle(
                     height: 2,
                   )),
               validator: (value) {
                 if (value!.isEmpty) {
-                  return error_flag;
+                  return errorFlag;
                 }
                 return null;
               },
@@ -656,17 +656,17 @@ class FoodTextField {
 
   // Phone Number Filed
 
-  Widget buildPhoneLabel(var label, var hint_text, var error_flag,
-      var controller_name, var error_text) {
+  Widget buildPhoneLabel(var label, var hintText, var errorFlag,
+      var controllerName, var errorText) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SizedBox(
+        const SizedBox(
           height: 5,
         ),
         Text(
           label,
-          style: TextStyle(fontWeight: FontWeight.w500),
+          style: const TextStyle(fontWeight: FontWeight.w500),
         ),
         Stack(
           children: [
@@ -675,7 +675,7 @@ class FoodTextField {
               decoration: BoxDecoration(
                   color: Colors.black12,
                   borderRadius: BorderRadius.circular(10),
-                  boxShadow: [
+                  boxShadow: const [
                     BoxShadow(
                       color: Colors.white,
                       blurRadius: 0,
@@ -685,24 +685,24 @@ class FoodTextField {
               height: 60,
             ),
             TextFormField(
-              controller: controller_name,
+              controller: controllerName,
               keyboardType: TextInputType.number,
-              style: TextStyle(color: Colors.black),
+              style: const TextStyle(color: Colors.black),
               decoration: InputDecoration(
                   border: InputBorder.none,
                   contentPadding:
-                      EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-                  hintText: hint_text,
-                  errorText: error_text,
-                  hintStyle: TextStyle(color: Colors.black54),
-                  errorStyle: TextStyle(
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                  hintText: hintText,
+                  errorText: errorText,
+                  hintStyle: const TextStyle(color: Colors.black54),
+                  errorStyle: const TextStyle(
                     height: 2,
                   )),
               validator: (value) {
                 if (value!.isEmpty) {
                   return "phone number can not empty";
                 } else if (value.length != 10) {
-                  return error_flag;
+                  return errorFlag;
                 }
                 return null;
               },
@@ -713,7 +713,7 @@ class FoodTextField {
     );
   }
 
-  Widget buildPhone(var controller_name, text_error) {
+  Widget buildPhone(var controllerName, textError) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -738,13 +738,13 @@ class FoodTextField {
               height: 60,
             ),
             TextFormField(
-              controller: controller_name,
+              controller: controllerName,
               keyboardType: TextInputType.phone,
-              style: TextStyle(color: Colors.black),
+              style: const TextStyle(color: Colors.black),
               decoration: InputDecoration(
                   border: InputBorder.none,
-                  contentPadding: EdgeInsets.only(top: 18),
-                  prefixIcon: Padding(
+                  contentPadding: const EdgeInsets.only(top: 18),
+                  prefixIcon: const Padding(
                     padding: EdgeInsets.only(top: 16),
                     child: Icon(
                       Icons.phone_outlined,
@@ -752,9 +752,9 @@ class FoodTextField {
                     ),
                   ),
                   hintText: 'phone number',
-                  errorText: text_error,
-                  hintStyle: TextStyle(color: Colors.black54),
-                  errorStyle: TextStyle(
+                  errorText: textError,
+                  hintStyle: const TextStyle(color: Colors.black54),
+                  errorStyle: const TextStyle(
                     height: 2,
                   )),
               validator: (value) {
@@ -774,16 +774,16 @@ class FoodTextField {
 
 // Pincode filed
   Widget buildPincode(
-      var label, var hint_text, var error_flag, var controller_name) {
+      var label, var hintText, var errorFlag, var controllerName) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SizedBox(
+        const SizedBox(
           height: 5,
         ),
         Text(
           label,
-          style: TextStyle(fontWeight: FontWeight.w500),
+          style: const TextStyle(fontWeight: FontWeight.w500),
         ),
         Stack(
           children: [
@@ -792,7 +792,7 @@ class FoodTextField {
               decoration: BoxDecoration(
                   color: Colors.black12,
                   borderRadius: BorderRadius.circular(10),
-                  boxShadow: [
+                  boxShadow: const [
                     BoxShadow(
                       color: Colors.white,
                       blurRadius: 0,
@@ -802,21 +802,21 @@ class FoodTextField {
               height: 60,
             ),
             TextFormField(
-              controller: controller_name,
+              controller: controllerName,
               keyboardType: TextInputType.number,
-              style: TextStyle(color: Colors.black),
+              style: const TextStyle(color: Colors.black),
               decoration: InputDecoration(
                   border: InputBorder.none,
                   contentPadding:
-                      EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-                  hintText: hint_text,
-                  hintStyle: TextStyle(color: Colors.black54),
-                  errorStyle: TextStyle(
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                  hintText: hintText,
+                  hintStyle: const TextStyle(color: Colors.black54),
+                  errorStyle: const TextStyle(
                     height: 2,
                   )),
               validator: (value) {
                 if (value!.isEmpty) {
-                  return error_flag;
+                  return errorFlag;
                 } else if (value.length != 6) {
                   return "enter valid zip code";
                 }
@@ -830,7 +830,7 @@ class FoodTextField {
   }
 
 //otp box widget
-  Widget buildOtp(BuildContext context, var controller_name) {
+  Widget buildOtp(BuildContext context, var controllerName) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -838,12 +838,12 @@ class FoodTextField {
           height: 68,
           width: 64,
           child: Container(
-            padding: EdgeInsets.all(10),
+            padding: const EdgeInsets.all(10),
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
                 border: Border.all(color: Colors.grey, width: 2)),
             child: TextFormField(
-              controller: controller_name,
+              controller: controllerName,
               onChanged: (value) {
                 if (value.length == 1) {
                   FocusScope.of(context).nextFocus();
@@ -864,11 +864,11 @@ class FoodTextField {
     );
   }
 
-  Widget PostTextArea(var hint_text, var error_flag, var controller_name) {
+  Widget PostTextArea(var hintText, var errorFlag, var controllerName) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SizedBox(
+        const SizedBox(
           height: 5,
         ),
         Stack(
@@ -878,7 +878,7 @@ class FoodTextField {
               decoration: BoxDecoration(
                   color: Colors.black12,
                   borderRadius: BorderRadius.circular(10),
-                  boxShadow: [
+                  boxShadow: const [
                     BoxShadow(
                       color: Colors.white,
                       blurRadius: 0,
@@ -888,22 +888,22 @@ class FoodTextField {
               height: 120,
             ),
             TextFormField(
-              controller: controller_name,
+              controller: controllerName,
               maxLines: 4,
               keyboardType: TextInputType.multiline,
-              style: TextStyle(color: Colors.black),
+              style: const TextStyle(color: Colors.black),
               decoration: InputDecoration(
                   border: InputBorder.none,
                   contentPadding:
-                      EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-                  hintText: hint_text,
-                  hintStyle: TextStyle(color: Colors.black54),
-                  errorStyle: TextStyle(
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                  hintText: hintText,
+                  hintStyle: const TextStyle(color: Colors.black54),
+                  errorStyle: const TextStyle(
                     height: 2,
                   )),
               validator: (value) {
                 if (value!.isEmpty) {
-                  return error_flag;
+                  return errorFlag;
                 }
                 return null;
               },
@@ -946,20 +946,20 @@ class FoodTextField {
                 children: [
                   Row(
                     children: [
-                      Icon(Icons.alarm_outlined),
-                      SizedBox(
+                      const Icon(Icons.alarm_outlined),
+                      const SizedBox(
                         width: 10,
                       ),
                       Text(
-                        time ?? "select cooking time",
-                        style: TextStyle(color: Colors.black54),
+                        time,
+                        style: const TextStyle(color: Colors.black54),
                       ),
                     ],
                   ),
                   TextButton(
                       onPressed: (() => showTimePicker(
                           context: context, initialTime: TimeOfDay.now())),
-                      child: Text("select")),
+                      child: const Text("select")),
                 ],
               ),
             )

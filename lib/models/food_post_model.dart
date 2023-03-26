@@ -1,8 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 
 import 'package:feed_food/utils/strings.dart';
@@ -46,7 +44,6 @@ class FoodPostModel {
         return false;
       }
     } catch (e) {
-      print(e);
       return false;
     }
   }

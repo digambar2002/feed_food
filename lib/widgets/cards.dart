@@ -1,14 +1,10 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'dart:async';
-import 'dart:math';
+// ignore_for_file: public_member_api_docs, sort_constructors_first, deprecated_member_use
 
 import 'package:feed_food/ngo/home/food_detail.dart';
 import 'package:feed_food/ngo/models/n_home_model.dart';
 import 'package:feed_food/ngo/pending/n_pending_detail.dart';
 import 'package:feed_food/volunteer/donate/v_donate_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
 
 import 'package:feed_food/models/news_model.dart';
@@ -59,18 +55,19 @@ class VHomeCard extends StatelessWidget {
                   onPressed: (() {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => VDonatePage()),
+                      MaterialPageRoute(
+                          builder: (context) => const VDonatePage()),
                     );
                   }),
-                  child: const Text(
-                    "Donate",
-                    style: TextStyle(fontSize: 14),
-                  ),
                   style: ElevatedButton.styleFrom(
                       primary: Colors.deepPurple[900],
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(5),
                       )),
+                  child: const Text(
+                    "Donate",
+                    style: TextStyle(fontSize: 14),
+                  ),
                 ),
               ),
             ],
@@ -100,7 +97,7 @@ class TileCrad extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 80,
       width: 80,
       child: Card(
@@ -151,107 +148,105 @@ class NewsCards extends StatelessWidget {
   // we need list of articles
   final Articles articles;
   String str = "";
-  NewsCards({super.key, required this.articles}) : assert(articles != null);
+  NewsCards({super.key, required this.articles});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Card(
-          elevation: 10,
-          child: Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Column(
-              children: [
-                const SizedBox(
-                  height: 8,
+    return Card(
+        elevation: 10,
+        child: Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: Column(
+            children: [
+              const SizedBox(
+                height: 8,
+              ),
+              FadeInImage(
+                placeholder: const AssetImage("assets/images/news_default.jpg"),
+                image: NetworkImage(
+                  articles.urlToImage,
                 ),
-                FadeInImage(
-                  placeholder:
-                      const AssetImage("assets/images/news_default.jpg"),
-                  image: NetworkImage(
-                    articles.urlToImage,
+                imageErrorBuilder: (context, error, stackTrace) {
+                  return Container(
+                    color: Colors.amber,
+                    alignment: Alignment.center,
+                    child: const Text(
+                      'Whoops!',
+                      style: TextStyle(fontSize: 30),
+                    ),
+                  );
+                },
+              ),
+              // Image.network(
+              //   articles.urlToImage,
+              //   errorBuilder: (context, error, stackTrace) {
+              //     return Text("can't load image");
+              //   },
+              // ),
+              const SizedBox(
+                height: 15,
+              ),
+              Align(
+                alignment: Alignment.topLeft,
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: const BorderRadius.only(
+                        topRight: Radius.circular(5),
+                        bottomRight: Radius.circular(5)),
+                    color: Colors.deepPurple[400],
                   ),
-                  imageErrorBuilder: (context, error, stackTrace) {
-                    return Container(
-                      color: Colors.amber,
-                      alignment: Alignment.center,
-                      child: const Text(
-                        'Whoops!',
-                        style: TextStyle(fontSize: 30),
+                  child: Padding(
+                    padding: const EdgeInsets.all(5.0),
+                    child: Text(
+                      articles.author,
+                      style: const TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Row(
+                children: [
+                  Flexible(
+                    child: Text(
+                      articles.title,
+                      overflow: TextOverflow.visible,
+                      style: const TextStyle(
+                          fontSize: 16, fontWeight: FontWeight.w600),
+                    ),
+                  ),
+                ],
+              ),
+              TextButton(
+                  onPressed: (() async {
+                    await FlutterWebBrowser.openWebPage(
+                      url: articles.url,
+                      customTabsOptions: const CustomTabsOptions(
+                        colorScheme: CustomTabsColorScheme.dark,
+                        // ignore: deprecated_member_use
+                        toolbarColor: Colors.deepPurple,
+                        secondaryToolbarColor: Colors.green,
+                        navigationBarColor: Colors.amber,
+                        shareState: CustomTabsShareState.on,
+                        instantAppsEnabled: true,
+                        showTitle: true,
+                        urlBarHidingEnabled: true,
                       ),
                     );
-                  },
-                ),
-                // Image.network(
-                //   articles.urlToImage,
-                //   errorBuilder: (context, error, stackTrace) {
-                //     return Text("can't load image");
-                //   },
-                // ),
-                const SizedBox(
-                  height: 15,
-                ),
-                Align(
-                  alignment: Alignment.topLeft,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: const BorderRadius.only(
-                          topRight: Radius.circular(5),
-                          bottomRight: Radius.circular(5)),
-                      color: Colors.deepPurple[400],
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(5.0),
-                      child: Text(
-                        articles.author,
-                        style: const TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Row(
-                  children: [
-                    Flexible(
-                      child: Text(
-                        articles.title,
-                        overflow: TextOverflow.visible,
-                        style: const TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.w600),
-                      ),
-                    ),
-                  ],
-                ),
-                TextButton(
-                    onPressed: (() async {
-                      await FlutterWebBrowser.openWebPage(
-                        url: articles.url,
-                        customTabsOptions: const CustomTabsOptions(
-                          colorScheme: CustomTabsColorScheme.dark,
-                          toolbarColor: Colors.deepPurple,
-                          secondaryToolbarColor: Colors.green,
-                          navigationBarColor: Colors.amber,
-                          shareState: CustomTabsShareState.on,
-                          instantAppsEnabled: true,
-                          showTitle: true,
-                          urlBarHidingEnabled: true,
-                        ),
-                      );
-                    }),
-                    child: const Text(
-                      "read more",
-                      style: TextStyle(),
-                    )),
-              ],
-            ),
-          )),
-    );
+                  }),
+                  child: const Text(
+                    "read more",
+                    style: TextStyle(),
+                  )),
+            ],
+          ),
+        ));
   }
 
   // strConvert() {
@@ -264,8 +259,7 @@ class NRequestCards extends StatelessWidget {
   // we need list of articles
   final NgoFoodRequestModel foodRequest;
 
-  NRequestCards({super.key, required this.foodRequest})
-      : assert(foodRequest != null);
+  NRequestCards({super.key, required this.foodRequest});
 
   String str = "";
 
@@ -347,7 +341,7 @@ class NRequestCards extends StatelessWidget {
                         fontWeight: FontWeight.w300),
                   ),
                   Text(
-                    "Location : ${foodRequest.Address + ", " + foodRequest.ZipCode}",
+                    "Location : ${"${foodRequest.Address}, ${foodRequest.ZipCode}"}",
                     style: const TextStyle(
                         color: Colors.black,
                         fontSize: 10,
@@ -367,8 +361,7 @@ class NPendingCard extends StatelessWidget {
   // we need list of articles
   final NgoFoodRequestModel foodRequest;
 
-  NPendingCard({super.key, required this.foodRequest})
-      : assert(foodRequest != null);
+  NPendingCard({super.key, required this.foodRequest});
 
   String str = "";
 
@@ -450,29 +443,29 @@ class NPendingCard extends StatelessWidget {
                         fontWeight: FontWeight.w300),
                   ),
                   Text(
-                    "Location : ${foodRequest.Address + ", " + foodRequest.ZipCode}",
+                    "Location : ${"${foodRequest.Address}, ${foodRequest.ZipCode}"}",
                     style: const TextStyle(
                         color: Colors.black,
                         fontSize: 10,
                         fontWeight: FontWeight.w300),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 5,
                   ),
                   ClipRRect(
                     borderRadius: BorderRadius.circular(20),
                     child: Container(
                         color: Colors.deepPurple[400],
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 2, horizontal: 10),
+                        child: const Padding(
+                          padding:
+                              EdgeInsets.symmetric(vertical: 2, horizontal: 10),
                           child: Text(
                             "pending",
                             style: TextStyle(fontSize: 12, color: Colors.white),
                           ),
                         )),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   )
                 ],
@@ -489,8 +482,7 @@ class NCompleteCard extends StatelessWidget {
   // we need list of articles
   final NgoFoodRequestModel foodRequest;
 
-  NCompleteCard({super.key, required this.foodRequest})
-      : assert(foodRequest != null);
+  NCompleteCard({super.key, required this.foodRequest});
 
   String str = "";
 
@@ -560,29 +552,29 @@ class NCompleteCard extends StatelessWidget {
                         fontWeight: FontWeight.w300),
                   ),
                   Text(
-                    "Location : ${foodRequest.Address + ", " + foodRequest.ZipCode}",
+                    "Location : ${"${foodRequest.Address}, ${foodRequest.ZipCode}"}",
                     style: const TextStyle(
                         color: Colors.black,
                         fontSize: 10,
                         fontWeight: FontWeight.w300),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 5,
                   ),
                   ClipRRect(
                     borderRadius: BorderRadius.circular(20),
                     child: Container(
                         color: Colors.green[400],
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 2, horizontal: 10),
+                        child: const Padding(
+                          padding:
+                              EdgeInsets.symmetric(vertical: 2, horizontal: 10),
                           child: Text(
                             "Completed",
                             style: TextStyle(fontSize: 12, color: Colors.white),
                           ),
                         )),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   )
                 ],
@@ -643,7 +635,7 @@ class ReqCards extends StatelessWidget {
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Container(
+        child: SizedBox(
           height: 80,
           width: 80,
           child: Center(

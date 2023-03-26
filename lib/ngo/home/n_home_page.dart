@@ -41,14 +41,12 @@ class _NHomePageState extends State<NHomePage> {
       if (response.statusCode == 200) {
         // Decode the JSON data from the response
         var data = jsonDecode(response.body);
-        print(data);
         // Return the list of articles from the API
         newStat = data['new'].toString();
         pendingStat = data['pending'].toString();
         completedStat = data['completed'].toString();
       } else {
         // If the response was not successful, throw an error
-        print("not connectd");
       }
     } catch (e) {}
 
@@ -60,9 +58,9 @@ class _NHomePageState extends State<NHomePage> {
         // Decode the JSON data from the response
         var data = jsonDecode(response.body);
         // Return the list of articles from the API
-        var products_data = data['request'];
+        var productsData = data['request'];
 
-        if (products_data == false) {
+        if (productsData == false) {
           setState(() {
             foodlist = false;
           });
@@ -70,19 +68,16 @@ class _NHomePageState extends State<NHomePage> {
           setState(() {
             foodData = true;
           });
-          NgoFoodRequest.requestList = List.from(products_data)
+          NgoFoodRequest.requestList = List.from(productsData)
               .map<NgoFoodRequestModel>(
                   (item) => NgoFoodRequestModel.fromMap(item))
               .toList();
         }
       } else {
         // If the response was not successful, throw an error
-        print("not connectd");
       }
       setState(() {});
-    } catch (e) {
-      print(e);
-    }
+    } catch (e) {}
   }
 
   @override
@@ -102,100 +97,98 @@ class _NHomePageState extends State<NHomePage> {
         elevation: 0,
       ),
       body: SingleChildScrollView(
-        child: Container(
-          child: Column(
-            children: [
-              Container(
-                height: 250,
-                width: 800,
-                decoration: const BoxDecoration(color: Colors.deepPurple),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      const SizedBox(
-                        height: 5,
-                      ),
-                      const SizedBox(
-                        height: 2,
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      const Text(
-                        "Request Status",
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16,
-                            fontWeight: FontWeight.w600,
-                            decoration: TextDecoration.underline),
-                      ),
-                      const SizedBox(
-                        height: 30,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          ReqCards(title1: newStat!, title2: "New"),
-                          ReqCards(title1: pendingStat!, title2: "Pendding"),
-                          ReqCards(title1: completedStat!, title2: "Completed"),
-                        ],
-                      ),
-                    ],
-                  ),
+        child: Column(
+          children: [
+            Container(
+              height: 250,
+              width: 800,
+              decoration: const BoxDecoration(color: Colors.deepPurple),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    const SizedBox(
+                      height: 2,
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    const Text(
+                      "Request Status",
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                          decoration: TextDecoration.underline),
+                    ),
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        ReqCards(title1: newStat!, title2: "New"),
+                        ReqCards(title1: pendingStat!, title2: "Pendding"),
+                        ReqCards(title1: completedStat!, title2: "Completed"),
+                      ],
+                    ),
+                  ],
                 ),
               ),
-              Container(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(13),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      const Text(
-                        "New Request",
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18),
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      foodlist == true && foodData == false
-                          ? const Center(
-                              child: CircularProgressIndicator(),
-                            )
-                          : foodlist == false
-                              ? const SizedBox(
-                                  height: 300,
-                                  child: Center(
-                                    child: Text("No food donated"),
-                                  ),
-                                )
-                              : ListView.builder(
-                                  shrinkWrap: true,
-                                  physics: NeverScrollableScrollPhysics(),
-                                  itemCount: NgoFoodRequest.requestList.length,
-                                  itemBuilder: ((context, index) {
-                                    return NRequestCards(
-                                        foodRequest:
-                                            NgoFoodRequest.requestList[index]);
-                                  }),
+            ),
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(13),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    const Text(
+                      "New Request",
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    foodlist == true && foodData == false
+                        ? const Center(
+                            child: CircularProgressIndicator(),
+                          )
+                        : foodlist == false
+                            ? const SizedBox(
+                                height: 300,
+                                child: Center(
+                                  child: Text("No food donated"),
                                 ),
-                    ],
-                  ),
+                              )
+                            : ListView.builder(
+                                shrinkWrap: true,
+                                physics: const NeverScrollableScrollPhysics(),
+                                itemCount: NgoFoodRequest.requestList.length,
+                                itemBuilder: ((context, index) {
+                                  return NRequestCards(
+                                      foodRequest:
+                                          NgoFoodRequest.requestList[index]);
+                                }),
+                              ),
+                  ],
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

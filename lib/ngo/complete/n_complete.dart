@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:feed_food/ngo/models/n_home_model.dart';
 import 'package:feed_food/utils/globals.dart';
 import 'package:feed_food/widgets/cards.dart';
-import 'package:feed_food/widgets/sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import '../../utils/strings.dart';
@@ -72,7 +71,7 @@ class _NCompleteState extends State<NComplete> {
           alignment: Alignment.centerLeft,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
+            children: const [
               Text(
                 "Completed",
                 style: TextStyle(
@@ -100,7 +99,7 @@ class _NCompleteState extends State<NComplete> {
                   padding: const EdgeInsets.only(top: 10),
                   child: ListView.builder(
                     shrinkWrap: true,
-                    physics: NeverScrollableScrollPhysics(),
+                    physics: const NeverScrollableScrollPhysics(),
                     itemCount: NgoFoodRequest.requestList.length,
                     itemBuilder: ((context, index) {
                       return NCompleteCard(

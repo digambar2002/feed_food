@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:feed_food/utils/routes.dart';
 import 'package:feed_food/volunteer/profile/model.dart';
 import 'package:flutter/material.dart';
 
@@ -9,6 +8,8 @@ import '../../utils/strings.dart';
 import 'package:http/http.dart' as http;
 
 class VEditProfile extends StatefulWidget {
+  const VEditProfile({super.key});
+
   @override
   _VEditProfileState createState() => _VEditProfileState();
 }
@@ -68,10 +69,10 @@ class _VEditProfileState extends State<VEditProfile> {
     return Scaffold(
       appBar: AppBar(
         elevation: 2,
-        title: Text('Edit Profile'),
+        title: const Text('Edit Profile'),
       ),
       body: data == false
-          ? Center(
+          ? const Center(
               child: CircularProgressIndicator(),
             )
           : SingleChildScrollView(
@@ -85,7 +86,8 @@ class _VEditProfileState extends State<VEditProfile> {
                     children: [
                       TextFormField(
                         controller: _c_firstName,
-                        decoration: InputDecoration(labelText: 'First Name'),
+                        decoration:
+                            const InputDecoration(labelText: 'First Name'),
                         validator: (value) {
                           if (value!.isEmpty) {
                             return 'Please enter your first name';
@@ -95,7 +97,8 @@ class _VEditProfileState extends State<VEditProfile> {
                       ),
                       TextFormField(
                         controller: _c_lastName,
-                        decoration: InputDecoration(labelText: 'Last Name'),
+                        decoration:
+                            const InputDecoration(labelText: 'Last Name'),
                         validator: (value) {
                           if (value!.isEmpty) {
                             return 'Please enter your last name';
@@ -105,7 +108,7 @@ class _VEditProfileState extends State<VEditProfile> {
                       ),
                       TextFormField(
                         controller: _c_address,
-                        decoration: InputDecoration(labelText: 'Address'),
+                        decoration: const InputDecoration(labelText: 'Address'),
                         validator: (value) {
                           if (value!.isEmpty) {
                             return 'Please enter your address';
@@ -116,7 +119,8 @@ class _VEditProfileState extends State<VEditProfile> {
                       TextFormField(
                         controller: _c_zipCode,
                         keyboardType: TextInputType.number,
-                        decoration: InputDecoration(labelText: 'Zip Code'),
+                        decoration:
+                            const InputDecoration(labelText: 'Zip Code'),
                         validator: (value) {
                           if (value!.isEmpty) {
                             return 'Please enter your zip code';
@@ -124,7 +128,7 @@ class _VEditProfileState extends State<VEditProfile> {
                           return null;
                         },
                       ),
-                      SizedBox(height: 16),
+                      const SizedBox(height: 16),
                       Center(
                           child: SizedBox(
                         height: 50,
@@ -154,13 +158,13 @@ class _VEditProfileState extends State<VEditProfile> {
                               } else {
                                 Navigator.of(context).pop();
                                 ScaffoldMessenger.of(context)
-                                    .showSnackBar(SnackBar(
+                                    .showSnackBar(const SnackBar(
                                   content: Text("Something went wrong"),
                                 ));
                               }
                             }
                           },
-                          child: Text('Submit'),
+                          child: const Text('Submit'),
                         ),
                       )),
                     ],

@@ -27,10 +27,10 @@ class FeedFoodSheet {
                                 "assets/images/ngo.png",
                                 height: 80,
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 10,
                               ),
-                              Text(
+                              const Text(
                                 "NGO",
                                 style: TextStyle(
                                     fontSize: 18, fontWeight: FontWeight.bold),
@@ -39,9 +39,9 @@ class FeedFoodSheet {
                           ),
                         ),
                       ),
-                      Container(
+                      const SizedBox(
                         height: 100,
-                        child: const VerticalDivider(
+                        child: VerticalDivider(
                           color: Colors.black54,
                           thickness: 1,
                           width: 20,
@@ -58,10 +58,10 @@ class FeedFoodSheet {
                                 "assets/images/volunteer.png",
                                 height: 80,
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 10,
                               ),
-                              Text(
+                              const Text(
                                 "Volunteer",
                                 style: TextStyle(
                                     fontSize: 18, fontWeight: FontWeight.bold),
@@ -72,7 +72,7 @@ class FeedFoodSheet {
                       ),
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                 ],

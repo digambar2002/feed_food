@@ -1,19 +1,13 @@
 import 'dart:convert';
 
 import 'package:feed_food/utils/globals.dart';
-import 'package:feed_food/utils/logout.dart';
 import 'package:feed_food/utils/routes.dart';
-import 'package:feed_food/volunteer/profile/v_edit_profile.dart';
-import 'package:feed_food/volunteer/profile/model.dart';
 import 'package:feed_food/widgets/dialogue_box.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../../utils/strings.dart';
-import '../../widgets/cards.dart';
 import 'package:http/http.dart' as http;
-
-import '../../widgets/sheet.dart';
 
 class VProfilePage extends StatefulWidget {
   const VProfilePage({super.key});
@@ -67,8 +61,6 @@ class _VProfilePageState extends State<VProfilePage> {
 
         data = true;
       });
-
-      print(response['fname']);
     } catch (e) {
       // print(e);
       return false;
@@ -85,7 +77,7 @@ class _VProfilePageState extends State<VProfilePage> {
         backgroundColor: const Color.fromARGB(255, 255, 255, 255),
         resizeToAvoidBottomInset: true,
         body: data == false
-            ? Center(
+            ? const Center(
                 child: CircularProgressIndicator(),
               )
             : SingleChildScrollView(
@@ -193,7 +185,7 @@ class _VProfilePageState extends State<VProfilePage> {
                                                 mainAxisAlignment:
                                                     MainAxisAlignment
                                                         .spaceEvenly,
-                                                children: [],
+                                                children: const [],
                                               ),
                                             )
                                           ],
@@ -285,7 +277,7 @@ class _VProfilePageState extends State<VProfilePage> {
                                           padding: const EdgeInsets.symmetric(
                                               vertical: 20, horizontal: 40),
                                           child: Text(
-                                            '${address}',
+                                            '$address',
                                             style: const TextStyle(
                                                 color: Colors.black,
                                                 fontSize: 16,
@@ -331,24 +323,24 @@ class _VProfilePageState extends State<VProfilePage> {
                           const SizedBox(
                             height: 10,
                           ),
-                          Divider(
+                          const Divider(
                             thickness: 2,
                           ),
                           const SizedBox(
                             height: 10,
                           ),
-                          infoCard(' Mobile', "+91-${phoneNo}",
+                          infoCard(' Mobile', "+91-$phoneNo",
                               Icons.smartphone_outlined),
                           const SizedBox(
                             height: 10,
                           ),
-                          Divider(
+                          const Divider(
                             thickness: 2,
                           ),
                           const SizedBox(
                             height: 10,
                           ),
-                          infoCard(' Email', "${email}", Icons.email_outlined),
+                          infoCard(' Email', "$email", Icons.email_outlined),
                           const SizedBox(
                             height: 10,
                           ),
@@ -412,21 +404,19 @@ class _VProfilePageState extends State<VProfilePage> {
   }
 
   Widget buildStat(String numberText, String titleText) {
-    return Container(
-      child: Column(
-        children: [
-          Text(numberText,
-              style: const TextStyle(
-                  color: Colors.black87,
-                  fontSize: 20,
-                  fontWeight: FontWeight.w600)),
-          Text(titleText,
-              style: const TextStyle(
-                  color: Colors.black54,
-                  fontSize: 14,
-                  fontWeight: FontWeight.w600)),
-        ],
-      ),
+    return Column(
+      children: [
+        Text(numberText,
+            style: const TextStyle(
+                color: Colors.black87,
+                fontSize: 20,
+                fontWeight: FontWeight.w600)),
+        Text(titleText,
+            style: const TextStyle(
+                color: Colors.black54,
+                fontSize: 14,
+                fontWeight: FontWeight.w600)),
+      ],
     );
   }
 }

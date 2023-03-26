@@ -1,15 +1,14 @@
 import 'dart:convert';
 
-import 'package:feed_food/utils/routes.dart';
-import 'package:feed_food/widgets/sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import '../../utils/globals.dart';
 import '../../utils/strings.dart';
 import '../../widgets/dialogue_box.dart';
-import 'n_profile.dart';
 
 class NProfile extends StatefulWidget {
+  const NProfile({super.key});
+
   @override
   State<NProfile> createState() => _NProfileState();
 }
@@ -58,8 +57,6 @@ class _NProfileState extends State<NProfile> {
 
         data = true;
       });
-
-      print(response['fname']);
     } catch (e) {
       // print(e);
       return false;
@@ -75,7 +72,7 @@ class _NProfileState extends State<NProfile> {
           alignment: Alignment.centerLeft,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
+            children: const [
               Text(
                 "Profile",
                 style: TextStyle(
@@ -89,7 +86,7 @@ class _NProfileState extends State<NProfile> {
         ),
       ),
       body: data == false
-          ? Center(
+          ? const Center(
               child: CircularProgressIndicator(),
             )
           : SingleChildScrollView(
@@ -97,7 +94,7 @@ class _NProfileState extends State<NProfile> {
                 padding: const EdgeInsets.all(8.0),
                 child: Column(
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       height: 150,
                       width: 115,
                       child: SizedBox(
@@ -121,60 +118,58 @@ class _NProfileState extends State<NProfile> {
                           const SizedBox(
                             height: 10,
                           ),
-                          Container(
-                            child: Padding(
-                              padding: const EdgeInsets.all(4.0),
-                              child: Column(
-                                children: [
-                                  ListTile(
-                                    leading: Text(
-                                      "NGO Name: ",
+                          Padding(
+                            padding: const EdgeInsets.all(4.0),
+                            child: Column(
+                              children: [
+                                ListTile(
+                                  leading: const Text(
+                                    "NGO Name: ",
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.bold),
+                                  ),
+                                  trailing: Text(name ?? ""),
+                                ),
+                                ListTile(
+                                  leading: const Text(
+                                    "Email: ",
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.bold),
+                                  ),
+                                  trailing: Text(email ?? ""),
+                                ),
+                                ListTile(
+                                  leading: const Text(
+                                    "Phone No: ",
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.bold),
+                                  ),
+                                  trailing: Text("+91 $phoneNo"),
+                                ),
+                                ListTile(
+                                  leading: const Text(
+                                    "Address: ",
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.bold),
+                                  ),
+                                  trailing: Text(address ?? ""),
+                                ),
+                                const SizedBox(
+                                  height: 20,
+                                ),
+                                TextButton(
+                                    onPressed: (() {
+                                      showDialog(
+                                          context: context,
+                                          builder: ((context) => MyDialogue()
+                                              .logotDialogue(context)));
+                                    }),
+                                    child: const Text(
+                                      "Logout",
                                       style: TextStyle(
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                    trailing: Text(name ?? ""),
-                                  ),
-                                  ListTile(
-                                    leading: Text(
-                                      "Email: ",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                    trailing: Text(email ?? ""),
-                                  ),
-                                  ListTile(
-                                    leading: Text(
-                                      "Phone No: ",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                    trailing: Text("+91 ${phoneNo}" ?? ""),
-                                  ),
-                                  ListTile(
-                                    leading: Text(
-                                      "Address: ",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                    trailing: Text(address ?? ""),
-                                  ),
-                                  SizedBox(
-                                    height: 20,
-                                  ),
-                                  TextButton(
-                                      onPressed: (() {
-                                        showDialog(
-                                            context: context,
-                                            builder: ((context) => MyDialogue()
-                                                .logotDialogue(context)));
-                                      }),
-                                      child: Text(
-                                        "Logout",
-                                        style: TextStyle(
-                                            fontSize: 18, color: Colors.red),
-                                      ))
-                                ],
-                              ),
+                                          fontSize: 18, color: Colors.red),
+                                    ))
+                              ],
                             ),
                           )
                         ],

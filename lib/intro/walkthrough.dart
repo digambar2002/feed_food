@@ -2,6 +2,8 @@
 //Author : Digambar Chaudhari
 //Date : 19-01-23
 
+// ignore_for_file: unused_import
+
 import 'package:feed_food/intro/welcome_page.dart';
 import 'package:feed_food/utils/routes.dart';
 import 'package:feed_food/utils/strings.dart';
@@ -18,7 +20,7 @@ class Walkthrough extends StatefulWidget {
 
 class _WalkthroughState extends State<Walkthrough> {
 // controller to keep track of which page we're on
-  PageController _controller = PageController();
+  final PageController _controller = PageController();
 
 // keep track of if we are on the last page or not
   bool onLastPage = false;
@@ -28,7 +30,7 @@ class _WalkthroughState extends State<Walkthrough> {
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
-          child: Container(
+          child: SizedBox(
             height: 760,
             child: Stack(
               children: [
@@ -52,11 +54,11 @@ class _WalkthroughState extends State<Walkthrough> {
                       child: Padding(
                         padding: const EdgeInsets.all(12.0),
                         child: Column(
-                          children: [
-                            const SizedBox(
+                          children: const [
+                            SizedBox(
                               height: 550,
                             ),
-                            const Align(
+                            Align(
                               alignment: Alignment.topLeft,
                               child: Text(
                                 FeedFoodStrings.Whead1,
@@ -67,7 +69,7 @@ class _WalkthroughState extends State<Walkthrough> {
                                 ),
                               ),
                             ),
-                            const Text(
+                            Text(
                               FeedFoodStrings.subtittle1,
                               style:
                                   TextStyle(color: Colors.white, fontSize: 14),
@@ -86,11 +88,11 @@ class _WalkthroughState extends State<Walkthrough> {
                       child: Padding(
                         padding: const EdgeInsets.all(12.0),
                         child: Column(
-                          children: [
-                            const SizedBox(
+                          children: const [
+                            SizedBox(
                               height: 550,
                             ),
-                            const Align(
+                            Align(
                               alignment: Alignment.topLeft,
                               child: Text(
                                 FeedFoodStrings.Whead2,
@@ -101,7 +103,7 @@ class _WalkthroughState extends State<Walkthrough> {
                                 ),
                               ),
                             ),
-                            const Text(
+                            Text(
                               FeedFoodStrings.subtittle2,
                               style:
                                   TextStyle(color: Colors.white, fontSize: 14),
@@ -120,11 +122,11 @@ class _WalkthroughState extends State<Walkthrough> {
                       child: Padding(
                         padding: const EdgeInsets.all(12.0),
                         child: Column(
-                          children: [
-                            const SizedBox(
+                          children: const [
+                            SizedBox(
                               height: 550,
                             ),
-                            const Align(
+                            Align(
                               alignment: Alignment.topLeft,
                               child: Text(
                                 FeedFoodStrings.Whead3,
@@ -135,7 +137,7 @@ class _WalkthroughState extends State<Walkthrough> {
                                 ),
                               ),
                             ),
-                            const Text(
+                            Text(
                               FeedFoodStrings.subtittle3,
                               style:
                                   TextStyle(color: Colors.white, fontSize: 14),
@@ -188,6 +190,7 @@ class _WalkthroughState extends State<Walkthrough> {
 
                                 sharedPreferences.setString(
                                     "walkthrough", 'true');
+                                // ignore: use_build_context_synchronously
                                 Navigator.pushReplacement(
                                   context,
                                   MaterialPageRoute(

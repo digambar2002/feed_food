@@ -41,14 +41,13 @@ class _RegisterNgoState extends State<RegisterNgo> {
   final _NGO_pincode = TextEditingController();
   final _NGO_username = TextEditingController();
   final _NGO_password = TextEditingController();
-  final _NGO_confirm_password = TextEditingController();
 
   // NGO Error
 
-  var NGO_id_error = null;
-  var ngo_email_error = null;
-  var ngo_phone_error = null;
-  var ngo_username_error = null;
+  var NGO_id_error;
+  var ngo_email_error;
+  var ngo_phone_error;
+  var ngo_username_error;
 
   // drop down items
   final Ngo_items = [
@@ -66,7 +65,7 @@ class _RegisterNgoState extends State<RegisterNgo> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          leading: BackButton(color: Colors.black),
+          leading: const BackButton(color: Colors.black),
           title: Text(
             "Register NGO",
             style: TextStyle(
@@ -75,7 +74,7 @@ class _RegisterNgoState extends State<RegisterNgo> {
             ),
           ),
           centerTitle: true,
-          backgroundColor: Color(0xfafafa),
+          backgroundColor: const Color(0x00fafafa),
           elevation: 0,
         ),
         body: Theme(
@@ -99,36 +98,36 @@ class _RegisterNgoState extends State<RegisterNgo> {
                           Expanded(
                             child: OutlinedButton(
                               onPressed: details.onStepCancel,
-                              child: const Text('Back'),
                               style: OutlinedButton.styleFrom(
-                                side: BorderSide(
+                                side: const BorderSide(
                                   color: Colors.deepPurple,
                                 ),
                               ),
+                              child: const Text('Back'),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 10,
                           ),
                           Expanded(
                             child: (_active_state <= 1)
                                 ? TextButton(
                                     onPressed: details.onStepContinue,
-                                    child: const Text('Next'),
                                     style: TextButton.styleFrom(
-                                      primary: Colors.white,
+                                      foregroundColor: Colors.white,
                                       backgroundColor: Colors.deepPurple[400],
                                     ),
+                                    child: const Text('Next'),
                                   )
                                 : TextButton(
                                     onPressed: ((() async {
                                       await finish(context);
                                     })),
-                                    child: const Text('Finish'),
                                     style: TextButton.styleFrom(
-                                      primary: Colors.white,
+                                      foregroundColor: Colors.white,
                                       backgroundColor: Colors.deepPurple[400],
                                     ),
+                                    child: const Text('Finish'),
                                   ),
                           ),
                         ],
@@ -182,14 +181,15 @@ class _RegisterNgoState extends State<RegisterNgo> {
             context: context,
             barrierDismissible: false,
             builder: ((context) {
-              return Center(
+              return const Center(
                 child: CircularProgressIndicator(),
               );
             }));
-        var id_check = await RegisterUserModel().ngoIdValidation(_NGO_id.text);
+        var idCheck = await RegisterUserModel().ngoIdValidation(_NGO_id.text);
+        // ignore: use_build_context_synchronously
         Navigator.of(context).pop();
-        if (id_check != true) {
-          NGO_id_error = id_check;
+        if (idCheck != true) {
+          NGO_id_error = idCheck;
           setState(() {});
           return false;
         }
@@ -209,24 +209,25 @@ class _RegisterNgoState extends State<RegisterNgo> {
             context: context,
             barrierDismissible: false,
             builder: ((context) {
-              return Center(
+              return const Center(
                 child: CircularProgressIndicator(),
               );
             }));
-        var email_check =
+        var emailCheck =
             await RegisterUserModel().emailValidation(_NGO_email.text);
-        var phone_check =
+        var phoneCheck =
             await RegisterUserModel().phoneValidation(_NGO_phone_no.text);
 
+        // ignore: use_build_context_synchronously
         Navigator.of(context).pop();
 
-        if (email_check != true) {
-          ngo_email_error = email_check;
+        if (emailCheck != true) {
+          ngo_email_error = emailCheck;
           setState(() {});
           return false;
         }
-        if (phone_check != true) {
-          ngo_phone_error = phone_check;
+        if (phoneCheck != true) {
+          ngo_phone_error = phoneCheck;
           setState(() {});
           return false;
         }
@@ -250,15 +251,13 @@ class _RegisterNgoState extends State<RegisterNgo> {
         ngo_form_key[1].currentState!.validate() &&
         ngo_form_key[2].currentState!.validate()) {
       if (_NGO_username.text.isEmpty || _NGO_password.text.isEmpty) {
-        print(_NGO_username.text);
-        print(_NGO_password.text);
         return false;
       } else {
-        var username_check =
+        var usernameCheck =
             await RegisterUserModel().usernameValidation(_NGO_username.text);
 
-        if (username_check != true) {
-          ngo_username_error = username_check;
+        if (usernameCheck != true) {
+          ngo_username_error = usernameCheck;
           setState(() {});
           return false;
         }
@@ -270,12 +269,12 @@ class _RegisterNgoState extends State<RegisterNgo> {
             context: context,
             barrierDismissible: false,
             builder: ((context) {
-              return Center(
+              return const Center(
                 child: CircularProgressIndicator(),
               );
             }));
 
-        var ngo_data_inserted = await RegisterUserModel().InsertNgoData(
+        var ngoDataInserted = await RegisterUserModel().InsertNgoData(
             _NGO_name.text,
             _NGO_id.text,
             NGO_type.toString(),
@@ -286,7 +285,8 @@ class _RegisterNgoState extends State<RegisterNgo> {
             _NGO_username.text,
             _NGO_password.text);
 
-        if (ngo_data_inserted == true) {
+        if (ngoDataInserted == true) {
+          // ignore: use_build_context_synchronously
           Navigator.of(context).pop();
           AwesomeDialog(
             context: context,
@@ -298,10 +298,11 @@ class _RegisterNgoState extends State<RegisterNgo> {
             btnOkOnPress: () {
               Navigator.pushNamed(context, FeedFoodRoutes().loginRoute);
             },
-          )..show();
+          ).show();
 
           return true;
         } else {
+          // ignore: use_build_context_synchronously
           Navigator.of(context).pop();
           return false;
         }
@@ -341,10 +342,10 @@ class _RegisterNgoState extends State<RegisterNgo> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
-                    Text(
+                    const Text(
                       "Select NGO Type",
                       textAlign: TextAlign.left,
                       style: TextStyle(
@@ -357,7 +358,7 @@ class _RegisterNgoState extends State<RegisterNgo> {
                           decoration: BoxDecoration(
                               color: Colors.black12,
                               borderRadius: BorderRadius.circular(10),
-                              boxShadow: [
+                              boxShadow: const [
                                 BoxShadow(
                                   color: Colors.white,
                                   blurRadius: 0,
@@ -373,7 +374,7 @@ class _RegisterNgoState extends State<RegisterNgo> {
                             child: DropdownButton<String>(
                               value: NGO_type,
                               isExpanded: true,
-                              hint: Text("select your NGO type"),
+                              hint: const Text("select your NGO type"),
                               items: Ngo_items.map(buildMenuItem).toList(),
                               onChanged: ((value) {
                                 setState(() {
@@ -387,7 +388,7 @@ class _RegisterNgoState extends State<RegisterNgo> {
                     ),
                   ],
                 ),
-                SizedBox(height: 50),
+                const SizedBox(height: 50),
               ],
             ),
           ),
@@ -404,7 +405,7 @@ class _RegisterNgoState extends State<RegisterNgo> {
               children: [
                 FoodTextField().buildEmailNoIcon(
                     _NGO_email, "Email", "enter your email", ngo_email_error),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 FoodTextField().buildPhoneLabel(
@@ -413,17 +414,17 @@ class _RegisterNgoState extends State<RegisterNgo> {
                     "invalid phone number",
                     _NGO_phone_no,
                     ngo_phone_error),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 FoodTextField().buildPincode("Pincode",
                     "enter your area pincode", "invalid pincode", _NGO_pincode),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 FoodTextField().buildTextArea("Address", "enter your address",
                     "address cannot empty", _NGO_address),
-                SizedBox(
+                const SizedBox(
                   height: 40,
                 ),
               ],
@@ -438,15 +439,15 @@ class _RegisterNgoState extends State<RegisterNgo> {
             key: ngo_form_key[2],
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Text("Username"),
+              const Text("Username"),
               FoodTextField().buildTextUsername(
                   _NGO_username, ngo_username_error, 'enter username'),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
-              Text("Password"),
+              const Text("Password"),
               BuildPassword(controller_name: _NGO_password),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               )
             ]),

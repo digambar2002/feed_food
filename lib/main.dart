@@ -23,6 +23,7 @@ import 'package:feed_food/authenticate/set_password.dart';
 import 'package:feed_food/intro/splash_screen.dart';
 import 'package:feed_food/intro/walkthrough.dart';
 import 'package:feed_food/intro/welcome_page.dart';
+// ignore: unused_import
 import 'package:feed_food/ngo/home/n_home_page.dart';
 import 'package:feed_food/ngo/n_main_page.dart';
 import 'package:feed_food/utils/routes.dart';
@@ -31,7 +32,7 @@ import 'package:feed_food/volunteer/v_main_page.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: Color.fromARGB(255, 250, 250, 250),
       statusBarIconBrightness: Brightness.dark));
 
@@ -84,7 +85,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        appBarTheme: AppBarTheme(
+        appBarTheme: const AppBarTheme(
           color: Color.fromARGB(255, 250, 250, 250),
           foregroundColor: Colors.black,
         ),
@@ -93,20 +94,20 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: initialRoute,
       routes: {
-        FeedFoodRoutes().splashRoute: (context) => SplashScreen(),
-        FeedFoodRoutes().welcomeRoute: (context) => WelcomePage(),
-        FeedFoodRoutes().loginRoute: (context) => LoginPage(),
-        FeedFoodRoutes().registerRoute: (context) => RegisterPage(),
-        FeedFoodRoutes().registerNgo: (context) => RegisterNgo(),
-        FeedFoodRoutes().registerUser: (context) => RegisterUser(),
-        FeedFoodRoutes().ForgotPassword: (context) => ForgotPassword(),
-        FeedFoodRoutes().OtpPage: (context) => OtpPage(),
-        FeedFoodRoutes().Walkthrough: (context) => Walkthrough(),
-        FeedFoodRoutes().SetPass: (context) => SetPass(),
-        FeedFoodRoutes().nMainRoute: (context) => NMain(),
-        FeedFoodRoutes().vMainRoute: (context) => VMainPage(),
-        FeedFoodRoutes().nMainRoute: (context) => NMain(),
-        FeedFoodRoutes().vHistory: (context) => VHistory(),
+        FeedFoodRoutes().splashRoute: (context) => const SplashScreen(),
+        FeedFoodRoutes().welcomeRoute: (context) => const WelcomePage(),
+        FeedFoodRoutes().loginRoute: (context) => const LoginPage(),
+        FeedFoodRoutes().registerRoute: (context) => const RegisterPage(),
+        FeedFoodRoutes().registerNgo: (context) => const RegisterNgo(),
+        FeedFoodRoutes().registerUser: (context) => const RegisterUser(),
+        FeedFoodRoutes().ForgotPassword: (context) => const ForgotPassword(),
+        FeedFoodRoutes().OtpPage: (context) => const OtpPage(),
+        FeedFoodRoutes().Walkthrough: (context) => const Walkthrough(),
+        FeedFoodRoutes().SetPass: (context) => const SetPass(),
+        FeedFoodRoutes().nMainRoute: (context) => const NMain(),
+        FeedFoodRoutes().vMainRoute: (context) => const VMainPage(),
+        FeedFoodRoutes().nMainRoute: (context) => const NMain(),
+        FeedFoodRoutes().vHistory: (context) => const VHistory(),
         FeedFoodRoutes().vEditProfile: (context) => VEditProfile(),
       },
     );

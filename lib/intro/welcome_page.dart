@@ -14,7 +14,7 @@ class WelcomePage extends StatelessWidget {
         body: SingleChildScrollView(
           child: Column(
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
 
@@ -25,7 +25,7 @@ class WelcomePage extends StatelessWidget {
                   alignment: Alignment.topLeft,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
+                    children: const [
                       Text(
                         "Welcome",
                         style: TextStyle(
@@ -45,7 +45,7 @@ class WelcomePage extends StatelessWidget {
 
               // Code for background images
               Container(
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   image: DecorationImage(
                       image: AssetImage("assets/images/welcm1.png"),
                       fit: BoxFit.contain),
@@ -53,11 +53,11 @@ class WelcomePage extends StatelessWidget {
                 height: 350,
                 child: Padding(
                   padding: const EdgeInsets.all(200.0),
-                  child: Column(children: []),
+                  child: Column(children: const []),
                 ),
               ),
               Container(
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   image: DecorationImage(
                       image: AssetImage("assets/images/welcm2.png"),
                       fit: BoxFit.cover),
@@ -73,18 +73,18 @@ class WelcomePage extends StatelessWidget {
                         child: ElevatedButton(
                           onPressed: (() => Navigator.pushNamed(
                               context, FeedFoodRoutes().loginRoute)),
-                          child: Text(
-                            "Sign In",
-                            style: TextStyle(fontSize: 24),
-                          ),
                           style: ElevatedButton.styleFrom(
-                              primary: Colors.deepPurple[900],
+                              backgroundColor: Colors.deepPurple[900],
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10),
                               )),
+                          child: const Text(
+                            "Sign In",
+                            style: TextStyle(fontSize: 24),
+                          ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       SizedBox(
@@ -95,18 +95,18 @@ class WelcomePage extends StatelessWidget {
                               context: context,
                               builder: ((context) =>
                                   FeedFoodSheet().buildSheet(context)),
-                              shape: RoundedRectangleBorder(
+                              shape: const RoundedRectangleBorder(
                                   borderRadius: BorderRadius.vertical(
                                       top: Radius.circular(20))))),
-                          child: Text(
-                            "Sign Up",
-                            style: TextStyle(fontSize: 24, color: Colors.black),
-                          ),
                           style: ElevatedButton.styleFrom(
-                              primary: Colors.white,
+                              backgroundColor: Colors.white,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10),
                               )),
+                          child: const Text(
+                            "Sign Up",
+                            style: TextStyle(fontSize: 24, color: Colors.black),
+                          ),
                         ),
                       ),
                     ],

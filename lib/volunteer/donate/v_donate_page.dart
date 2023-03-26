@@ -84,16 +84,16 @@ class _VDonatePageState extends State<VDonatePage> {
                   ...[
                     Row(
                       children: [
-                        CircleAvatar(
+                        const CircleAvatar(
                           backgroundImage: NetworkImage(
                               "https://png.pngtree.com/png-vector/20191101/ourmid/pngtree-cartoon-color-simple-male-avatar-png-image_1934459.jpg"),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 10,
                         ),
                         Text(
                           UserUsername,
-                          style: TextStyle(fontSize: 16),
+                          style: const TextStyle(fontSize: 16),
                         ),
                       ],
                     ),
@@ -122,7 +122,7 @@ class _VDonatePageState extends State<VDonatePage> {
                                 const SizedBox(
                                   width: 5,
                                 ),
-                                Text("person"),
+                                const Text("person"),
                               ],
                             )
                           ],
@@ -150,23 +150,23 @@ class _VDonatePageState extends State<VDonatePage> {
                         children: [
                           Row(
                             children: [
-                              Icon(Icons.alarm_outlined),
-                              SizedBox(
+                              const Icon(Icons.alarm_outlined),
+                              const SizedBox(
                                 width: 10,
                               ),
                               Text(
                                 _timeOfDay.format(context).toString(),
-                                style: TextStyle(color: Colors.black54),
+                                style: const TextStyle(color: Colors.black54),
                               ),
                             ],
                           ),
                           TextButton(
                               onPressed: _showTimePicker,
-                              child: Text("select")),
+                              child: const Text("select")),
                         ],
                       ),
                     ),
-                    Row(children: <Widget>[
+                    Row(children: const <Widget>[
                       Expanded(child: Divider()),
                       Text(
                         "Address",
@@ -230,7 +230,7 @@ class _VDonatePageState extends State<VDonatePage> {
                         "enter food pickup area code",
                         "zip code cannot empty",
                         zip_details),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     SizedBox(
@@ -240,15 +240,15 @@ class _VDonatePageState extends State<VDonatePage> {
                         onPressed: (() async {
                           await postRequest(context);
                         }),
-                        child: Text(
-                          "Post",
-                          style: TextStyle(fontSize: 24),
-                        ),
                         style: ElevatedButton.styleFrom(
-                            primary: Colors.deepPurple[400],
+                            backgroundColor: Colors.deepPurple[400],
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(5),
                             )),
+                        child: const Text(
+                          "Post",
+                          style: TextStyle(fontSize: 24),
+                        ),
                       ),
                     ),
                   ].expand(
@@ -301,6 +301,7 @@ class _VDonatePageState extends State<VDonatePage> {
           'new');
 
       if (reponse == true) {
+        // ignore: use_build_context_synchronously
         Navigator.of(context).pop();
         AwesomeDialog(
           context: context,
@@ -312,10 +313,8 @@ class _VDonatePageState extends State<VDonatePage> {
             Navigator.pushReplacementNamed(
                 context, FeedFoodRoutes().vMainRoute);
           },
-        )..show();
+        ).show();
       }
-    } else {
-      print(_formKey.currentState?.validate());
-    }
+    } else {}
   }
 }

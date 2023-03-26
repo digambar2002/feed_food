@@ -21,8 +21,8 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   // controller for login filed
 
-  var _username = TextEditingController();
-  var _password = TextEditingController();
+  final _username = TextEditingController();
+  final _password = TextEditingController();
 
   final _loginFormKey = GlobalKey<FormState>();
 
@@ -90,7 +90,7 @@ class _LoginPageState extends State<LoginPage> {
                               style: TextStyle(fontSize: 24),
                             ),
                             style: ElevatedButton.styleFrom(
-                                primary: Colors.deepPurple[400],
+                                backgroundColor: Colors.deepPurple[400],
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(5),
                                 )),
@@ -152,7 +152,9 @@ class _LoginPageState extends State<LoginPage> {
           UserAccountNo = response['accountNo'];
           UserType = response['type'];
 
+          // ignore: use_build_context_synchronously
           Navigator.of(context).pop();
+          // ignore: use_build_context_synchronously
           Navigator.pushNamedAndRemoveUntil(
               context, FeedFoodRoutes().vMainRoute, (r) => false);
         } else if (response['success'] == true && response['type'] == 'ngo') {
@@ -168,10 +170,13 @@ class _LoginPageState extends State<LoginPage> {
           UserAccountNo = response['accountNo'];
           UserType = response['type'];
 
+          // ignore: use_build_context_synchronously
           Navigator.of(context).pop();
+          // ignore: use_build_context_synchronously
           Navigator.pushNamedAndRemoveUntil(
               context, FeedFoodRoutes().nMainRoute, (r) => false);
         } else {
+          // ignore: use_build_context_synchronously
           Navigator.of(context).pop();
           AwesomeDialog(
             context: context,
@@ -179,12 +184,11 @@ class _LoginPageState extends State<LoginPage> {
             animType: AnimType.scale,
             title: 'Error !',
             desc: response['success'].toString(),
+            // ignore: avoid_returning_null_for_void
             btnOkOnPress: (() => null),
           ).show();
         }
-      } else {
-        print(_loginFormKey.currentState?.validate());
-      }
+      } else {}
     } catch (e) {
       Navigator.of(context).pop();
       AwesomeDialog(
@@ -192,6 +196,7 @@ class _LoginPageState extends State<LoginPage> {
         dialogType: DialogType.error,
         animType: AnimType.scale,
         title: 'Error !',
+        // ignore: avoid_returning_null_for_void
         btnOkOnPress: (() => null),
       ).show();
     }

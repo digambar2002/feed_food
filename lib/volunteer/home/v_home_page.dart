@@ -1,10 +1,8 @@
 import 'dart:convert';
 
 import 'package:feed_food/models/news_model.dart';
-import 'package:feed_food/utils/globals.dart';
 import 'package:feed_food/widgets/cards.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
@@ -39,8 +37,8 @@ class _VHomePageState extends State<VHomePage> {
         // Decode the JSON data from the response
         var data = jsonDecode(response.body);
         // Return the list of articles from the API
-        var products_data = data['articles'];
-        NewsModel.News = List.from(products_data)
+        var productsData = data['articles'];
+        NewsModel.News = List.from(productsData)
             .map<Articles>((item) => Articles.fromMap(item))
             .toList();
       } else {
@@ -156,7 +154,7 @@ class _VHomePageState extends State<VHomePage> {
                 height: 10,
               ),
               Flexible(
-                child: (NewsModel.News != null && NewsModel.News.isNotEmpty)
+                child: (NewsModel.News.isNotEmpty)
                     ? ListView.builder(
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),

@@ -19,10 +19,10 @@ class OtpPage extends StatefulWidget {
 class _OtpPageState extends State<OtpPage> {
   final _OtpKey = GlobalKey<FormState>();
 
-  var _pin1 = TextEditingController();
-  var _pin2 = TextEditingController();
-  var _pin3 = TextEditingController();
-  var _pin4 = TextEditingController();
+  final _pin1 = TextEditingController();
+  final _pin2 = TextEditingController();
+  final _pin3 = TextEditingController();
+  final _pin4 = TextEditingController();
 
   var _otp_error = "";
 
@@ -46,13 +46,9 @@ class _OtpPageState extends State<OtpPage> {
               const SizedBox(
                 height: 20,
               ),
-              Container(
-                // forgotpasswordUYR (2:682)
-
-                child: const Text(
-                  'Verification',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 26),
-                ),
+              const Text(
+                'Verification',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 26),
               ),
               const Padding(
                 padding: EdgeInsets.symmetric(
@@ -101,8 +97,7 @@ class _OtpPageState extends State<OtpPage> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    Container(
-                        child: Row(
+                    Row(
                       children: [
                         TweenAnimationBuilder(
                             tween: Tween(begin: 30.0, end: 0),
@@ -121,7 +116,7 @@ class _OtpPageState extends State<OtpPage> {
                                   ],
                                 )))
                       ],
-                    )),
+                    ),
                   ],
                 ),
               ),
@@ -134,7 +129,7 @@ class _OtpPageState extends State<OtpPage> {
                     await validate();
                   })),
                   style: ElevatedButton.styleFrom(
-                      primary: Colors.deepPurple[300],
+                      backgroundColor: Colors.deepPurple[300],
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       )),
@@ -154,7 +149,6 @@ class _OtpPageState extends State<OtpPage> {
   Future validate() async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     var otp = sharedPreferences.getString("forgotPassOtp");
-    var email = sharedPreferences.getString("forgotEmail");
     var enterOtp = _pin1.text + _pin2.text + _pin3.text + _pin4.text;
 
     if (enterOtp.isNotEmpty) {
@@ -163,6 +157,7 @@ class _OtpPageState extends State<OtpPage> {
 
       if (enterOtp == otp) {
         sharedPreferences.remove("forgotPassOtp");
+        // ignore: use_build_context_synchronously
         Navigator.pushReplacementNamed(context, FeedFoodRoutes().SetPass);
         return true;
       } else {
@@ -194,11 +189,11 @@ class _OtpPageState extends State<OtpPage> {
         await ForgotPasswordModel().sendMail(email, otp.toString());
 
     if (emailResponse == true) {
-      print(emailResponse);
       // storing otp in shared preferences
       final SharedPreferences sharedPreferences =
           await SharedPreferences.getInstance();
       sharedPreferences.setString("forgotPassOtp", otp.toString());
+      // ignore: use_build_context_synchronously
       Navigator.of(context).pop();
       setState(() {});
     } else {
@@ -208,6 +203,7 @@ class _OtpPageState extends State<OtpPage> {
         animType: AnimType.scale,
         title: 'Error !',
         desc: "please check internet connection or try after some time",
+        // ignore: avoid_returning_null_for_void
         btnOkOnPress: (() => null),
       ).show();
       setState(() {});

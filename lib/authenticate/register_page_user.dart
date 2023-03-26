@@ -9,26 +9,26 @@ import 'package:feed_food/widgets/text_fields.dart';
 import 'package:flutter/material.dart';
 
 class RegisterUser extends StatefulWidget {
-  RegisterUser({super.key});
+  const RegisterUser({super.key});
 
   @override
   State<RegisterUser> createState() => _RegisterUserState();
 }
 
 class _RegisterUserState extends State<RegisterUser> {
-  var _username = TextEditingController();
+  final _username = TextEditingController();
 
-  var _email = TextEditingController();
+  final _email = TextEditingController();
 
-  var _phone_no = TextEditingController();
+  final _phone_no = TextEditingController();
 
-  var _password = TextEditingController();
+  final _password = TextEditingController();
 
   final _RegisterFormKey = GlobalKey<FormState>();
 
-  var username_error = null;
-  var email_error = null;
-  var phone_error = null;
+  var username_error;
+  var email_error;
+  var phone_error;
 
   @override
   Widget build(BuildContext context) {
@@ -89,11 +89,9 @@ class _RegisterUserState extends State<RegisterUser> {
               height: 60,
               width: 320,
               child: ElevatedButton(
-                onPressed: (() async {
-                  dynamic flag = await signup(context);
-                }),
+                onPressed: (() async {}),
                 style: ElevatedButton.styleFrom(
-                  primary: Colors.deepPurple[300],
+                  backgroundColor: Colors.deepPurple[300],
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
@@ -129,28 +127,29 @@ class _RegisterUserState extends State<RegisterUser> {
             );
           }));
 
-      var username_check =
+      var usernameCheck =
           await RegisterUserModel().usernameValidation(_username.text);
 
       // checking email is in database or not
-      var email_check = await RegisterUserModel().emailValidation(_email.text);
+      var emailCheck = await RegisterUserModel().emailValidation(_email.text);
       // cheking phone no in database or not
-      var phone_check =
+      var phoneCheck =
           await RegisterUserModel().phoneValidation(_phone_no.text);
+      // ignore: use_build_context_synchronously
       Navigator.of(context).pop();
-      if (username_check != true) {
-        username_error = username_check;
+      if (usernameCheck != true) {
+        username_error = usernameCheck;
         setState(() {});
       } else {
-        if (email_check != true) {
-          email_error = email_check;
+        if (emailCheck != true) {
+          email_error = emailCheck;
           setState(() {});
         } else {
           email_error = null;
           setState(() {});
         }
-        if (phone_check != true) {
-          phone_error = phone_check;
+        if (phoneCheck != true) {
+          phone_error = phoneCheck;
           setState(() {});
         } else {
           phone_error = null;
@@ -173,6 +172,7 @@ class _RegisterUserState extends State<RegisterUser> {
         dynamic flag = await RegisterUserModel().InsertVolunteerData(
             _username.text, _email.text, _phone_no.text, _password.text);
         if (flag == true) {
+          // ignore: use_build_context_synchronously
           Navigator.of(context).pop();
           AwesomeDialog(
             context: context,
@@ -187,6 +187,7 @@ class _RegisterUserState extends State<RegisterUser> {
           ).show();
           return true;
         } else {
+          // ignore: use_build_context_synchronously
           Navigator.of(context).pop();
           return false;
         }

@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:core';
-import 'dart:core';
 
 import 'package:feed_food/models/food_post_model.dart';
 import 'package:feed_food/utils/globals.dart';
@@ -27,9 +26,8 @@ class _VHistoryState extends State<VHistory> {
     // URL for the news API endpoint
     var url = FeedFoodStrings.volunteer_history_url;
     try {
-      print(UserAccountNo);
       // Make a GET request to the API endpoint
-      var response = await await http.post(Uri.parse(url), body: {
+      var response = await http.post(Uri.parse(url), body: {
         'accountNo': UserAccountNo,
       });
       if (response.statusCode == 200) {
@@ -44,7 +42,6 @@ class _VHistoryState extends State<VHistory> {
             .toList();
       } else {
         // If the response was not successful, throw an error
-        print("not connectd");
       }
       setState(() {});
     } catch (e) {}
@@ -64,7 +61,6 @@ class _VHistoryState extends State<VHistory> {
       "assets/images/nHome9.jpg",
       "assets/images/nHome10.jpg",
     ];
-    String imagePath;
 
     return Scaffold(
         appBar: AppBar(
@@ -80,8 +76,7 @@ class _VHistoryState extends State<VHistory> {
           // automaticallyImplyLeading: false,
         ),
         body: Container(
-          child: (FoodPostHistoryList.postHistory != null &&
-                  FoodPostHistoryList.postHistory.isNotEmpty)
+          child: (FoodPostHistoryList.postHistory.isNotEmpty)
               ? ListView.builder(
                   itemCount: FoodPostHistoryList.postHistory.length,
                   shrinkWrap: true,
@@ -114,10 +109,10 @@ class _VHistoryState extends State<VHistory> {
                                         ),
                                       )),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 20,
                                 ),
-                                Container(
+                                SizedBox(
                                   width: 150,
                                   child: Column(
                                     crossAxisAlignment:
@@ -127,11 +122,7 @@ class _VHistoryState extends State<VHistory> {
                                         FoodPostHistoryList.postHistory[index]
                                                     .FoodDetails.length >
                                                 26
-                                            ? FoodPostHistoryList
-                                                    .postHistory[index]
-                                                    .FoodDetails
-                                                    .substring(0, 20) +
-                                                '...'
+                                            ? '${FoodPostHistoryList.postHistory[index].FoodDetails.substring(0, 20)}...'
                                             : FoodPostHistoryList
                                                 .postHistory[index].FoodDetails,
                                         style: const TextStyle(
@@ -146,10 +137,7 @@ class _VHistoryState extends State<VHistory> {
                                         FoodPostHistoryList.postHistory[index]
                                                     .Address.length >
                                                 25
-                                            ? FoodPostHistoryList
-                                                    .postHistory[index].Address
-                                                    .substring(0, 25) +
-                                                '...'
+                                            ? '${FoodPostHistoryList.postHistory[index].Address.substring(0, 25)}...'
                                             : FoodPostHistoryList
                                                 .postHistory[index].Address,
                                         style: const TextStyle(

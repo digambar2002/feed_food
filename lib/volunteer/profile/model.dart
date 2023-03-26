@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:feed_food/utils/globals.dart';
-import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 import 'package:feed_food/utils/strings.dart';

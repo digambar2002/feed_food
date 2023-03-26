@@ -1,12 +1,9 @@
-import 'package:feed_food/utils/strings.dart';
 import 'package:feed_food/volunteer/donate/v_donate_page.dart';
 import 'package:feed_food/volunteer/history/v_history_page.dart';
 import 'package:feed_food/volunteer/home/v_home_page.dart';
 import 'package:feed_food/volunteer/profile/v_profile_page.dart';
-import 'package:feed_food/widgets/btn.dart';
 import 'package:flutter/material.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class VMainPage extends StatefulWidget {
   const VMainPage({super.key});
@@ -18,10 +15,10 @@ class VMainPage extends StatefulWidget {
 class _VHomePageState extends State<VMainPage> {
   var _currentIndex = 0;
   List pages = [
-    VHomePage(),
-    VDonatePage(),
-    VHistory(),
-    VProfilePage(),
+    const VHomePage(),
+    const VDonatePage(),
+    const VHistory(),
+    const VProfilePage(),
   ];
 
   @override
@@ -41,29 +38,29 @@ class _VHomePageState extends State<VMainPage> {
             items: [
               /// Home
               SalomonBottomBarItem(
-                icon: Icon(Icons.home_outlined),
-                title: Text("Home"),
+                icon: const Icon(Icons.home_outlined),
+                title: const Text("Home"),
                 selectedColor: Colors.purple,
               ),
 
               /// Likes
               SalomonBottomBarItem(
-                icon: Icon(Icons.add_box_outlined, size: 30),
-                title: Text("Post"),
+                icon: const Icon(Icons.add_box_outlined, size: 30),
+                title: const Text("Post"),
                 selectedColor: Colors.red,
               ),
 
               /// Search
               SalomonBottomBarItem(
-                icon: Icon(Icons.history),
-                title: Text("history"),
+                icon: const Icon(Icons.history),
+                title: const Text("history"),
                 selectedColor: Colors.orange,
               ),
 
               /// Profile
               SalomonBottomBarItem(
-                icon: Icon(Icons.person_outline),
-                title: Text("Profile"),
+                icon: const Icon(Icons.person_outline),
+                title: const Text("Profile"),
                 selectedColor: Colors.teal,
               ),
             ]),

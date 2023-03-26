@@ -1,5 +1,3 @@
-import 'package:feed_food/authenticate/forgot_password.dart';
-
 class FeedFoodRoutes {
   final String splashRoute = "/splash_screen";
   final String homeRoute = "/home";

@@ -9,7 +9,7 @@ class MyDialogue {
       content: const Text("Would you like to logout ?"),
       actions: [
         TextButton(
-          child: Text("Cancel"),
+          child: const Text("Cancel"),
           onPressed: () {
             Navigator.pop(context);
           },

@@ -11,7 +11,7 @@ class Btn {
       alignment: Alignment.centerRight,
       child: TextButton(
         onPressed: (() => onClick()),
-        child: Text(
+        child: const Text(
           "forgot password ?",
           style: TextStyle(
             color: Color.fromARGB(255, 0, 0, 255),
@@ -23,71 +23,65 @@ class Btn {
 
   // Login page:
   Widget buildRegisterbtBtn({required Function onClick}) {
-    return Container(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            "Don’t have an account?",
-            style: TextStyle(color: Colors.black54),
-          ),
-          TextButton(
-            onPressed: (() => onClick()),
-            child: Text(
-              "register here",
-              style: TextStyle(
-                color: Colors.deepPurple[400],
-                decoration: TextDecoration.underline,
-              ),
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        const Text(
+          "Don’t have an account?",
+          style: TextStyle(color: Colors.black54),
+        ),
+        TextButton(
+          onPressed: (() => onClick()),
+          child: Text(
+            "register here",
+            style: TextStyle(
+              color: Colors.deepPurple[400],
+              decoration: TextDecoration.underline,
             ),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 
   Widget buildLoginBtn({required Function onClick}) {
-    return Container(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            "Already have an account?",
-            style: TextStyle(color: Colors.black54),
-          ),
-          TextButton(
-            onPressed: (() => onClick()),
-            child: Text(
-              "login here",
-              style: TextStyle(
-                color: Colors.deepPurple[400],
-                decoration: TextDecoration.underline,
-              ),
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        const Text(
+          "Already have an account?",
+          style: TextStyle(color: Colors.black54),
+        ),
+        TextButton(
+          onPressed: (() => onClick()),
+          child: Text(
+            "login here",
+            style: TextStyle(
+              color: Colors.deepPurple[400],
+              decoration: TextDecoration.underline,
             ),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 
   // Forgot Password Section
   Widget buildResendBtn({required Function onClick}) {
-    return Container(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          TextButton(
-            onPressed: (() => onClick()),
-            child: Text(
-              "Resend code",
-              style: TextStyle(
-                color: Colors.black54,
-                decoration: TextDecoration.underline,
-              ),
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        TextButton(
+          onPressed: (() => onClick()),
+          child: const Text(
+            "Resend code",
+            style: TextStyle(
+              color: Colors.black54,
+              decoration: TextDecoration.underline,
             ),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 
@@ -108,7 +102,7 @@ class Btn {
               imageurl,
               height: 60,
             ),
-            SizedBox(
+            const SizedBox(
               height: 2,
             ),
             Text(title)

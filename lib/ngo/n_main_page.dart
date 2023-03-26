@@ -1,7 +1,6 @@
 import 'package:feed_food/ngo/complete/n_complete.dart';
 import 'package:feed_food/ngo/pending/n_pending.dart';
 import 'package:feed_food/ngo/profile/n_profile.dart';
-import 'package:feed_food/ngo/profile/n_edit_profile.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -18,15 +17,15 @@ class NMain extends StatefulWidget {
 class _NMainState extends State<NMain> {
   var _currentIndex = 0;
   List pages = [
-    NHomePage(),
-    nPendingRequest(),
-    NComplete(),
-    NProfile(),
+    const NHomePage(),
+    const nPendingRequest(),
+    const NComplete(),
+    const NProfile(),
   ];
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: Colors.white,
     ));
     return SafeArea(
@@ -46,29 +45,29 @@ class _NMainState extends State<NMain> {
               items: [
                 /// Home
                 SalomonBottomBarItem(
-                  icon: Icon(Icons.home_outlined),
-                  title: Text("Home"),
+                  icon: const Icon(Icons.home_outlined),
+                  title: const Text("Home"),
                   selectedColor: Colors.purple,
                 ),
 
                 /// Search
                 SalomonBottomBarItem(
-                  icon: Icon(Icons.history_outlined),
-                  title: Text("Pending"),
+                  icon: const Icon(Icons.history_outlined),
+                  title: const Text("Pending"),
                   selectedColor: Colors.orange,
                 ),
 
                 /// Search
                 SalomonBottomBarItem(
-                  icon: Icon(Icons.done_all_outlined),
-                  title: Text("Completed"),
+                  icon: const Icon(Icons.done_all_outlined),
+                  title: const Text("Completed"),
                   selectedColor: Colors.teal,
                 ),
 
                 /// Profile
                 SalomonBottomBarItem(
-                  icon: Icon(Icons.person_outline),
-                  title: Text("Profile"),
+                  icon: const Icon(Icons.person_outline),
+                  title: const Text("Profile"),
                   selectedColor: Colors.pink,
                 ),
               ]),

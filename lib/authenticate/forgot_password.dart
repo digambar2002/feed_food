@@ -11,6 +11,8 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ForgotPassword extends StatefulWidget {
+  const ForgotPassword({super.key});
+
   @override
   State<ForgotPassword> createState() => _ForgotPasswordState();
 }
@@ -45,13 +47,14 @@ class _ForgotPasswordState extends State<ForgotPassword> {
             await ForgotPasswordModel().sendMail(_email.text, otp.toString());
 
         if (emailResponse == true) {
-          print(emailResponse);
           // storing otp in shared preferences
           final SharedPreferences sharedPreferences =
               await SharedPreferences.getInstance();
           sharedPreferences.setString("forgotPassOtp", otp.toString());
           sharedPreferences.setString("forgotEmail", _email.text);
+          // ignore: use_build_context_synchronously
           Navigator.of(context).pop();
+          // ignore: use_build_context_synchronously
           Navigator.pushReplacementNamed(context, FeedFoodRoutes().OtpPage);
         } else {
           AwesomeDialog(
@@ -60,18 +63,19 @@ class _ForgotPasswordState extends State<ForgotPassword> {
             animType: AnimType.scale,
             title: 'Error !',
             desc: "please check internet connection or try after some time",
+            // ignore: avoid_returning_null_for_void
             btnOkOnPress: (() => null),
           ).show();
         }
 
         return true;
       }
+      // ignore: use_build_context_synchronously
       Navigator.of(context).pop();
       _mail_error = "email not found !";
       setState(() {});
       return false;
     } else {
-      print(_ForgotFormKey.currentState?.validate());
       return false;
     }
   }
@@ -134,15 +138,15 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                     onPressed: ((() async {
                       await authenticate(context);
                     })),
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.deepPurple[300],
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        )),
                     child: const Text(
                       "Continue",
                       style: TextStyle(fontSize: 24),
                     ),
-                    style: ElevatedButton.styleFrom(
-                        primary: Colors.deepPurple[300],
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        )),
                   ),
                 ),
               ]),

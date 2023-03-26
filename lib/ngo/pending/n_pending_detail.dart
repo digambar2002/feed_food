@@ -8,7 +8,6 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:feed_food/utils/globals.dart';
 import 'package:flutter/material.dart';
 
-import 'package:feed_food/widgets/sheet.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:maps_launcher/maps_launcher.dart';
@@ -141,7 +140,7 @@ class _NPendingDetailState extends State<NPendingDetail> {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
         statusBarColor: Colors.white, statusBarBrightness: Brightness.light));
     return status == "0"
         ? const Scaffold(
@@ -156,8 +155,8 @@ class _NPendingDetailState extends State<NPendingDetail> {
                 alignment: Alignment.centerLeft,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text(
+                  children: const [
+                    Text(
                       "Food Detail",
                       style: TextStyle(
                         color: Colors.black,
@@ -185,15 +184,15 @@ class _NPendingDetailState extends State<NPendingDetail> {
                 onPressed: () {
                   updateFoodStatus();
                 },
-                child: const Text(
-                  "Completed",
-                  style: TextStyle(fontSize: 20),
-                ),
                 style: ElevatedButton.styleFrom(
                     primary: Colors.green[800],
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(0),
                     )),
+                child: const Text(
+                  "Completed",
+                  style: TextStyle(fontSize: 20),
+                ),
               ),
             ),
           );
@@ -313,7 +312,7 @@ class _NPendingDetailState extends State<NPendingDetail> {
                     height: 6,
                   ),
                   Text(
-                    "For ${quantity} People",
+                    "For $quantity People",
                     style: const TextStyle(
                       color: Colors.black,
                       fontSize: 12,
@@ -344,7 +343,7 @@ class _NPendingDetailState extends State<NPendingDetail> {
                     ),
                   ),
                   Text(
-                    'Mobile No: ${mobileNo}',
+                    'Mobile No: $mobileNo',
                     style: const TextStyle(
                       color: Colors.black,
                       fontSize: 12,

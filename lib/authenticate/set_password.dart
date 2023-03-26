@@ -19,7 +19,7 @@ class _SetPassState extends State<SetPass> {
   bool _hasPasswordOneCapital = false;
   bool _hasPasswordOneSymbol = false;
 
-  var _password = TextEditingController();
+  final _password = TextEditingController();
   onPasswordChanged(String password) {
     final numericRegex = RegExp(r'[0-9]');
     final CapitalRegex = RegExp(r'[A-Z]');
@@ -82,6 +82,7 @@ class _SetPassState extends State<SetPass> {
                       if (value!.isEmpty) {
                         return "password not empty";
                       }
+                      return null;
                       // return false;
                     }),
                     onChanged: (password) => onPasswordChanged(password),
@@ -286,6 +287,7 @@ class _SetPassState extends State<SetPass> {
           await ForgotPasswordModel().resetPassword(_password.text, email);
 
       if (flag == true) {
+        // ignore: use_build_context_synchronously
         Navigator.of(context).pop();
 
         AwesomeDialog(
@@ -302,6 +304,7 @@ class _SetPassState extends State<SetPass> {
 
         return true;
       }
+      // ignore: use_build_context_synchronously
       Navigator.of(context).pop();
 
       AwesomeDialog(
@@ -310,13 +313,12 @@ class _SetPassState extends State<SetPass> {
         animType: AnimType.scale,
         title: 'Error !',
         desc: "please check internet connection or try after some time",
+        // ignore: avoid_returning_null_for_void
         btnOkOnPress: (() => null),
       ).show();
 
       return false;
       // Navigator.pushNamed(context, FeedFoodRoutes().loginRoute);
-    } else {
-      print(_Set_Pass.currentState?.validate());
-    }
+    } else {}
   }
 }
