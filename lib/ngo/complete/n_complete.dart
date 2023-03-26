@@ -98,8 +98,6 @@ class _NCompleteState extends State<NComplete> {
               : Padding(
                   padding: const EdgeInsets.only(top: 10),
                   child: ListView.builder(
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
                     itemCount: NgoFoodRequest.requestList.length,
                     itemBuilder: ((context, index) {
                       return NCompleteCard(
