@@ -89,7 +89,9 @@ class _RegisterUserState extends State<RegisterUser> {
               height: 60,
               width: 320,
               child: ElevatedButton(
-                onPressed: (() async {}),
+                onPressed: (() async {
+                  signup(context);
+                }),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.deepPurple[300],
                   shape: RoundedRectangleBorder(

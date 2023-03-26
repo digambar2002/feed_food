@@ -4,39 +4,41 @@
 class FeedFoodStrings {
   // Network
 
-  // static final url = "https://feed-n-joy.000webhostapp.com/";
-  static const url = "http://10.0.2.2/feednjoy/app/";
+  static const url = "https://feed-n-joy.000webhostapp.com";
+  // static const url = "http://10.0.2.2/feednjoy/app/";
   // static const url = "http://192.168.182.152/feedfood/";
 
-  static const register_url_volunteer = "${url}authentication/register.php";
+  static const register_url_volunteer =
+      "${url}/app/authentication/register.php";
 
-  static const register_url_ngo = "${url}authentication/register_ngo.php";
+  static const register_url_ngo = "${url}/app/authentication/register_ngo.php";
 
   static const register_vaildate_url =
-      "${url}authentication/user_email_check.php";
+      "${url}/app/authentication/user_email_check.php";
 
-  static const login_url = "${url}authentication/login.php";
+  static const login_url = "${url}/app/authentication/login.php";
 
-  static const forgot_pass_url = "${url}authentication/forgotpass.php";
+  static const forgot_pass_url = "${url}/app/authentication/forgotpass.php";
 
-  static const volunteer_post_url = "${url}volunteer/request.php";
+  static const volunteer_post_url = "${url}/app/volunteer/request.php";
 
-  static const volunteer_history_url = "${url}volunteer/history.php";
-  static const volunteer_profile_url = "${url}volunteer/profile.php";
+  static const volunteer_history_url = "${url}/app/volunteer/history.php";
+  static const volunteer_profile_url = "${url}/app/volunteer/profile.php";
   static const volunteer_update_profile_url =
-      "${url}volunteer/update_profile.php";
+      "${url}/app/volunteer/update_profile.php";
 
-  static const volunteer_stat_profile_url = "${url}volunteer/stat.php";
+  static const volunteer_stat_profile_url = "${url}/app/volunteer/stat.php";
 
   // NGO Urls
-  static const ngo_food_request_url = "${url}ngo/food_request.php";
-  static const ngo_food_pending_url = "${url}ngo/food_pending.php";
-  static const ngo_food_complete_url = "${url}ngo/food_complete.php";
-  static const ngo_food_details_url = "${url}ngo/food_details.php";
-  static const ngo_stat_url = "${url}ngo/stat.php";
-  static const ngo_update_food_url = "${url}ngo/update.php";
-  static const ngo_update_complete_food_url = "${url}ngo/update_complete.php";
-  static const ngo_profile_url = "${url}ngo/profile.php";
+  static const ngo_food_request_url = "${url}/app/ngo/food_request.php";
+  static const ngo_food_pending_url = "${url}/app/ngo/food_pending.php";
+  static const ngo_food_complete_url = "${url}/app/ngo/food_complete.php";
+  static const ngo_food_details_url = "${url}/app/ngo/food_details.php";
+  static const ngo_stat_url = "${url}/app/ngo/stat.php";
+  static const ngo_update_food_url = "${url}/app/ngo/update.php";
+  static const ngo_update_complete_food_url =
+      "${url}/app/ngo/update_complete.php";
+  static const ngo_profile_url = "${url}/app/ngo/profile.php";
 
   // Other NGO Information
   static const ngo_url1 = "https://www.akshayapatra.org/";

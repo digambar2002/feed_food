@@ -41,13 +41,14 @@ class _RegisterNgoState extends State<RegisterNgo> {
   final _NGO_pincode = TextEditingController();
   final _NGO_username = TextEditingController();
   final _NGO_password = TextEditingController();
+  final _NGO_confirm_password = TextEditingController();
 
   // NGO Error
 
-  var NGO_id_error;
-  var ngo_email_error;
-  var ngo_phone_error;
-  var ngo_username_error;
+  var NGO_id_error = null;
+  var ngo_email_error = null;
+  var ngo_phone_error = null;
+  var ngo_username_error = null;
 
   // drop down items
   final Ngo_items = [
@@ -74,7 +75,7 @@ class _RegisterNgoState extends State<RegisterNgo> {
             ),
           ),
           centerTitle: true,
-          backgroundColor: const Color(0x00fafafa),
+          backgroundColor: const Color(0xfafafa),
           elevation: 0,
         ),
         body: Theme(
@@ -185,11 +186,10 @@ class _RegisterNgoState extends State<RegisterNgo> {
                 child: CircularProgressIndicator(),
               );
             }));
-        var idCheck = await RegisterUserModel().ngoIdValidation(_NGO_id.text);
-        // ignore: use_build_context_synchronously
+        var id_check = await RegisterUserModel().ngoIdValidation(_NGO_id.text);
         Navigator.of(context).pop();
-        if (idCheck != true) {
-          NGO_id_error = idCheck;
+        if (id_check != true) {
+          NGO_id_error = id_check;
           setState(() {});
           return false;
         }
@@ -213,21 +213,20 @@ class _RegisterNgoState extends State<RegisterNgo> {
                 child: CircularProgressIndicator(),
               );
             }));
-        var emailCheck =
+        var email_check =
             await RegisterUserModel().emailValidation(_NGO_email.text);
-        var phoneCheck =
+        var phone_check =
             await RegisterUserModel().phoneValidation(_NGO_phone_no.text);
 
-        // ignore: use_build_context_synchronously
         Navigator.of(context).pop();
 
-        if (emailCheck != true) {
-          ngo_email_error = emailCheck;
+        if (email_check != true) {
+          ngo_email_error = email_check;
           setState(() {});
           return false;
         }
-        if (phoneCheck != true) {
-          ngo_phone_error = phoneCheck;
+        if (phone_check != true) {
+          ngo_phone_error = phone_check;
           setState(() {});
           return false;
         }
@@ -251,13 +250,15 @@ class _RegisterNgoState extends State<RegisterNgo> {
         ngo_form_key[1].currentState!.validate() &&
         ngo_form_key[2].currentState!.validate()) {
       if (_NGO_username.text.isEmpty || _NGO_password.text.isEmpty) {
+        print(_NGO_username.text);
+        print(_NGO_password.text);
         return false;
       } else {
-        var usernameCheck =
+        var username_check =
             await RegisterUserModel().usernameValidation(_NGO_username.text);
 
-        if (usernameCheck != true) {
-          ngo_username_error = usernameCheck;
+        if (username_check != true) {
+          ngo_username_error = username_check;
           setState(() {});
           return false;
         }
@@ -274,7 +275,7 @@ class _RegisterNgoState extends State<RegisterNgo> {
               );
             }));
 
-        var ngoDataInserted = await RegisterUserModel().InsertNgoData(
+        var ngo_data_inserted = await RegisterUserModel().InsertNgoData(
             _NGO_name.text,
             _NGO_id.text,
             NGO_type.toString(),
@@ -285,7 +286,7 @@ class _RegisterNgoState extends State<RegisterNgo> {
             _NGO_username.text,
             _NGO_password.text);
 
-        if (ngoDataInserted == true) {
+        if (ngo_data_inserted == true) {
           // ignore: use_build_context_synchronously
           Navigator.of(context).pop();
           AwesomeDialog(
@@ -302,7 +303,6 @@ class _RegisterNgoState extends State<RegisterNgo> {
 
           return true;
         } else {
-          // ignore: use_build_context_synchronously
           Navigator.of(context).pop();
           return false;
         }
