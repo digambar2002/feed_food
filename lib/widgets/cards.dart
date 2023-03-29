@@ -98,8 +98,8 @@ class TileCrad extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 80,
-      width: 80,
+      height: 85,
+      width: 85,
       child: Card(
         // color: Color.fromARGB(255, 199, 185, 249),
         elevation: 5,
@@ -120,7 +120,7 @@ class TileCrad extends StatelessWidget {
             );
           }),
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
             child: Column(
               children: [
                 Image.asset(
@@ -636,8 +636,8 @@ class ReqCards extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: SizedBox(
-          height: 80,
-          width: 80,
+          height: 85,
+          width: 85,
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
