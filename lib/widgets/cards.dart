@@ -120,7 +120,7 @@ class TileCrad extends StatelessWidget {
             );
           }),
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+            padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
             child: Column(
               children: [
                 Image.asset(
@@ -642,8 +642,11 @@ class ReqCards extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(title1),
-                Text(title2),
+                Text(
+                  title1,
+                  style: TextStyle(fontSize: 18),
+                ),
+                Text(title2, style: TextStyle(fontSize: 11)),
               ],
             ),
           ),
