@@ -82,12 +82,20 @@ class _NHomePageState extends State<NHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-        statusBarColor: Colors.deepPurple[500],
+    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+        statusBarColor: Color.fromARGB(255, 155, 110, 246),
         statusBarBrightness: Brightness.light));
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.deepPurple[500],
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+              gradient: LinearGradient(
+            colors: [
+              Color.fromARGB(255, 155, 110, 246),
+              Color.fromARGB(255, 116, 182, 247)
+            ],
+          )),
+        ),
         title: Text(
           FeedFoodStrings.BrandName,
           style: GoogleFonts.dancingScript(
@@ -102,7 +110,13 @@ class _NHomePageState extends State<NHomePage> {
             Container(
               height: 250,
               width: 800,
-              decoration: const BoxDecoration(color: Colors.deepPurple),
+              decoration: const BoxDecoration(
+                  gradient: LinearGradient(
+                colors: [
+                  Color.fromARGB(255, 155, 110, 246),
+                  Color.fromARGB(255, 116, 182, 247)
+                ],
+              )),
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Column(

@@ -41,7 +41,7 @@ class _RegisterUserState extends State<RegisterUser> {
               height: 2,
             ),
             Image.asset(
-              "assets/images/new.jpg",
+              "assets/images/new.png",
               height: 250,
             ),
             const SizedBox(

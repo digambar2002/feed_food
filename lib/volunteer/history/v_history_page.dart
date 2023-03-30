@@ -15,6 +15,20 @@ class VHistory extends StatefulWidget {
 }
 
 class _VHistoryState extends State<VHistory> {
+  List<String> randomImages = [
+    "assets/images/nHome1.png",
+    "assets/images/nHome2.png",
+    "assets/images/nHome3.png",
+    "assets/images/nHome4.jpg",
+    "assets/images/nHome5.jpg",
+    "assets/images/nHome6.jpg",
+    "assets/images/nHome7.jpg",
+    "assets/images/nHome8.jpg",
+    "assets/images/nHome9.jpg",
+    "assets/images/nHome10.jpg",
+  ];
+  String? imagePath;
+
   @override
   void initState() {
     // TODO: implement initState
@@ -47,21 +61,13 @@ class _VHistoryState extends State<VHistory> {
     } catch (e) {}
   }
 
+  String getImage() {
+    randomImages.shuffle();
+    return imagePath = randomImages[0];
+  }
+
   @override
   Widget build(BuildContext context) {
-    List<String> randomImages = [
-      "assets/images/nHome1.png",
-      "assets/images/nHome2.png",
-      "assets/images/nHome3.png",
-      "assets/images/nHome4.jpg",
-      "assets/images/nHome5.jpg",
-      "assets/images/nHome6.jpg",
-      "assets/images/nHome7.jpg",
-      "assets/images/nHome8.jpg",
-      "assets/images/nHome9.jpg",
-      "assets/images/nHome10.jpg",
-    ];
-
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
@@ -103,8 +109,7 @@ class _VHistoryState extends State<VHistory> {
                                       height: 90,
                                       decoration: BoxDecoration(
                                         image: DecorationImage(
-                                          image:
-                                              AssetImage(randomImages[index]),
+                                          image: AssetImage(getImage()),
                                           fit: BoxFit.cover,
                                         ),
                                       )),
