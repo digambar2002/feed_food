@@ -1,47 +1,79 @@
+# Feed-n-Joy - Food Donation App
 
-# Feed Food ❤️
+![App Screenshot](https://drive.google.com/uc?export=download&id=1C4zgaU9Z1zY4BcatpiUqE-fokK-qKpkL)
 
-![App Screenshot](https://drive.google.com/uc?export=download&id=154AxU5vx34C5c8rFfbgB_4Hk-Rhj0Xwh)
+Feed-n-Joy is a food donation app built with Flutter for the frontend and PHP for the backend. It aims to connect food donors with organizations that distribute food to those in need. This app makes the food donation process easy, efficient and accessible for everyone.
 
+## Demo 
+https://youtu.be/r0pPl4gtBv8
 
-Food waste is something that affects us all. This project is used to manage wastage foods
-in a useful way. Every day the people are wasting lots of foods. So we have to reduce
-that food wastage problem through online. If anyone have wastage foods they entering their
-food quantity details and their address in that application and then the admin maintain
-the details of food donator. It affects people everywhere like in our homes, at schools, at
-restaurants, the grocery st in production and even in transportation. This application use
-of mobile technology to reduce waste food and allow hotels to donate leftover food to needy
-people. Using this app user can register, login and also view, add, remove items from the
-cart and then logout in a system. This app also stored real time database. In this app
-donor can add food details and volunteer of the NGO can see the food images donated by
-the different donors.
-## ✨ Features
+## Download App
 
-- Platform for the NGO’s to collect food from Donor.
-- Track of waste food from Donor.
-- Easy to use and user friendly application.
-- Food waste will be reduced.
+[Download for android ](https://www.github.com/digambar2002)
 
 
+## Objective
+The aim of a food donation app is to connect food donors, such as restaurants, grocery stores, and individuals, with organizations that distribute food to those in need, such as food banks and shelters. The app facilitates the process of food donation by providing an easy and efficient way for donors to post surplus food that would otherwise go to waste, and for organizations to find and collect the food.
 
-## ⚙️ Tech Stack
+The app's goal is to reduce food waste, alleviate hunger, and promote sustainability by redistributing excess food to people who need it. It also aims to make the food donation process more convenient and accessible for donors and organizations alike, while ensuring that the donated food is safe, healthy, and of good quality.
 
-- **Client:** Flutter, Dart
+Overall, the food donation app is an innovative solution to the problem of food waste and hunger, and it has the potential to make a significant impact on people's lives and the environment.
 
-- **Server:** Python, Django, REST API, MySql
+## Features
 
+- User-friendly interface
+- Donors can easily post surplus food that would otherwise go to waste
+- NGos can easily find and collect the food with map location
+- Ensures donated food is safe, healthy, and of good quality
+- Reduces food waste and alleviates hunger
+- Promotes sustainability
 
+## Tech Stack
 
+- Flutter
+- PHP
 
-## ✍️ Authors
+## Installation
 
-  👑 [@Renuka Nathjogi](https://www.github.com/RenukaNathjogi) Project Leader & Frontend Developer 
+To install the app, please follow these steps:
 
-  🧑‍💻 [@Digambar Chaudhari](https://www.github.com/digambar2002) Frontend & Backend Developer
+1. Clone the repository.
+2. Install dependencies using `flutter packages get`.
+3. Run the app using `flutter run`.
 
-  🧑‍💻 [@Bhavesh Patil](https://www.github.com/bhaveshp2601) Frontend Developer
+## Usage
 
-  🧑‍💻 [@Deepak Dusane](https://www.github.com/6785-dip) Backend Developer
+To use the app:
 
-  🧑‍💻‍ [@Jayesh Patil](https://www.github.com/jeh2002) Software Tester & Support
+1. Sign up as a donor or NGO.
+2. As a donor, post surplus food you want to donate.
+3. As an NGO, search for food donations in your area and arrange for collection.
+4. Enjoy the feeling of knowing you've helped reduce food waste and alleviate hunger!
+
+## Contributing
+
+If you wish to contribute to the project, please follow these steps:
+
+1. Fork the repository.
+2. Make your changes and commit them.
+3. Submit a pull request.
+
+## Credits
+
+[@Digambar Chaudhari](https://www.github.com/digambar2002)
+
+[@Renuka Nathjogi](https://www.github.com/RenukaNathjogi) 
+
+[@Bhavesh Patil](https://www.github.com/bhaveshp2601) 
+
+[@Deepak Dusane](https://www.github.com/6785-dip)
+
+[@Jayesh Patil](https://www.github.com/jeh2002) 
+
+## Conclution
+In conclusion, waste food management apps are a useful tool to combat food waste and hunger. These apps provide an efficient and accessible way for donors to donate surplus food, and for organizations to collect and distribute the food to those in need.
+
+By using waste food management apps, individuals and businesses can contribute to reducing food waste, promoting sustainability, and alleviating hunger. These apps also provide a user-friendly experience, making it easy for everyone to participate in this important cause.
+
+Overall, waste food management apps are a great solution to address the global issue of food waste and hunger, and can make a significant impact on our society and the environment.
 
