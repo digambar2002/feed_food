@@ -128,6 +128,7 @@ class _nEditProfileState extends State<nEditProfile> {
                             borderRadius: BorderRadius.vertical(
                                 top: Radius.circular(20))))),
                     style: ElevatedButton.styleFrom(
+                        foregroundColor: Colors.white,
                         backgroundColor: Colors.deepPurple,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),

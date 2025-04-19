@@ -61,6 +61,7 @@ class VHomeCard extends StatelessWidget {
                   }),
                   style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.deepPurple[900],
+                      foregroundColor: Colors.white,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(5),
                       )),

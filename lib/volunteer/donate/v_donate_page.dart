@@ -242,6 +242,7 @@ class _VDonatePageState extends State<VDonatePage> {
                         }),
                         style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.deepPurple[400],
+                            foregroundColor: Colors.white,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(5),
                             )),

@@ -130,6 +130,7 @@ class _OtpPageState extends State<OtpPage> {
                   })),
                   style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.deepPurple[300],
+                      foregroundColor: Colors.white,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       )),

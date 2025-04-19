@@ -74,6 +74,7 @@ class WelcomePage extends StatelessWidget {
                           onPressed: (() => Navigator.pushNamed(
                               context, FeedFoodRoutes().loginRoute)),
                           style: ElevatedButton.styleFrom(
+                              foregroundColor: Colors.white,
                               backgroundColor: Colors.deepPurple[900],
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10),

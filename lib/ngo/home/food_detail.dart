@@ -184,6 +184,7 @@ class _NFoodDetailState extends State<NFoodDetail> {
                 },
                 style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.green[800],
+                    foregroundColor: Colors.white,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(0),
                     )),
