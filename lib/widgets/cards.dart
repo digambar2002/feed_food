@@ -60,7 +60,7 @@ class VHomeCard extends StatelessWidget {
                     );
                   }),
                   style: ElevatedButton.styleFrom(
-                      primary: Colors.deepPurple[900],
+                      backgroundColor: Colors.deepPurple[900],
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(5),
                       )),

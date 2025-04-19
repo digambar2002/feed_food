@@ -1,0 +1,2 @@
+D:/client/client/feed-n-joy/feed_food/android/app/.cxx/Debug/6s1l3o4h/x86/CMakeFiles/edit_cache.dir
+D:/client/client/feed-n-joy/feed_food/android/app/.cxx/Debug/6s1l3o4h/x86/CMakeFiles/rebuild_cache.dir

@@ -185,7 +185,7 @@ class _NPendingDetailState extends State<NPendingDetail> {
                   updateFoodStatus();
                 },
                 style: ElevatedButton.styleFrom(
-                    primary: Colors.green[800],
+                    backgroundColor: Colors.green[800],
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(0),
                     )),
